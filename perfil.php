@@ -22,7 +22,7 @@ include_once './Base/nav.php';
                         </div>
                     </div>
                     <div class="col l7">
-                        <div class="card"">
+                        <div class="card">
                             <div class="card-content black-text">
                                 <span class="card-title">Última divulgação</span>
                                 <p>Front-end do Repositório Digital do IFFar SVS</p>
