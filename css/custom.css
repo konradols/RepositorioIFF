@@ -1,0 +1,21 @@
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 3px;
+
+}
+
+.corpadrao{
+    background-color: #32A041;
+}
+
+.cormenu{
+    color: #fff176;
+}
+
+.imagem {
+    width: 250px;
+    height: 250px;
+}
