@@ -40,7 +40,7 @@ include_once './Base/nav.php';
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Front-end do Repositório Digital do IFFar SVS</p>
+                                <p> Repositório Digital do IFFar SVS</p>
                             </div>
                             <div class="card-action">
                                 <a href="#" class="green-text">Integrantes</a>
