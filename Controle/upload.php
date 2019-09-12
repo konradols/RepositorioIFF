@@ -16,15 +16,18 @@ if (isset($_FILES['arquivo'])) {
     $sql_code = "INSERT INTO arquivo VALUES (null, '$novo_nome', NOW())";
     if($PDO->query($sql_code)) {
         $msg = "Arquivo enviado com sucesso!";
+        header('Location: ../Tela/telaUpload.php?msg=sucesso');
     }else{
         $msg = "Falha ao enviar!";
+        header('Location: ../Tela/telaUpload.php?msg=falha');
     }
 }
 ?>
 
-<h1>Upload de Arquivos</h1>
+
+<!--<h1>Upload de Arquivos</h1>
 <form action="upload.php" method="POST" enctype="multipart/form-data">
     Arquivo: <input type="file" required name="arquivo">
     <input type="submit" value="Salvar">
-</form>
+</form>-->
 
