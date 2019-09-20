@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include_once './Base/header.php';
 include_once './Base/nav.php';
 ?>
