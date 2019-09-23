@@ -1,6 +1,7 @@
 <?php
 
 include_once './conexao.php';
+echo var_dump($_POST);
 
 $conexao = new conexao();
 $PDO = $conexao->getConexao();

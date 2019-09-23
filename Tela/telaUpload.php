@@ -37,16 +37,16 @@ if (!isset($_SESSION)) {
                             <br>
                             <form method="POST" action="../Controle/upload.php" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="input-field col l6">
+<!--                                    <div class="file-field input-field col l6">
                                         <input type="file" name="arquivo" required="true">
                                         <label for="arquivo">Arquivo</label>
-                                    </div>
+                                    </div>-->
                                     <div class="input-field col l6">
                                         <input type="text" name="nome" required="true">
                                         <label for="nome">Nome do Trabalho</label>
                                     </div>
                                     <div class="input-field col l6">
-                                        <textarea id="textarea" class="materialize-textarea"></textarea>
+                                        <textarea id="textarea" class="materialize-textarea" name="resumo"></textarea>
                                         <label for="textarea">Resumo</label>
                                     </div>
                                     <div class="input-field col l6">
@@ -60,9 +60,19 @@ if (!isset($_SESSION)) {
                                         <input type="password" name="senha" required="true">
                                         <label for="senha">Senha</label>
                                     </div>
-                                    <button class="btn waves-effect waves-light corpadrao" type="submit" name="botao">
-                                        Submeter
-                                    </button>
+                                    <h5>Selecione o arquivo a ser submetido</h5>
+                                        <div class="file-field input-field">
+                                            <button class="btn corpadrao">
+                                                <div>Upload</div>
+                                            </button>
+                                            <input type="file" class="file-chos" name="arquivo">
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="btn corpadrao col s4 offset-s4" name="SendCadImg" value="true">Submeter</button>
+                                        </div>
                                 </div>
                             </form>
                         </div>
