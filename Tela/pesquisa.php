@@ -13,14 +13,32 @@ include_once '../Base/nav.php';
             <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: auto;">
                 <div class="col l8 card">
                     <h5 class="center">Pesquisa de Trabalhos</h5>
-                    <div class="col l12" style="margin-left: 100px;">
+                    <div class="col l12" style="margin-left: 15px;">
                         <table>
-                            <td>
-                                <input type="text" name="pesquisa" placeholder="Pesquise">
-                            </td>
-                            <td>
-                                <input type="submit" id="btn-pesquisar" class="btn corpadrao inline" value="Pesquisar">
-                            </td>
+                            <tr>
+                                <td>
+                                    <div class="input-field col s12 center">
+                                        <select name="categoria">
+                                            <option value="0">Todos</option>
+                                            <option value="1">Categoria</option>
+                                            <option value="2">Autor</option>
+                                            <option value="3">Título</option>
+                                            <option value="4">Curso</option>
+                                            <option value="5">Ano de publicação</option>
+                                        </select>
+                                        <label for="categoria">Filtrar por</label>
+                                    </div>
+                                </td>
+                                <?php
+                                    
+                                ?>
+                                <td>
+                                    <input type="text" name="pesquisa" placeholder="Pesquise">
+                                </td>
+                                <td>
+                                    <input type="submit" id="btn-pesquisar" class="btn corpadrao inline" value="Pesquisar">
+                                </td>
+                            </tr>
                         </table>
                     </div>
 
@@ -65,6 +83,11 @@ include_once '../Base/nav.php';
 
             $(document).ready(function () {
                 $('.collapsible').collapsible();
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
             });
         </script>
 
