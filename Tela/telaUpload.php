@@ -36,31 +36,7 @@ if (!isset($_SESSION)) {
                             <span class="card-title">Envio de Arquivos</span>
                             <br>
                             <form method="POST" action="../Controle/upload.php" enctype="multipart/form-data">
-                                <div class="row">
-<!--                                    <div class="file-field input-field col l6">
-                                        <input type="file" name="arquivo" required="true">
-                                        <label for="arquivo">Arquivo</label>
-                                    </div>-->
-                                    <div class="input-field col l6">
-                                        <input type="text" name="nome" required="true">
-                                        <label for="nome">Nome do Trabalho</label>
-                                    </div>
-                                    <div class="input-field col l6">
-                                        <textarea id="textarea" class="materialize-textarea" name="resumo"></textarea>
-                                        <label for="textarea">Resumo</label>
-                                    </div>
-                                    <div class="input-field col l6">
-                                        <select name = "categoria" required="true">
-                                            <option value="0">TCC</option>
-                                            <option value="1">Pesquisa</option>
-                                        </select>
-                                        <label for="categoria">Categoria</label>
-                                    </div>
-                                    <div class="input-field col l6">
-                                        <input type="password" name="senha" required="true">
-                                        <label for="senha">Senha</label>
-                                    </div>
-                                    <h5>Selecione o arquivo a ser submetido</h5>
+							<h5>Selecione o arquivo a ser submetido</h5>
                                         <div class="file-field input-field">
                                             <button class="btn corpadrao">
                                                 <div>Upload</div>
@@ -70,9 +46,33 @@ if (!isset($_SESSION)) {
                                                 <input class="file-path validate" type="text">
                                             </div>
                                         </div>
-                                        <div class="row">
+                                <div class="row">
+<!--                                    <div class="file-field input-field col l6">
+                                        <input type="file" name="arquivo" required="true">
+                                        <label for="arquivo">Arquivo</label>
+                                    </div>-->
+                                    <div class="input-field col l6">
+                                        <input type="text" name="nome" required="true">
+                                        <label for="nome">Nome do Trabalho</label>
+                                    </div>
+									<div class="input-field col l6">
+                                        <select name = "categoria" required="true">
+                                            <option value="0">TCC</option>
+                                            <option value="1">Pesquisa</option>
+                                        </select>
+                                        <label for="categoria">Categoria</label>
+                                    </div>
+                                    <div class="input-field col l12">
+                                        <textarea id="textarea" class="materialize-textarea" name="resumo"></textarea>
+                                        <label for="textarea">Resumo</label>
+                                    </div>
+									<div class="row">
                                             <button type="submit" class="btn corpadrao col s4 offset-s4" name="SendCadImg" value="true">Submeter</button>
                                         </div>
+<!--                                    <div class="input-field col l6">
+                                        <input type="password" name="senha" required="true">
+                                        <label for="senha">Senha</label>
+                                    </div>-->
                                 </div>
                             </form>
                         </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-include_once './Base/header.php';
-include_once './Base/nav.php';
+include_once '../Base/header.php';
+include_once '../Base/nav.php';
 ?>
 <html>
     <head>
@@ -17,7 +17,7 @@ include_once './Base/nav.php';
                     <div class="col l4">
                         <div class="card">
                             <div class="card-image">
-                                <img class="z-depth-1" src="Img/trabalhoDigital.jpg" alt="">
+                                <img class="z-depth-1" src="../Img/trabalhoDigital.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ include_once './Base/nav.php';
                         <div class="col s6 l3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="Img/trabalhoDigital.jpg" alt="">
+                                    <img src="../Img/trabalhoDigital.jpg" alt="">
                                     <a href="#" class="halfway-fab btn-floating corpadrao pulse">
                                         <i class="material-icons">add_circle_outline</i>
                                     </a>
@@ -68,7 +68,7 @@ include_once './Base/nav.php';
                         <div class="col s6 l3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="Img/trabalhoDigital.jpg" alt="">
+                                    <img src="../Img/trabalhoDigital.jpg" alt="">
                                     <a href="#" class="halfway-fab btn-floating corpadrao pulse">
                                         <i class="material-icons">add_circle_outline</i>
                                     </a>
@@ -85,7 +85,7 @@ include_once './Base/nav.php';
                         <div class="col s6 l3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="Img/trabalhoDigital.jpg" alt="">
+                                    <img src="../Img/trabalhoDigital.jpg" alt="">
                                     <a href="#" class="halfway-fab btn-floating corpadrao pulse">
                                         <i class="material-icons">add_circle_outline</i>
                                     </a>
@@ -102,7 +102,7 @@ include_once './Base/nav.php';
                         <div class="col s6 l3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="Img/trabalhoDigital.jpg" alt="">
+                                    <img src="../Img/trabalhoDigital.jpg" alt="">
                                     <a href="#" class="halfway-fab btn-floating corpadrao pulse">
                                         <i class="material-icons">add_circle_outline</i>
                                     </a>
@@ -123,7 +123,7 @@ include_once './Base/nav.php';
         </div>
 
         <?php
-        include_once './Base/footer.php';
+        include_once '../Base/footer.php';
         ?>
     </body>
 </html>

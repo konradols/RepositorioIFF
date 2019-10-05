@@ -8,12 +8,16 @@ include_once './Base/nav.php';
     <head>
         <meta charset="UTF-8">
         <title>Protótipo Home Page</title>
+        <style type="text/css">
+            table{border: none;}
+            table tr td{border: none;}
+        </style>
     </head>
     <body>
         <div class="row">
-            <div class="col s3 m3 l2 pull-l1" style="margin-left: 370px;">
+            <div class="col s3 m3 l2 pull-l1" style="margin-left: 470px;">
                 <div class="row" style="margin-top: 100px; margin-left: auto; margin-right: 290px;">
-                    <table>
+                    <table class="">
                         <tr>
                             <td>
                                 <div class="col s3 m3 l2 offset-l5">
@@ -29,13 +33,13 @@ include_once './Base/nav.php';
                                 </div>
                             </td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            <td>
+<!--                            <td>
                                 <div class="col s3 m3 l2 offset-l5">
                                     <a href="./Tela/pesquisa.php" style="color: green;"><i class="large material-icons">search</i></a>
                                     <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Pesquisa</strong></p>
                                 </div>
                             </td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>-->
 <!--                            <td>
                                 <div class="col s3 m3 l2 offset-l5">
                                     <a href="#" style="color: green;"><i class="large material-icons">folder_shared</i></a>
@@ -46,19 +50,19 @@ include_once './Base/nav.php';
                             <td>
                                 <div class="col s3 m3 l2 offset-l5">
                                     <a href="#" style="color: green;"><i class="large material-icons">group</i></a>
-                                    <p><strong>Prod.Científica</strong></p>
+                                    <p><strong>&nbsp;&nbsp;Produção &nbsp;&nbsp;Científica</strong></p>
                                 </div>
                             </td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td>
                                 <div class="col s3 m3 l2 offset-l5">
                                     <a href="./Tela/telaUpload.php" style="color: green;"><i class="large material-icons">send</i></a>
-                                    <p><strong>Enviar</strong></p>
+                                    <p><strong>&nbsp;&nbsp;Submeter &nbsp;&nbsp;Trabalhos</strong></p>
                                 </div>
                             </td>
                         </tr>
                     </table>
-                    
+
                 </div>
             </div>
         </div>
