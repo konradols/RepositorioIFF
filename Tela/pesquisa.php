@@ -10,7 +10,7 @@ include_once '../Base/nav.php';
     </head>
     <body>
         <div class="row">
-            <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: auto;">
+            <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: 300px;">
                 <div class="col l8 card">
                     <h5 class="center">Pesquisa de Trabalhos</h5>
                     <div class="col l12" style="margin-left: 15px;">
@@ -19,13 +19,13 @@ include_once '../Base/nav.php';
                                 <td>
                                     <div class="input-field col s12 center">
                                         <select name="categoria">
-                                            <option value="0">Todos</option>
+                                            <option value="0" style="font-size: 8pt;">Todos</option>
                                             <option value="1">Categoria</option>
                                             <option value="2">Área</option>
                                             <option value="3">Palavra-Chave</option>
                                             <option value="4">Autor</option>
                                             <option value="5">Orientador</option>
-                                            <option value="6">Título<''/option>
+                                            <option value="6">Título</option>
                                             <option value="7">Curso</option>
                                             <option value="8">Turma</option>
                                             <option value="9">Ano de publicação</option>
