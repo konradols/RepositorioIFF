@@ -19,24 +19,30 @@ include_once '../Base/nav.php';
                             <div class="collapsible-header"><i class="material-icons">library_books</i>Usabilidade nos repositórios digitais de monografias das instituições públicas de ensino superior brasileiras</div>
                             <div class="collapsible-body">
                                 <a href="#">Autores</a>
-                                <a style="margin-left: 225px;" href="#">Orientadores</a>
-                                <a style="margin-left: 190px;" href="../Jovana Lopes.pdf">Arquivo PDF</a>
+                                <a style="margin-left: 100px;" href="#">Orientadores</a>
+                                <a style="margin-left: 100px;" href="../Jovana Lopes.pdf" target="_blank">Arquivo PDF</a>
+                                <span style="margin-left: 200px;">Publicado em:</span>
+                                <span style="margin-left: 633px;">Submetido em:</span>
                             </div>
                         </li>
                         <li>
                             <div class="collapsible-header"><i class="material-icons">library_books</i>Arquitetura da informação para biblioteca digital personalizável</div>
                             <div class="collapsible-body">
                                 <a href="#">Autores</a>
-                                <a style="margin-left: 225px;" href="#">Orientadores</a>
-                                <a style="margin-left: 190px; "href="../Liriane Soares.pdf">Arquivo PDF</a>
+                                <a style="margin-left: 100px;" href="#">Orientadores</a>
+                                <a style="margin-left: 100px; "href="../Liriane Soares.pdf" target="_blank">Arquivo PDF</a>
+                                <span style="margin-left: 200px;">Publicado em:</span>
+                                <span style="margin-left: 633px;">Submetido em:</span>
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">library_books</i>Organinzação da informação em repositórios digitais: implicações do auto-arquivamento na representação da informação</div>
+                            <div class="collapsible-header"><i class="material-icons">library_books</i>Organização da informação em repositórios digitais: implicações do auto-arquivamento na representação da informação</div>
                             <div class="collapsible-body">
                                 <a href="#">Autores</a>
-                                <a style="margin-left: 225px;" href="#">Orientadores</a>
-                                <a style="margin-left: 190px;" href="../Graziela Martins.pdf">Arquivo PDF</a>
+                                <a style="margin-left: 100px;" href="#">Orientadores</a>
+                                <a style="margin-left: 100px;" href="../Graziela Martins.pdf" target="_blank">Arquivo PDF</a>
+                                <span style="margin-left: 200px;">Publicado em:</span>
+                                <span style="margin-left: 633px;">Submetido em:</span>
                             </div>
                         </li>
                     </ul>

@@ -21,10 +21,14 @@ include_once '../Base/nav.php';
                                         <select name="categoria">
                                             <option value="0">Todos</option>
                                             <option value="1">Categoria</option>
-                                            <option value="2">Autor</option>
-                                            <option value="3">Título</option>
-                                            <option value="4">Curso</option>
-                                            <option value="5">Ano de publicação</option>
+                                            <option value="2">Área</option>
+                                            <option value="3">Palavra-Chave</option>
+                                            <option value="4">Autor</option>
+                                            <option value="5">Orientador</option>
+                                            <option value="6">Título<''/option>
+                                            <option value="7">Curso</option>
+                                            <option value="8">Turma</option>
+                                            <option value="9">Ano de publicação</option>
                                         </select>
                                         <label for="categoria">Filtrar por</label>
                                     </div>
