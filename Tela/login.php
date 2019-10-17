@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
-include_once '../Base/header.php';
+if (isset($_SESSION['logado'])) {
+    header('location: ../Tela/home.php');
+}
 include_once '../Base/nav.php';
+include_once '../Modelo/usuario.php';
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Protótipo Home Page</title>
-    </head>
+    <?php include_once '../Base/header.php'; ?>
     <body>
 
         <div class="container">
@@ -17,7 +17,7 @@ include_once '../Base/nav.php';
                         <div class="card-content">
                             <span class="card-title">Login</span>
                             <br>
-                            <form name="login" method="post" action="../index.php">
+                            <form name="login" method="post" action="../Controle/usuarioControle.php?function=login2">
                                 <div class="row">
                                     <div class="input-field">
                                         <input type="text" id="usuario">
@@ -27,7 +27,20 @@ include_once '../Base/nav.php';
                                         <input type="password" id="senha">
                                         <label for="senha">Senha</label>
                                     </div>
-                                    <a class="waves-effect waves-light btn corpadrao">Entrar</a>
+                                    <!--<a class="waves-effect waves-light btn corpadrao">Entrar</a>-->
+                                    <div class="row center">
+                                        <a href="../index.php" class="grey btn">Voltar</a>
+                                        <input type="submit" class="btn corpadrao" value="Login">
+                                        <div class='row'>
+                                            <?php
+//                                            if (isset($_GET['msg'])) {
+//                                                if ($_GET['msg'] == "erro") {
+//                                                    echo "LOGIN OU SENHA INCORRETOS!";
+//                                                }
+//                                            }
+                                            ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>

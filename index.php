@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
-session_start();
+if (isset($_SESSION['logado'])) {
+    header('location: ../Tela/home.php');
+}
 include_once './Base/header.php';
 include_once './Base/nav.php';
 ?>
