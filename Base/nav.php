@@ -15,8 +15,14 @@ if (realpath("./index.php")) {
             <a href="<?php echo $pontos; ?>index.php" class="brand-logo center">Repositório Digital IFFar SVS</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <!-- Dropdown Trigger -->
-                <li><a href="<?php echo $pontos;?>Tela/pesquisa.php" style="color: white;"><i class="small material-icons">search</i></a></li>
-                <li><a href="<?php echo $pontos;?>Tela/perfil.php" style="color: white;"><i class="small material-icons">person</i></a></li>
+                <li><a href="<?php echo $pontos; ?>Tela/pesquisa.php" style="color: white;"><i class="small material-icons">search</i></a></li>
+                <li><a href="<?php echo $pontos; ?>Tela/perfil.php" style="color: white;"><i class="small material-icons">person</i></a></li>
+                <li><i class="small material-icons">language</i>
+<!--                    <select name = "categoria" required="true">
+                        <option value="0">TCC</option>
+                        <option value="1">Pesquisa</option>
+                    </select>-->
+                </li>
                 <li><a href="#">Sair</a></li>
             </ul>
         </div>
@@ -29,4 +35,9 @@ if (realpath("./index.php")) {
         hover: false
     });
 
+</script>
+<script>
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
 </script>

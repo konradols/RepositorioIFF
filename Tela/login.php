@@ -17,14 +17,14 @@ include_once '../Modelo/usuario.php';
                         <div class="card-content">
                             <span class="card-title">Login</span>
                             <br>
-                            <form name="login" method="post" action="../Controle/usuarioControle.php?function=login2">
+                            <form name="login" method="post" action="../Controle/usuarioControle.php?function=login">
                                 <div class="row">
                                     <div class="input-field">
-                                        <input type="text" id="usuario">
+                                        <input type="text" name="usuario" id="usuario">
                                         <label for="usuario">Usuário</label>
                                     </div>
                                     <div class="input-field">
-                                        <input type="password" id="senha">
+                                        <input type="password" name="senha" id="senha">
                                         <label for="senha">Senha</label>
                                     </div>
                                     <!--<a class="waves-effect waves-light btn corpadrao">Entrar</a>-->
@@ -33,11 +33,11 @@ include_once '../Modelo/usuario.php';
                                         <input type="submit" class="btn corpadrao" value="Login">
                                         <div class='row'>
                                             <?php
-//                                            if (isset($_GET['msg'])) {
-//                                                if ($_GET['msg'] == "erro") {
-//                                                    echo "LOGIN OU SENHA INCORRETOS!";
-//                                                }
-//                                            }
+                                            if (isset($_GET['msg'])) {
+                                                if ($_GET['msg'] == "erro") {
+                                                    echo "LOGIN OU SENHA INCORRETOS!";
+                                                }
+                                            }
                                             ?>
                                         </div>
                                     </div>
