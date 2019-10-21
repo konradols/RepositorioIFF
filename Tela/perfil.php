@@ -21,6 +21,14 @@ include_once '../Base/nav.php';
                             </div>
                         </div>
                     </div>
+<!--                    <a href="../Update/alterarFotoPerfil.php">
+                        <div  class="fotoPerfil" style='background-image: url("../Img/trabalhoDigital.jpg");
+                              background-size: cover;
+                              background-position: center;
+                              background-repeat: no-repeat;'>
+                            <div class="linkfoto white-text">Alterar Foto</div>            
+                        </div>
+                    </a>-->
                     <div class="col l7">
                         <div class="card">
                             <div class="card-content black-text">

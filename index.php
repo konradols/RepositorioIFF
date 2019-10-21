@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-if (isset($_SESSION['logado'])) {
-    header('location: ../Tela/home.php');
+if (!isset($_SESSION)) {
+    session_start();
 }
 include_once './Base/header.php';
 include_once './Base/nav.php';
@@ -17,6 +17,14 @@ include_once './Base/nav.php';
     </head>
     <body>
         <div class="row">
+            <?php
+            if (isset($_SESSION['usuario'])) {
+                ?>
+                <span><?php echo var_dump($_SESSION['usuario']) ?></span>
+                <?php
+            }
+            ?>
+
             <div class="col s3 m3 l2 pull-l1" style="margin-left: 470px;">
                 <div class="row" style="margin-top: 100px; margin-left: auto; margin-right: 290px;">
                     <table class="">

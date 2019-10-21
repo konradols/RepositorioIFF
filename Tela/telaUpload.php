@@ -2,6 +2,9 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+if (!isset($_SESSION['usuario'])) {
+    header('Location: ./login.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +17,10 @@ if (!isset($_SESSION)) {
     <body>
 
         <div class="container">
+            <?php
+            include_once '../Modelo/Usuario.php';
+            $logado = new usuario(unserialize($_SESSION['usuario']));
+            ?>
             <!--            <div class="row">
                             <div class="col l12">
                                 <div class="card center z-depth-4">
@@ -31,6 +38,7 @@ if (!isset($_SESSION)) {
 
             <div class="row">
                 <div class="col l12">
+                    <!--<span><?php // echo var_dump($_SESSION['logado']); ?></span>-->
                     <div class="card center z-depth-4" style="margin-top: 30px;">
                         <div class="card-content">
                             <span class="card-title">Envio de Arquivos</span>
@@ -86,7 +94,6 @@ if (!isset($_SESSION)) {
                 $('select').formSelect();
             });
         </script>
-
 
         <?php
         include_once '../Base/footer.php';
