@@ -43,6 +43,7 @@ if (isset($_SESSION['usuario'])) {
                                             }
                                             ?>
                                         </div>
+                                        <a href="cadastroUsuario.php">Não possui login? Clique aqui e cadastre-se</a>
                                     </div>
                                 </div>
                             </form>

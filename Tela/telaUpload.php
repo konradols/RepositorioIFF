@@ -43,7 +43,7 @@ if (!isset($_SESSION['usuario'])) {
                         <div class="card-content">
                             <span class="card-title">Envio de Arquivos</span>
                             <br>
-                            <form method="POST" action="../Controle/upload.php" enctype="multipart/form-data">
+                            <form method="POST" action="../Controle/trabalhoControle.php?function=inserirTrabalho" enctype="multipart/form-data">
                                 <h5>Selecione o arquivo a ser submetido</h5>
                                 <div class="file-field input-field">
                                     <button class="btn corpadrao">

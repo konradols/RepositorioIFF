@@ -38,6 +38,9 @@ class UsuarioPDO {
 
             if ($stmt->execute()) {
                 header('location: ../index.php?msg=usuarioInserido');
+                $linha = $stmt->fetch(PDO::FETCH_ASSOC);
+                $us = new usuario($linha);
+                $_SESSION['usuario'] = serialize($us);
             } else {
                 header('location: ../index.php?msg=usuarioErroInsert');
             }

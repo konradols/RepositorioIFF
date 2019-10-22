@@ -18,9 +18,13 @@ include_once './Base/nav.php';
     <body>
         <div class="row">
             <?php
+            include_once './Modelo/Usuario.php';
             if (isset($_SESSION['usuario'])) {
+                $logado = new usuario(unserialize($_SESSION['usuario']));
+                header("Location: ./Controle/usuarioCOntrole?function=selectUsuarioUsuario")
+                
                 ?>
-                <span><?php echo var_dump($_SESSION['usuario']) ?></span>
+<!--            <span style="margin-left: -600px;"><?php // echo $logado->getEmail(); ?></span>-->
                 <?php
             }
             ?>

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once '../Base/header.php';
 include_once '../Base/nav.php';
 ?>
@@ -12,6 +15,16 @@ include_once '../Base/nav.php';
 
         <div class="container">
 
+            <?php
+            include_once '../Modelo/Usuario.php';
+            if (isset($_SESSION['usuario'])) {
+                $logado = new usuario(unserialize($_SESSION['usuario']));
+                ?>
+            <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail(); ?></span>-->
+                <?php
+            }
+            ?>
+            
             <div class="row">
                 <div class="col l12 z-depth-5">
                     <div class="col l4">
@@ -33,9 +46,9 @@ include_once '../Base/nav.php';
                         <div class="card">
                             <div class="card-content black-text">
                                 <span class="card-title">Usuário</span>
-                                <p>Nome: </p>
+                                <p>Nome: <?php echo $logado->getNome(); ?></p>
                                 <p>Tipo de Usuário: </p>
-                                <p>E-mail: </p>
+                                <p>E-mail: <?php echo $logado->getEmail(); ?></p>
                             </div>
                             <!--                            <div class="card-action">
                                                             <a href="#">Editar</a>
