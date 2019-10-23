@@ -34,7 +34,7 @@ if (realpath('./index.php')) {
     if (isset($_SESSION['usuario'])) {
         $logado = new usuario(unserialize($_SESSION['usuario']));
         ?>
-                <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();  ?></span>-->
+                                                        <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();            ?></span>-->
         <?php
     }
     ?>
@@ -42,18 +42,18 @@ if (realpath('./index.php')) {
         <div class="nav-wrapper">
             <a href="<?php echo $pontos; ?>index.php" class="brand-logo center">Repositório Digital IFFar SVS</a>
             <?php
-    include_once $pontos . "Modelo/Usuario.php";
-    if (isset($_SESSION['usuario'])) {
-        $logado = new usuario(unserialize($_SESSION['usuario']));
-        ?>
-                <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();  ?></span>-->
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li>Olá <?php echo $logado->getNome();?></li>
-            </ul>
-        <?php
-    }
-    ?>
-            
+            include_once $pontos . "Modelo/Usuario.php";
+            if (isset($_SESSION['usuario'])) {
+                $logado = new usuario(unserialize($_SESSION['usuario']));
+                ?>
+                                                        <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();            ?></span>-->
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li>Olá <?php echo $logado->getNome(); ?></li>
+                </ul>
+                <?php
+            }
+            ?>
+
             <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
@@ -74,7 +74,6 @@ if (realpath('./index.php')) {
                                         <li><a href="#!">Logout</a></li>
                                     </ul>
                                 </li>-->
-
                 <li><a href="<?php echo $pontos; ?>Tela/pesquisa.php" style="color: white;"><i class="small material-icons">search</i></a></li>
                 <li><a href="<?php echo $pontos; ?>Tela/perfil.php" style="color: white;"><i class="small material-icons">person</i></a></li>
 
@@ -100,11 +99,9 @@ if (realpath('./index.php')) {
 </div>
 
 <script>
-
     $('.dropdown-trigger').dropdown({
         hover: false
     });
-
 </script>
 
 <script>

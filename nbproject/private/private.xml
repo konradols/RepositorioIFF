@@ -6,8 +6,9 @@
             <file>file:/C:/xampp/htdocs/RepositorioIFF/RepositorioIFF/Tela/login.php</file>
             <file>file:/C:/xampp/htdocs/RepositorioIFF/RepositorioIFF/index.php</file>
             <file>file:/C:/xampp/htdocs/RepositorioIFF/RepositorioIFF/Tela/cadastroUsuario.php</file>
-            <file>file:/C:/xampp/htdocs/RepositorioIFF/RepositorioIFF/Controle/trabalhoPDO.php</file>
+            <file>file:/C:/xampp/htdocs/RepositorioIFF/RepositorioIFF/Tela/pesquisa.php</file>
             <file>file:/C:/xampp/htdocs/RepositorioIFF/RepositorioIFF/Controle/usuarioPDO.php</file>
+            <file>file:/C:/xampp/htdocs/RepositorioIFF/RepositorioIFF/Base/nav.php</file>
         </group>
     </open-files>
 </project-private>

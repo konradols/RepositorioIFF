@@ -20,6 +20,9 @@ class UsuarioPDO {
 
     function inserirUsuario() {
         $usuario = new usuario($_POST);
+        if($usuario->getFoto() = null){
+            $usuario->setFoto('../Img/trabalhoDigital.png');
+        }
         if ($_POST['senha1'] == $_POST['senha2']) {
             $senhamd5 = md5($_POST['senha1']);
             $con = new conexao();
@@ -38,9 +41,9 @@ class UsuarioPDO {
 
             if ($stmt->execute()) {
                 header('location: ../index.php?msg=usuarioInserido');
-                $linha = $stmt->fetch(PDO::FETCH_ASSOC);
-                $us = new usuario($linha);
-                $_SESSION['usuario'] = serialize($us);
+//                $linha = $stmt->fetch(PDO::FETCH_ASSOC);
+//                $us = new usuario($linha);
+//                $_SESSION['usuario'] = serialize($us);
             } else {
                 header('location: ../index.php?msg=usuarioErroInsert');
             }

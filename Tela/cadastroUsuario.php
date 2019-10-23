@@ -45,6 +45,22 @@ include_once '../Base/nav.php';
                                                                             <label for="telefone">Telefone</label>
                                                                         </div>-->
                                     <div class="file-field input-field col l6">
+                                            <select name="categoria">
+                                                <option value="" disabled selected>Categoria</option>
+                                                <option value="0">Aluno(a)</option>
+                                                <option value="1">Orientador(a)</option>
+                                                <option value="2">Coordenador(a)</option>
+                                            </select>
+                                    </div>
+                                    <div class="input-field col l6">
+                                        <input type="password" name="senha1" required="true">
+                                        <label for="senha">Senha</label>
+                                    </div>
+                                    <div class="input-field col l6">
+                                        <input type="password" name="senha2" required="true">
+                                        <label for="senhaconf">Confirme sua senha</label>
+                                    </div>
+                                    <div class="file-field input-field col l12">
                                         <button class="btn corpadrao">
                                             <div>Upload</div>
                                         </button>
@@ -53,16 +69,10 @@ include_once '../Base/nav.php';
                                             <input class="file-path validate" type="text" placeholder="Foto">
                                         </div>
                                     </div>
-                                    <div class="input-field col l6">
-                                        <input type="password" name="senha" required="true">
-                                        <label for="senha">Senha</label>
-                                    </div>
-                                    <div class="input-field col l6">
-                                        <input type="password" name="senhaconf" required="true">
-                                        <label for="senhaconf">Confirme sua senha</label>
-                                    </div>
                                     <div>
-                                        <a style="margin-bottom: -50px;" class="waves-effect waves-light btn">Cadastrar</a>
+                                        <!--<a style="margin-bottom: -50px;" class="waves-effect waves-light btn">Cadastrar</a>-->
+                                        <a href="../Tela/telaUpload.php" class="grey btn">Voltar</a>
+                                        <input type="submit" class="btn corpadrao" value="Cadastrar">
                                     </div>
                                     <br><br>
                                 </div>
@@ -72,6 +82,12 @@ include_once '../Base/nav.php';
                 </div>
             </div>
         </div>
+
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
+            });
+        </script>
 
         <?php
         include_once '../Base/footer.php';
