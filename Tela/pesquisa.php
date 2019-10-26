@@ -78,12 +78,12 @@ include_once '../Base/nav.php';
         </div>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.collapsible');
-                var instances = M.Collapsible.init(elems, options);
-            });
-
-            // Or with jQuery
+//            document.addEventListener('DOMContentLoaded', function () {
+//                var elems = document.querySelectorAll('.collapsible');
+//                var instances = M.Collapsible.init(elems, options);
+//            });
+//
+//            // Or with jQuery
 
             $(document).ready(function () {
                 $('.collapsible').collapsible();

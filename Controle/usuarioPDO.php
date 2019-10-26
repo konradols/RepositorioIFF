@@ -27,14 +27,14 @@ class UsuarioPDO {
             $senhamd5 = md5($_POST['senha1']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Usuario values(default , :nome , :email , :categoria , :usuario , :senha , :foto, default);');
+            $stmt = $pdo->prepare('insert into Usuario values(default , :nome , :email , :usuario, :categoria , :senha , :foto, default);');
 
             $stmt->bindValue(':nome', $usuario->getNome());
 
             $stmt->bindValue(':email', $usuario->getEmail());
 
             $stmt->bindValue(':usuario', $usuario->getUsuario());
-            
+
             $stmt->bindValue(':categoria', $usuario->getCategoria());
 
             $stmt->bindValue(':senha', $senhamd5);
@@ -152,7 +152,7 @@ class UsuarioPDO {
             return false;
         }
     }
-    
+
     public function selectUsuarioAdministrador($administrador) {
 
         $con = new conexao();
@@ -165,7 +165,7 @@ class UsuarioPDO {
             return false;
         }
     }
-    
+
     public function selectUsuarioNaoAdministrador($administrador) {
 
         $con = new conexao();
@@ -194,6 +194,26 @@ class UsuarioPDO {
         $stmt->bindValue(':foto', $usuario->getFoto());
 
         $stmt->bindValue(':id_usuario', $usuario->getId_usuario());
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public function tornarUsuarioAdm() {
+        $id = $_GET['id'];
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('update usuario set administrador = "true" where id = :id;');
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public function tornarUsuarioNaoAdm() {
+        $id = $_GET['id'];
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('update usuario set administrador = "false" where id = :id;');
+        $stmt->bindValue(':id', $id);
         $stmt->execute();
         return $stmt->rowCount();
     }

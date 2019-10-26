@@ -43,6 +43,8 @@ if (!isset($_SESSION['usuario'])) {
                         <div class="card-content">
                             <span class="card-title">Envio de Arquivos</span>
                             <br>
+                            <!--action="../Controle/trabalhoControle.php?function=inserirTrabalho"-->
+                            <!--action="../Controle/teste.php"-->
                             <form method="POST" action="../Controle/trabalhoControle.php?function=inserirTrabalho" enctype="multipart/form-data">
                                 <div class="row">
                                     <!--                                    <div class="file-field input-field col l6">
@@ -55,10 +57,10 @@ if (!isset($_SESSION['usuario'])) {
                                     </div>
                                     <div class="input-field col l6">
                                         <select name = "categoria" required="true">
-                                            <option value="0">TCC</option>
-                                            <option value="1">Pesquisa</option>
-                                            <option value="2">Relatório</option>
-                                            <option value="3">Produção Científica</option>
+                                            <option value="tcc">TCC</option>
+                                            <option value="pesquisa">Pesquisa</option>
+                                            <option value="relatorio">Relatório</option>
+                                            <option value="producao cientifica">Produção Científica</option>
                                         </select>
                                         <label for="categoria">Categoria</label>
                                     </div>
@@ -78,6 +80,7 @@ if (!isset($_SESSION['usuario'])) {
                                     </div>
                                     <div class="row">
                                         <button type="submit" class="btn corpadrao col s4 offset-s4" name="SendCadImg" value="true">Submeter</button>
+                                        <?php $_SESSION['usuario'] = serialize($logado); ?>
                                     </div>
                                     <!--                                    <div class="input-field col l6">
                                                                             <input type="password" name="senha" required="true">

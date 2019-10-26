@@ -44,12 +44,12 @@ include_once '../Base/nav.php';
                                                                             <input type="text" name="telefone" required="true">
                                                                             <label for="telefone">Telefone</label>
                                                                         </div>-->
-                                    <div class="file-field input-field col l6">
-                                            <select name="categoria">
+                                    <div class="input-field col l6">
+                                        <select name="categoria" required="true">
                                                 <option value="" disabled selected>Categoria</option>
-                                                <option value="0">Aluno(a)</option>
-                                                <option value="1">Orientador(a)</option>
-                                                <option value="2">Coordenador(a)</option>
+                                                <option value="aluno">Aluno(a)</option>
+                                                <option value="orienteador">Orientador(a)</option>
+                                                <option value="coordenador">Coordenador(a)</option>
                                             </select>
                                     </div>
                                     <div class="input-field col l6">
