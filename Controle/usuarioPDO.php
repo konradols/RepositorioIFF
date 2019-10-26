@@ -20,20 +20,22 @@ class UsuarioPDO {
 
     function inserirUsuario() {
         $usuario = new usuario($_POST);
-        if($usuario->getFoto() = null){
-            $usuario->setFoto('../Img/trabalhoDigital.png');
-        }
+//        if($usuario->getFoto() = 'NULL'){
+//            $usuario->setFoto('../Img/trabalhoDigital.png');
+//        }
         if ($_POST['senha1'] == $_POST['senha2']) {
             $senhamd5 = md5($_POST['senha1']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Usuario values(default , :nome , :email , :usuario , :senha , :foto);');
+            $stmt = $pdo->prepare('insert into Usuario values(default , :nome , :email , :categoria , :usuario , :senha , :foto, default);');
 
             $stmt->bindValue(':nome', $usuario->getNome());
 
             $stmt->bindValue(':email', $usuario->getEmail());
 
             $stmt->bindValue(':usuario', $usuario->getUsuario());
+            
+            $stmt->bindValue(':categoria', $usuario->getCategoria());
 
             $stmt->bindValue(':senha', $senhamd5);
 

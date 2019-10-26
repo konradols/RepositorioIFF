@@ -30,7 +30,7 @@ include_once './Base/nav.php';
 
             <div class="col s3 m3 l2 pull-l1" style="margin-left: 470px;">
                 <div class="row" style="margin-top: 100px; margin-left: auto; margin-right: 290px;">
-                    <table class="">
+                    <table style="margin-right: -100px;">
                         <tr>
                             <td>
                                 <div class="col s3 m3 l2 offset-l5">

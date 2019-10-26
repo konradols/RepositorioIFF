@@ -6,8 +6,10 @@ protected $id_usuario;
 protected $nome;
 protected $email;
 protected $usuario;
+protected $categoria;
 protected $senha;
 protected $foto;
+protected $administrador;
 
 
 public function __construct() {
@@ -60,6 +62,14 @@ public function __construct() {
      function setUsuario($usuario){
           $this->usuario = $usuario;
      }
+     
+     function getCategoria() {
+         return $this->categoria;
+     }
+
+     function setCategoria($categoria) {
+         $this->categoria = $categoria;
+     }
 
      public function getSenha(){
          return $this->senha;
@@ -75,6 +85,14 @@ public function __construct() {
 
      function setFoto($foto){
           $this->foto = $foto;
+     }
+     
+     function getAdministrador() {
+         return $this->administrador;
+     }
+
+     function setAdministrador($administrador) {
+         $this->administrador = $administrador;
      }
 
 }
