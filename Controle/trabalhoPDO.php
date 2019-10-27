@@ -38,7 +38,7 @@ class TrabalhoPDO {
             $usuario = unserialize($_SESSION['usuario']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Trabalho values(default , :id_usuario, :nome , :resumo , :categotia , default , :caminho , :id_curso , default , default;');
+            $stmt = $pdo->prepare('insert into Trabalho values(default , :id_usuario, :nome , :resumo , :categotia , CURDATE() , :caminho , :id_curso , default , default;');
 
             $stmt->bindValue(':id_usuario', $usuario->getId());
 

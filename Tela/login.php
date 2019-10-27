@@ -3,7 +3,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-include_once '../Base/nav.php';
+include_once '../Base/navBar.php';
 include_once '../Modelo/usuario.php';
 if (isset($_SESSION['usuario'])) {
     $logado = new usuario(unserialize($_SESSION['usuario']));

@@ -1,4 +1,9 @@
 <?php
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 $pontos = "";
 if (realpath("./index.php")) {
     $pontos = './';

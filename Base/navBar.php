@@ -7,7 +7,6 @@ if (realpath("./index.php")) {
         $pontos = '../';
     }
 }
-
 ?>
 
 <div class="navbar-fixed">
@@ -37,7 +36,7 @@ if (realpath("./index.php")) {
                                 </li>-->
                 <li><a href="<?php echo $pontos; ?>Tela/pesquisa.php" style="color: white;"><i class="small material-icons">search</i></a></li>
                 <li><a href="<?php echo $pontos; ?>Tela/perfil.php" style="color: white;"><i class="small material-icons">person</i></a></li>
-                <li><a href="<?php echo $pontos; ?>Controle/usuarioCOntrole.php?function=logout">Sair</a></li>
+                <li><a href="<?php echo $pontos; ?>Controle/usuarioControle.php?function=logout">Sair</a></li>
             </ul>
         </div>
     </nav>
