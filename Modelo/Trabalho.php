@@ -6,7 +6,7 @@ private $id_trabalho;
 private $id_usuario;
 private $nome;
 private $resumo;
-private $categotia;
+private $categoria;
 private $data_submissao;
 private $caminho;
 private $id_curso;
@@ -65,12 +65,12 @@ public function __construct() {
           $this->resumo = $resumo;
      }
 
-     public function getCategotia(){
-         return $this->categotia;
+     public function getCategoria(){
+         return $this->categoria;
      }
 
-     function setCategotia($categotia){
-          $this->categotia = $categotia;
+     function setCategoria($categotia){
+          $this->categoria = $categoria;
      }
 
      public function getData_submissao(){

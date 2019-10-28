@@ -31,14 +31,15 @@ class TrabalhoPDO {
             $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
             $novo_nome = md5(time()) . $extensao;
             $diretorio = "upload/";
-            
+
             move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
-            
+
             $trabalho = new trabalho($_POST);
+            $trabalho->setCaminho($diretorio . $novo_nome);
             $usuario = unserialize($_SESSION['usuario']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Trabalho values(default , :id_usuario, :nome , :resumo , :categotia , CURDATE() , :caminho , :id_curso , default , default;');
+            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , now() , :caminho , :id_curso , default , default;');
 
             $stmt->bindValue(':id_usuario', $usuario->getId());
 
@@ -46,16 +47,25 @@ class TrabalhoPDO {
 
             $stmt->bindValue(':resumo', $trabalho->getResumo());
 
-            $stmt->bindValue(':categotia', $trabalho->getCategotia());
+            $stmt->bindValue(':categoria', $trabalho->getCategoria());
 
-            $stmt->bindValue(':caminho', $diretorio . $novo_nome);
+            $stmt->bindValue(':caminho', $trabalho->getCaminho());
 
             $stmt->bindValue(':id_curso', "1");
+
+//            try{
+//                $stmt->execute();
+//                header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
+//            } catch (Exception $ex) {
+//                header("Location: ../Tela/telaUpload.php?msg=trabalhoErroInsert" . $ex);
+//            }
 
             if ($stmt->execute()) {
                 header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
             } else {
                 header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
+//                echo("Error ao adicionar novo registro: ");
+                print_r($stmt->errorInfo());
             }
         }
     }
