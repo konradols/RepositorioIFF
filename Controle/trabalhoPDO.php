@@ -39,8 +39,22 @@ class TrabalhoPDO {
             $usuario = unserialize($_SESSION['usuario']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , now() , :caminho , :id_curso , default , default;');
+            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , curdate() , :caminho , :id_curso , default , default);');
+//            $stmt = $pdo->prepare('insert into trabalho values(default , 1 , irineu , irineu , irineu , irineu , irineu , 1 , default , default);');
 
+            
+//            $stmt->bindValue(':id_usuario', $usuario->getId());
+//
+//            $stmt->bindValue(':nome', "irineu");
+//
+//            $stmt->bindValue(':resumo', "irineu");
+//
+//            $stmt->bindValue(':categoria', "irineu");
+//
+//            $stmt->bindValue(':caminho', "irineu");
+//
+//            $stmt->bindValue(':id_curso', "1");
+            
             $stmt->bindValue(':id_usuario', $usuario->getId());
 
             $stmt->bindValue(':nome', $trabalho->getNome());
@@ -63,7 +77,7 @@ class TrabalhoPDO {
             if ($stmt->execute()) {
                 header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
             } else {
-                header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
+//                header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
 //                echo("Error ao adicionar novo registro: ");
                 print_r($stmt->errorInfo());
             }
