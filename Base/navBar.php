@@ -35,8 +35,7 @@ if (realpath("./index.php")) {
                                     </ul>
                                 </li>-->
                 <li><a href="<?php echo $pontos; ?>Tela/pesquisa.php" style="color: white;"><i class="small material-icons">search</i></a></li>
-                <li><a href="<?php echo $pontos; ?>Tela/perfil.php" style="color: white;"><i class="small material-icons">person</i></a></li>
-                <li><a href="<?php echo $pontos; ?>Controle/usuarioControle.php?function=logout">Sair</a></li>
+                <li><a href="<?php echo $pontos; ?>Tela/login.php">Logar</a></li>
             </ul>
         </div>
     </nav>

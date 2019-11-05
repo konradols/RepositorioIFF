@@ -20,7 +20,7 @@ include_once '../Base/nav.php';
                                     <label for="categoria">Filtrar por</label>
                                     <div class="input-field col s12 center" style="margin-top: -4px;">
                                         <select class="browser-default" name="categoria">
-                                            <option value="0" style="font-size: 8pt;">Todos</option>
+                                            <option value="0">Todos</option>
                                             <option value="1">Categoria</option>
                                             <option value="2">Área</option>
                                             <option value="3">Palavra-Chave</option>

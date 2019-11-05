@@ -42,6 +42,7 @@ class UsuarioPDO {
             $stmt->bindValue(':foto', $usuario->getFoto());
 
             if ($stmt->execute()) {
+                $this->logout();
                 header('location: ../index.php?msg=usuarioInserido');
 //                $linha = $stmt->fetch(PDO::FETCH_ASSOC);
 //                $us = new usuario($linha);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 include_once '../Base/header.php';
-include_once '../Base/nav.php';
+include_once '../Base/navBar.php';
 ?>
 <html>
     <head>

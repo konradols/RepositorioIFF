@@ -101,7 +101,8 @@ if (realpath('./index.php')) {
 
 <script>
     $('.dropdown-trigger').dropdown({
-        hover: false
+        hover: false, 
+        coverTrigger: false
     });
 </script>
 
