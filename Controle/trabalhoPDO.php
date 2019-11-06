@@ -155,12 +155,12 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoCategotia($categotia) {
+    public function selectTrabalhoCategoria($categoria) {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from trabalho where categotia = :categotia;');
-        $stmt->bindValue(':categotia', $categotia);
+        $stmt = $pdo->prepare('select * from trabalho where categoria = :categoria;');
+        $stmt->bindValue(':categoria', $categoria);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;
@@ -242,14 +242,14 @@ class TrabalhoPDO {
     public function updateTrabalho(Trabalho $trabalho) {
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('update trabalho set id_usuario = :id_usuario , nome = :nome , resumo = :resumo , categotia = :categotia , data_submissao = :data_submissao , caminho = :caminho , id_curso = :id_curso , numero_acessos = :numero_acessos , numero_downloads = :numero_downloads where id_trabalho = :id_trabalho;');
+        $stmt = $pdo->prepare('update trabalho set id_usuario = :id_usuario , nome = :nome , resumo = :resumo , categoria = :categoria , data_submissao = :data_submissao , caminho = :caminho , id_curso = :id_curso , numero_acessos = :numero_acessos , numero_downloads = :numero_downloads where id_trabalho = :id_trabalho;');
         $stmt->bindValue(':id_usuario', $trabalho->getId_usuario());
 
         $stmt->bindValue(':nome', $trabalho->getNome());
 
         $stmt->bindValue(':resumo', $trabalho->getResumo());
 
-        $stmt->bindValue(':categotia', $trabalho->getCategotia());
+        $stmt->bindValue(':categoria', $trabalho->getCategoria());
 
         $stmt->bindValue(':data_submissao', $trabalho->getData_submissao());
 

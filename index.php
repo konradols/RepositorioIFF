@@ -41,7 +41,7 @@ include_once './Base/nav.php';
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td>
                                 <div class="col s3 m3 l2 offset-l5">
-                                    <a href="#" style="color: green;"><i class="large material-icons">description</i></a>
+                                    <a href="./Tela/relatorio.php" style="color: green;"><i class="large material-icons">description</i></a>
                                     <p><strong>&nbsp;&nbsp;&nbsp;Relatórios</strong></p>
                                 </div>
                             </td>
@@ -62,7 +62,7 @@ include_once './Base/nav.php';
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>-->
                             <td>
                                 <div class="col s3 m3 l2 offset-l5">
-                                    <a href="#" style="color: green;"><i class="large material-icons">group</i></a>
+                                    <a href="./Tela/producaoCientifica.php" style="color: green;"><i class="large material-icons">group</i></a>
                                     <p><strong>&nbsp;&nbsp;Produção &nbsp;&nbsp;Científica</strong></p>
                                 </div>
                             </td>

@@ -58,9 +58,8 @@ if (!isset($_SESSION['usuario'])) {
                                     <div class="input-field col l6">
                                         <select name = "categoria" required="true">
                                             <option value="tcc">TCC</option>
-                                            <option value="pesquisa">Pesquisa</option>
                                             <option value="relatorio">Relatório</option>
-                                            <option value="producao cientifica">Produção Científica</option>
+                                            <option value="producaocientifica">Produção Científica</option>
                                         </select>
                                         <label for="categoria">Categoria</label>
                                     </div>

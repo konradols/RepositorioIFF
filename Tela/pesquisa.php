@@ -18,7 +18,7 @@ include_once '../Base/nav.php';
                             <tr>
                                 <td>
                                     <label for="categoria">Filtrar por</label>
-                                    <div class="input-field col s12 center" style="margin-top: -4px;">
+                                    <div class="input-field col s12 center" style="margin-top: 3px;">
                                         <select class="browser-default" name="categoria">
                                             <option value="0">Todos</option>
                                             <option value="1">Categoria</option>
