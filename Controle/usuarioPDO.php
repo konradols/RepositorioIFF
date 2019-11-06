@@ -139,6 +139,20 @@ class UsuarioPDO {
             return false;
         }
     }
+    
+    public function verificaSenha($senha) {
+
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('select * from usuario where senha = :senha;');
+        $stmt->bindValue(':senha', $senha);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function selectUsuarioFoto($foto) {
 

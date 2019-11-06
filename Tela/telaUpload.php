@@ -38,7 +38,7 @@ if (!isset($_SESSION['usuario'])) {
 
             <div class="row">
                 <div class="col l12">
-                    <!--<span><?php // echo var_dump($_SESSION['logado']);  ?></span>-->
+                    <!--<span><?php // echo var_dump($_SESSION['logado']);   ?></span>-->
                     <div class="card center z-depth-4" style="margin-top: 30px;">
                         <div class="card-content">
                             <span class="card-title">Envio de Arquivos</span>
@@ -75,6 +75,12 @@ if (!isset($_SESSION['usuario'])) {
                                         <input type="file" class="file-chos" name="arquivo">
                                         <div class="file-path-wrapper">
                                             <input class="file-path validate" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l6 center" style="margin-left: 220px; margin-right: 300px;">
+                                            <input type="password" name="senha" id="senha">
+                                            <label for="senha">Senha</label>
                                         </div>
                                     </div>
                                     <div class="row">

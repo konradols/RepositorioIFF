@@ -6,16 +6,19 @@ if (!isset($_SESSION)) {
 
 if (realpath('./index.php')) {
     include_once './Controle/conexao.php';
+    include_once './Controle/usuarioPDO.php';
     include_once './Modelo/Trabalho.php';
     include_once './Modelo/Usuario.php';
 } else {
     if (realpath('../index.php')) {
         include_once '../Controle/conexao.php';
+        include_once '../Controle/usuarioPDO.php';
         include_once '../Modelo/Trabalho.php';
         include_once '../Modelo/Usuario.php';
     } else {
         if (realpath('../../index.php')) {
             include_once '../../Controle/conexao.php';
+            include_once '../../Controle/usuarioPDO.php';
             include_once '../../Modelo/Trabalho.php';
             include_once '../../Modelo/Usuario.php';
         }
