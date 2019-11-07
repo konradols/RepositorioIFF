@@ -20,11 +20,11 @@ include_once '../Base/nav.php';
             if (isset($_SESSION['usuario'])) {
                 $logado = new usuario(unserialize($_SESSION['usuario']));
                 ?>
-            <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail(); ?></span>-->
+                        <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();    ?></span>-->
                 <?php
             }
             ?>
-            
+
             <div class="row">
                 <div class="col l12 z-depth-5">
                     <div class="col l4">
@@ -34,14 +34,14 @@ include_once '../Base/nav.php';
                             </div>
                         </div>
                     </div>
-<!--                    <a href="../Update/alterarFotoPerfil.php">
-                        <div  class="fotoPerfil" style='background-image: url("../Img/trabalhoDigital.jpg");
-                              background-size: cover;
-                              background-position: center;
-                              background-repeat: no-repeat;'>
-                            <div class="linkfoto white-text">Alterar Foto</div>            
-                        </div>
-                    </a>-->
+                    <!--                    <a href="../Update/alterarFotoPerfil.php">
+                                            <div  class="fotoPerfil" style='background-image: url("../Img/trabalhoDigital.jpg");
+                                                  background-size: cover;
+                                                  background-position: center;
+                                                  background-repeat: no-repeat;'>
+                                                <div class="linkfoto white-text">Alterar Foto</div>            
+                                            </div>
+                                        </a>-->
                     <div class="col l7">
                         <div class="card">
                             <div class="card-content black-text">
@@ -72,6 +72,36 @@ include_once '../Base/nav.php';
                     <div class="row">
                         <div class="col l12 card">
                             <ul class="collapsible">
+                                <?php
+                                include_once '../Controle/trabalhoPDO.php';
+                                $trabalhoListar = new trabalhoPDO();
+//                        if (isset($_POST['pesquisar'])) {
+//                            $pesquisa = $_POST['pesquisar'];
+//                            $metodo = $_POST['select'];
+//                            $sql = $trabalhoListar->$metodo($pesquisa);
+//                        } else {
+                                $sql = $trabalhoListar->selectTrabalhoId_usuario($logado->getId());
+//                        }
+                                if ($sql != false) {
+                                    while ($resultado = $sql->fetch()) {
+                                        $tr = new trabalho($resultado);
+                                        ?>
+                                        <li>
+                                            <div class="collapsible-header"><i class="material-icons">library_books</i><?php echo $tr->getNome(); ?></div>
+                                            <div class="collapsible-body">
+                                                <a href="#">Autores<?php
+//                                        $trabalhoListar->selectTrabalhoId_usuario($id_usuario);
+                                                    ?></a>
+                                                <a style="margin-left: 100px;" href="#">Orientadores</a>
+                                                <a style="margin-left: 100px;" href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo PDF</a>
+                                                <span style="margin-left: 200px;">Publicado em:</span>
+                                                <span style="margin-left: 633px;">Submetido em: <?php echo $tr->getData_submissao(); ?></span>
+                                            </div>
+                                        </li>
+                                        <?php
+                                    }
+                                }
+                                ?>
                                 <li>
                                     <div class="collapsible-header"><i class="material-icons">library_books</i>Usabilidade nos repositórios digitais de monografias das instituições públicas de ensino superior brasileiras</div>
                                     <div class="collapsible-body">

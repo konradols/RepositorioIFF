@@ -49,7 +49,7 @@ if (realpath('./index.php')) {
                     <li><a class='dropdown-trigger' data-target='dropdown1'>Listagem</a></li>
                     <ul id='dropdown1' class='dropdown-content'>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemUsuario.php">Usuários</a></li>
-                        <li><a href = "#">Trabalhos</a></li>
+                        <li><a href = "<?php echo $pontos; ?>Tela/listagemTrabalho.php">Trabalhos</a></li>
                         <li><a href = "#">Cursos</a></li>
                         <li><a href = "#">Turmas</a></li>
                     </ul>

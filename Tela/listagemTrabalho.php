@@ -9,7 +9,6 @@ include_once '../Base/nav.php';
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Protótipo Home Page</title>
         <style type="text/css">
             table{border: none;}
             table tr td{border: none;}
@@ -25,22 +24,23 @@ include_once '../Base/nav.php';
             ?>
             
             <div class="row">
-            <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: 300px;">
-                <div class="col l8 card">
+            <div class="col s3 m3 l12">
+                <div class="col l12 card">
                     <h5 class="center">Pesquisa de Trabalhos</h5>
-                    <div class="col l12" style="margin-left: 15px;">
+                    <div class="col l12">
                         <table>
                             <tr>
                                 <td>
                                     <label for="categoria">Filtrar por</label>
                                     <div class="input-field col s12 center" style="margin-top: -4px;">
                                         <select name="categoria">
-                                            <option value="id">Id</option>
+                                            <option value="id_trabalho">Id do Trabalho</option>
+                                            <option value="id_usuario">Id do Usuário</option>
                                             <option value="nome">Nome</option>
-                                            <option value="email">E-mail</option>
-                                            <option value="usuario">Usuário</option>
+                                            <option value="resumo">Resumo</option>
                                             <option value="categoria">Categoria</option>
-                                            <option value="administrador">Administradores</option>
+                                            <option value="data_submissao">Data de Submissão</option>
+                                            <option value="id_curso">Id do curso</option>
                                         </select>
                                     </div>
                                 </td>
@@ -58,56 +58,45 @@ include_once '../Base/nav.php';
 
                         <table class="striped">
                             <tr>
-                                <td>Id</td>
+                                <td>Id do Trabalho</td>
+                                <td>Id do Usuário</td>
                                 <td>Nome</td>
-                                <td>Email</td>
-                                <td>Usuário</td>
+                                <td>Resumo</td>
                                 <td>Categoria</td>
-                                <td>Administrador</td>
+                                <td>Data de Submissão</td>
+                                <td>Caminho</td>
+                                <td>Id do Curso</td>
                             </tr>
                             <?php
-                            include_once '../Controle/usuarioPDO.php';
-                            include_once '../Modelo/usuario.php';
-                            $usuarioListar = new usuarioPDO();
+                            include_once '../Controle/trabalhoPDO.php';
+                            include_once '../Modelo/trabalho.php';
+                            $trabalhoListar = new trabalhoPDO();
                             if (isset($_POST['pesquisar'])) {
                                 $pesquisa = $_POST['pesquisar'];
                                 $metodo = $_POST['select'];
-                                $sql = $usuarioListar->$metodo($pesquisa);
+                                $sql = $trabalhoListar->$metodo($pesquisa);
                             } else {
-                                $sql = $usuarioListar->selectUsuario();
+                                $sql = $trabalhoListar->selectTrabalho();
                             }
                             if ($sql != false) {
 
                                 while ($resultado = $sql->fetch()) {
-                                    $us = new usuario($resultado);
+                                    $tr = new trabalho($resultado);
                                     echo "<tr>";
-                                    echo "<td>" . $us->getId() . "</td>";
-                                    echo "<td>" . $us->getNome() . "</td>";
-                                    echo "<td>" . $us->getEmail() . "</td>";
-                                    echo "<td>" . $us->getUsuario() . "</td>";
-                                    echo "<td>" . $us->getCategoria() . "</td>";
-                                    echo "<td>" . $us->getAdministrador() . "</td>";
+                                    echo "<td>" . $tr->getId_trabalho() . "</td>";
+                                    echo "<td>" . $tr->getId_usuario() . "</td>";
+                                    echo "<td>" . $tr->getNome() . "</td>";
+                                    echo "<td>" . $tr->getResumo() . "</td>";
+                                    echo "<td>" . $tr->getCategoria() . "</td>";
+                                    echo "<td>" . $tr->getData_submissao() . "</td>";
+                                    echo "<td>" . $tr->getCaminho() . "</td>";
+                                    echo "<td>" . $tr->getId_curso() . "</td>";
 
 //                        -----------------------------------------------------------
-                                    if (($us->getAdministrador() == 'true')) {
-                                        echo "<td>";
-                                        ?><input type="button" class="btn corpadrao ativoInativo" caminho="../Controle/usuarioControle.php?function=tornarUsuarioNaoAdm&id=
-                                               <?php echo $us->getId(); ?>" value="Ativo">
-                                               <?php
-                                               echo "</td>";
-                                           } else {
-                                               echo "<td>";
-                                               ?>
-                                        <input type="button" class="btn red darken-2 ativoInativo" caminho="../Controle/usuarioControle.php?function=tornarUsuarioAdm&id=
-                                               <?php echo $us->getId(); ?>" value="Inativo"><?php
-                                               echo "</td>";
-                                           }
-//                        -----------------------------------------------------------
 
-
-                                           echo "<td>";
-                                           ?><a class="btn corpadrao" href="./verMais.php?id=<?php echo $us->getId(); ?>">Ver mais</a><?php
-                                    echo "</td>";
+//                                           echo "<td>";
+//                                           ?><!--<a class="btn corpadrao" href="./verMais.php?id=<?php // echo $tr->getId_trabalho(); ?>">Ver mais</a>--><?php
+//                                    echo "</td>";
                                     echo "</tr>";
                                 }
                             } else {
