@@ -20,7 +20,7 @@ include_once '../Base/nav.php';
             if (isset($_SESSION['usuario'])) {
                 $logado = new usuario(unserialize($_SESSION['usuario']));
                 ?>
-                        <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();    ?></span>-->
+                            <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();     ?></span>-->
                 <?php
             }
             ?>
@@ -47,7 +47,19 @@ include_once '../Base/nav.php';
                             <div class="card-content black-text">
                                 <span class="card-title">Usuário</span>
                                 <p>Nome: <?php echo $logado->getNome(); ?></p>
-                                <p>Tipo de Usuário: </p>
+                                <p>Tipo de Usuário: <?php
+                                    switch ($logado->getCategoria()) {
+                                        case 'aluno':
+                                            echo "Aluno";
+                                            break;
+                                        case 'orientador':
+                                            echo "Orientador";
+                                            break;
+                                        case 'coordenador':
+                                            echo "Coordenador";
+                                            break;
+                                    }
+                                    ?></p>
                                 <p>E-mail: <?php echo $logado->getEmail(); ?></p>
                             </div>
                             <!--                            <div class="card-action">
@@ -61,6 +73,13 @@ include_once '../Base/nav.php';
                                 <div class="card-content black-text">
                                     <span class="card-title">Última divulgação</span>
                                     <p>Front-end do Repositório Digital do IFFar SVS</p>
+                                    <?php
+//                                        include_once '../Controle/trabalhoPDO.php';
+//                                        $trPDO = new TrabalhoPDO();
+//                                    $nomeDoTrabalho = $trPDO->selectTrabalhoNomePorId_Usuario($logado->getId());
+//                                    echo $nomeDoTrabalho . "";
+//                                    
+                                    ?>
                                 </div>
                                 <div class="card-action">
                                     <a href="#">Acessar</a>
@@ -91,7 +110,7 @@ include_once '../Base/nav.php';
                                             <div class="collapsible-body">
                                                 <a href="#">Autores<?php
 //                                        $trabalhoListar->selectTrabalhoId_usuario($id_usuario);
-                                                    ?></a>
+                                        ?></a>
                                                 <a style="margin-left: 100px;" href="#">Orientadores</a>
                                                 <a style="margin-left: 100px;" href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo PDF</a>
                                                 <span style="margin-left: 200px;">Publicado em:</span>

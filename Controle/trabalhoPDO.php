@@ -143,6 +143,20 @@ class TrabalhoPDO {
             return false;
         }
     }
+    
+    public function selectTrabalhoNomePorId_Usuario($id_usuario) {
+
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('select nome from trabalho where id_usuario = :id_usuario;');
+        $stmt->bindValue(':id_usuario', $id_usuario);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
 
     public function selectTrabalhoResumo($resumo) {
 
@@ -241,6 +255,10 @@ class TrabalhoPDO {
             return false;
         }
     }
+    
+//    public function selectUltimoTrabalho($id_usuario) {
+//
+//    }
 
     public function updateTrabalho(Trabalho $trabalho) {
         $con = new conexao();

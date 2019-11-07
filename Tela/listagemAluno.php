@@ -26,7 +26,7 @@ include_once '../Base/nav.php';
             <div class="row">
             <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: 300px;">
                 <div class="col l8 card">
-                    <h5 class="center">Pesquisa de Cursos</h5>
+                    <h5 class="center">Pesquisa de Alunos</h5>
                     <div class="col l12">
                         <table>
                             <tr>
@@ -34,9 +34,9 @@ include_once '../Base/nav.php';
                                     <label for="categoria">Filtrar por</label>
                                     <div class="input-field col s12 center" style="margin-top: -4px;">
                                         <select name="categoria">
-                                            <option value="id">Id do Curso</option>
-                                            <option value="nome">Nome</option>
-                                            <option value="matricula_coordenador">Matrícula do Coordenador</option>
+                                            <option value="id">Matrícula</option>
+                                            <option value="id_curso">Id do Usuário</option>
+                                            <option value="id_curso">Id da Turma</option>
                                         </select>
                                     </div>
                                 </td>
@@ -54,34 +54,34 @@ include_once '../Base/nav.php';
 
                         <table class="striped">
                             <tr>
-                                <td>Id do Curso</td>
-                                <td>Nome</td>
-                                <td>Matrícula do Coordenador</td>
+                                <td>Matrícula</td>
+                                <td>Id do </td>
+                                <td>Id da Turma</td>
                             </tr>
                             <?php
-                            include_once '../Controle/cursoPDO.php';
-                            include_once '../Modelo/curso.php';
-                            $cursoListar = new cursoPDO();
+                            include_once '../Controle/alunoPDO.php';
+                            include_once '../Modelo/aluno.php';
+                            $alunoListar = new alunoPDO();
                             if (isset($_POST['pesquisar'])) {
                                 $pesquisa = $_POST['pesquisar'];
                                 $metodo = $_POST['select'];
-                                $sql = $cursoListar->$metodo($pesquisa);
+                                $sql = $alunoListar->$metodo($pesquisa);
                             } else {
-                                $sql = $cursoListar->selectCurso();
+                                $sql = $alunoListar->selectAluno();
                             }
                             if ($sql != false) {
 
                                 while ($resultado = $sql->fetch()) {
-                                    $tr = new curso($resultado);
+                                    $tr = new aluno($resultado);
                                     echo "<tr>";
-                                    echo "<td>" . $tr->getId() . "</td>";
-                                    echo "<td>" . $tr->getNome() . "</td>";
-                                    echo "<td>" . $tr->getMatricula_coordenador() . "</td>";
+                                    echo "<td>" . $tr->getMatricula() . "</td>";
+                                    echo "<td>" . $tr->getId_usuario() . "</td>";
+                                    echo "<td>" . $tr->getId_turma() . "</td>";
 
 //                        -----------------------------------------------------------
 
 //                                           echo "<td>";
-//                                           ?><!--<a class="btn corpadrao" href="./verMais.php?id=<?php // echo $tr->getId_curso(); ?>">Ver mais</a>--><?php
+//                                           ?><!--<a class="btn corpadrao" href="./verMais.php?id=<?php // echo $tr->getId_aluno(); ?>">Ver mais</a>--><?php
 //                                    echo "</td>";
                                     echo "</tr>";
                                 }

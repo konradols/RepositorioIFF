@@ -2,8 +2,9 @@
 
 class curso{
 
-private $id_curso;
+private $id;
 private $nome;
+private $matricula_coordenador;
 
 
 public function __construct() {
@@ -25,12 +26,12 @@ public function __construct() {
         }
     }
 
-     public function getId_curso(){
-         return $this->id_curso;
+     public function getId(){
+         return $this->id;
      }
 
-     function setId_curso($id_curso){
-          $this->id_curso = $id_curso;
+     function setId($id){
+          $this->id = $id;
      }
 
      public function getNome(){
@@ -39,6 +40,14 @@ public function __construct() {
 
      function setNome($nome){
           $this->nome = $nome;
+     }
+
+     function getMatricula_coordenador() {
+         return $this->matricula_coordenador;
+     }
+
+     function setMatricula_coordenador($matricula_coordenador) {
+         $this->matricula_coordenador = $matricula_coordenador;
      }
 
 }

@@ -2,9 +2,9 @@
 
 class aluno extends usuario{
 
+private $matricula;
 private $id_usuario;
 private $id_turma;
-private $matricula;
 
 
 public function __construct() {
@@ -25,6 +25,14 @@ public function __construct() {
             }
         }
     }
+    
+    public function getMatricula(){
+         return $this->matricula;
+     }
+
+     function setMatricula($matricula){
+          $this->matricula = $matricula;
+     }
 
      public function getId_usuario(){
          return $this->id_usuario;
@@ -40,14 +48,6 @@ public function __construct() {
 
      function setId_turma($id_turma){
           $this->id_turma = $id_turma;
-     }
-
-     public function getMatricula(){
-         return $this->matricula;
-     }
-
-     function setMatricula($matricula){
-          $this->matricula = $matricula;
      }
 
 }

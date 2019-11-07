@@ -26,7 +26,7 @@ include_once '../Base/nav.php';
             <div class="row">
             <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: 300px;">
                 <div class="col l8 card">
-                    <h5 class="center">Pesquisa de Cursos</h5>
+                    <h5 class="center">Pesquisa de Turmas</h5>
                     <div class="col l12">
                         <table>
                             <tr>
@@ -34,9 +34,11 @@ include_once '../Base/nav.php';
                                     <label for="categoria">Filtrar por</label>
                                     <div class="input-field col s12 center" style="margin-top: -4px;">
                                         <select name="categoria">
-                                            <option value="id">Id do Curso</option>
+                                            <option value="id">Id da Turma</option>
+                                            <option value="id_curso">Id do Curso</option>
                                             <option value="nome">Nome</option>
-                                            <option value="matricula_coordenador">Matrícula do Coordenador</option>
+                                            <option value="ano_inicio">Ano Início</option>
+                                            <option value="ano_fim">Ano Fim</option>
                                         </select>
                                     </div>
                                 </td>
@@ -54,34 +56,38 @@ include_once '../Base/nav.php';
 
                         <table class="striped">
                             <tr>
+                                <td>Id da Turma</td>
                                 <td>Id do Curso</td>
                                 <td>Nome</td>
-                                <td>Matrícula do Coordenador</td>
+                                <td>Ano Início</td>
+                                <td>Ano Fim</td>
                             </tr>
                             <?php
-                            include_once '../Controle/cursoPDO.php';
-                            include_once '../Modelo/curso.php';
-                            $cursoListar = new cursoPDO();
+                            include_once '../Controle/turmaPDO.php';
+                            include_once '../Modelo/turma.php';
+                            $turmaListar = new turmaPDO();
                             if (isset($_POST['pesquisar'])) {
                                 $pesquisa = $_POST['pesquisar'];
                                 $metodo = $_POST['select'];
-                                $sql = $cursoListar->$metodo($pesquisa);
+                                $sql = $turmaListar->$metodo($pesquisa);
                             } else {
-                                $sql = $cursoListar->selectCurso();
+                                $sql = $turmaListar->selectTurma();
                             }
                             if ($sql != false) {
 
                                 while ($resultado = $sql->fetch()) {
-                                    $tr = new curso($resultado);
+                                    $tr = new turma($resultado);
                                     echo "<tr>";
                                     echo "<td>" . $tr->getId() . "</td>";
+                                    echo "<td>" . $tr->getId_curso() . "</td>";
                                     echo "<td>" . $tr->getNome() . "</td>";
-                                    echo "<td>" . $tr->getMatricula_coordenador() . "</td>";
+                                    echo "<td>" . $tr->getAno_inicio() . "</td>";
+                                    echo "<td>" . $tr->getAno_fim() . "</td>";
 
 //                        -----------------------------------------------------------
 
 //                                           echo "<td>";
-//                                           ?><!--<a class="btn corpadrao" href="./verMais.php?id=<?php // echo $tr->getId_curso(); ?>">Ver mais</a>--><?php
+//                                           ?><!--<a class="btn corpadrao" href="./verMais.php?id=<?php // echo $tr->getId_turma(); ?>">Ver mais</a>--><?php
 //                                    echo "</td>";
                                     echo "</tr>";
                                 }
