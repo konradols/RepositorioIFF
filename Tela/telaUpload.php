@@ -64,7 +64,7 @@ if (!isset($_SESSION['usuario'])) {
                                         <label for="categoria">Categoria</label>
                                     </div>
                                     <div class="input-field col l12">
-                                        <textarea id="textarea" class="materialize-textarea" name="resumo"></textarea>
+                                        <textarea id="textarea" class="materialize-textarea" name="resumo" required="true"></textarea>
                                         <label for="textarea">Resumo</label>
                                     </div>
                                     <h5>Selecione o arquivo a ser submetido</h5>
@@ -72,7 +72,7 @@ if (!isset($_SESSION['usuario'])) {
                                         <button class="btn corpadrao">
                                             <div>Upload</div>
                                         </button>
-                                        <input type="file" class="file-chos" name="arquivo">
+                                        <input type="file" class="file-chos" name="arquivo" required="true">
                                         <div class="file-path-wrapper">
                                             <input class="file-path validate" type="text">
                                         </div>

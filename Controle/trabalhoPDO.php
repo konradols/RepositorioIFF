@@ -31,7 +31,7 @@ class TrabalhoPDO {
     function inserirTrabalho() {
 
         if (isset($_FILES['arquivo'])) {
-            $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
+            $extensao = strtolower(substr($_FILES['arquivo']['nome'], -4));
             $novo_nome = md5(time()) . $extensao;
             $diretorio = "upload/";
 
@@ -44,8 +44,6 @@ class TrabalhoPDO {
             $pdo = $con->getConexao();
             $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , curdate() , :caminho , :id_curso , default , default);');
 //            $stmt = $pdo->prepare('insert into trabalho values(default , 1 , irineu , irineu , irineu , irineu , irineu , 1 , default , default);');
-
-            
 //            $stmt->bindValue(':id_usuario', $usuario->getId());
 //
 //            $stmt->bindValue(':nome', "irineu");
@@ -57,7 +55,7 @@ class TrabalhoPDO {
 //            $stmt->bindValue(':caminho', "irineu");
 //
 //            $stmt->bindValue(':id_curso', "1");
-            
+
             $stmt->bindValue(':id_usuario', $usuario->getId());
 
             $stmt->bindValue(':nome', $trabalho->getNome());
@@ -78,7 +76,11 @@ class TrabalhoPDO {
 //            }
 
             if ($stmt->execute()) {
-                header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
+//                if ($trabalho->getNome() = null || $trabalho->getResumo() = null || $trabalho->getCategoria() = null || $trabalho->getCaminho() = null) {
+//                    header('location: ../Tela/telaUpload.php?msg=haCamposVazios');
+//                } else {
+                    header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
+//                }
             } else {
 //                header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
 //                echo("Error ao adicionar novo registro: ");
@@ -143,7 +145,7 @@ class TrabalhoPDO {
             return false;
         }
     }
-    
+
     public function selectTrabalhoNomePorId_Usuario($id_usuario) {
 
         $con = new conexao();
@@ -255,7 +257,7 @@ class TrabalhoPDO {
             return false;
         }
     }
-    
+
 //    public function selectUltimoTrabalho($id_usuario) {
 //
 //    }

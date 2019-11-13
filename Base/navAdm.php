@@ -49,6 +49,7 @@ if (realpath('./index.php')) {
                     <li><a class='dropdown-trigger' data-target='dropdown1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listagem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <ul id='dropdown1' class='dropdown-content'>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemUsuario.php">Usuários</a></li>
+                        <li><a href = "<?php echo $pontos; ?>Tela/listagemSolicitacoes.php">Solicitações</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemAluno.php">Alunos</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemOrientador.php">Orientadores</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemCoordenador.php">Coordenadores</a></li>
