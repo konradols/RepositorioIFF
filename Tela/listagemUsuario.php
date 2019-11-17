@@ -23,37 +23,36 @@ include_once '../Base/nav.php';
                 $logado = new usuario(unserialize($_SESSION['usuario']));
             }
             ?>
-            
+
             <div class="row">
-            <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: 300px;">
-                <div class="col l8 card">
-                    <h5 class="center">Pesquisa de Trabalhos</h5>
-                    <div class="col l12" style="margin-left: 15px;">
-                        <table>
-                            <tr>
-                                <td>
-                                    <label for="categoria">Filtrar por</label>
-                                    <div class="input-field col s12 center" style="margin-top: -4px;">
-                                        <select name="categoria">
-                                            <option value="id">Id</option>
-                                            <option value="nome">Nome</option>
-                                            <option value="email">E-mail</option>
-                                            <option value="usuario">Usuário</option>
-                                            <option value="categoria">Categoria</option>
-                                            <option value="administrador">Administradores</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <input type="text" name="pesquisa" placeholder="Pesquise">
-                                </td>
-                                <td>
-                                    <input type="submit" id="btn-pesquisar" class="btn corpadrao inline" value="Pesquisar">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    
+                <div class="col l10 card offset-l1">
+                    <h5 class="center">Lista de Usuários</h5>
+                    <!--                    <div class="col l12" style="margin-left: 15px;">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <label for="categoria">Filtrar por</label>
+                                                        <div class="input-field col s12 center" style="margin-top: -4px;">
+                                                            <select name="categoria">
+                                                                <option value="id">Id</option>
+                                                                <option value="nome">Nome</option>
+                                                                <option value="email">E-mail</option>
+                                                                <option value="usuario">Usuário</option>
+                                                                <option value="categoria">Categoria</option>
+                                                                <option value="administrador">Administradores</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="pesquisa" placeholder="Pesquise">
+                                                    </td>
+                                                    <td>
+                                                        <input type="submit" id="btn-pesquisar" class="btn corpadrao inline" value="Pesquisar">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>-->
+
                     <div id="tabela" class="loader">
 
                         <table class="striped">
@@ -118,11 +117,10 @@ include_once '../Base/nav.php';
                     </div>
 
                     <br/><br/><br/><br/>
-                    
+
                 </div>
             </div>
-        </div>
-            
+
         </div>
 
         <?php
