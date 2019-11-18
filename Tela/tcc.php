@@ -65,7 +65,7 @@ include_once '../Base/nav.php';
 //                                        $trabalhoListar->selectTrabalhoId_usuario($id_usuario);
                                             ?></a>
                                         <a style="margin-left: 100px;" href="#">Orientadores</a>
-                                        <a style="margin-left: 100px;" href="../Controle/<?php echo md5($tr->getCaminho()); ?>" target="_blank">Arquivo PDF</a>
+                                        <a style="margin-left: 100px;" href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo PDF</a>
                                         <!--<span style="margin-left: 200px;">Publicado em:</span>-->
                                         <p class="right" style="margin-top: -3px; margin-right: 110px;">Submetido em: <?php echo $tr->getData_submissao(); ?></p>
                                     </div>

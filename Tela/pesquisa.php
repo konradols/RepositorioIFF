@@ -2,7 +2,6 @@
 <?php
 include_once '../Base/header.php';
 include_once '../Base/nav.php';
-$selectProAction = $_POST['filtro'] . $_POST['pesquisa'];
 ?>
 <html>
     <head>
@@ -16,51 +15,26 @@ $selectProAction = $_POST['filtro'] . $_POST['pesquisa'];
                 <div class="col l8 offset-l2 card">
                     <h5 class="center">Pesquisa de Trabalhos</h5>
                     <div class="col l12" style="margin-left: 15px;">
-                        <form name="pesquisaTrabalhos" action="<?php $selectProAction; ?>" method="POST">
+                        <form name="pesquisaTrabalhos" action="./listagem.php" method="POST">
                             <table>
                                 <tr>
                                     <td>
-                                        <label for="categoria">Filtrar por</label>
+                                        <label for="select">Filtrar por</label>
                                         <div class="input-field col s12 center" style="margin-top: 3px;">
-                                            <select class="browser-default" name="filtro" required="true">
-                                                <option value="selectTrabalho">Todos</option>
-                                                <option value="selectTrabalhoCategoria">Categoria</option>
+                                            <select class="browser-default" name="select" required="true">
+                                                <option value="Trabalho">Todos</option>
+                                                <option value="TrabalhoCategoria">Categoria</option>
                                                 <option value="naoImplementadoNoMomento">Área</option>
                                                 <option value="naoImplementadoNoMomento">Palavra-Chave</option>
-                                                <option value="selectUsuarioNome">Autor</option>
-                                                <option value="selectOrientadorNome">Orientador</option>
-                                                <option value="selectTrabalhoNome">Título</option>
-                                                <option value="selectCursoNome">Curso</option>
-                                                <option value="selectTurmaNome">Turma</option>
-                                                <option value="selectTrabalhoData_submissao">Ano de publicação</option>
+                                                <option value="UsuarioNome">Autor</option>
+                                                <option value="OrientadorNome">Orientador</option>
+                                                <option value="TrabalhoNome">Título</option>
+                                                <option value="CursoNome">Curso</option>
+                                                <option value="TurmaNome">Turma</option>
+                                                <option value="TrabalhoData_submissao">Ano de publicação</option>
                                             </select>
                                         </div>
                                     </td>
-                                    <?php
-                                    include_once '../Controle/usuarioPDO.php';
-                                    include_once '../Controle/trabalhoPDO.php';
-                                    include_once '../Controle/turmaPDO.php';
-                                    include_once '../Controle/cursoPDO.php';
-//                                include_once '../Controle/orientadorPDO.php';
-                                    include_once '../Modelo/usuario.php';
-                                    include_once '../Modelo/trabalho.php';
-                                    include_once '../Modelo/turma.php';
-                                    include_once '../Modelo/curso.php';
-//                                include_once '../Modelo/orientador.php';
-                                    $usuarioListar = new usuarioPDO();
-                                    $trabalhoListar = new trabalhoPDO();
-                                    $turmaListar = new turmaPDO();
-                                    $cursoListar = new cursoPDO();
-//                                $orientadorListar = new orientadorPDO();
-                                    if (isset($_POST['pesquisar'])) {
-                                        echo var_dump($_POST['pesquisar']);
-                                        $pesquisa = $_POST['pesquisar'];
-                                        $metodo = $_POST['select'];
-                                        $sql = $usuarioListar->$metodo($pesquisa);
-                                    } else {
-                                        $sql = $usuarioListar->selectUsuario();
-                                    }
-                                    ?>
                                     <td>
                                         <input type="text" name="pesquisa" placeholder="Pesquise">
                                     </td>

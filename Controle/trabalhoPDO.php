@@ -31,7 +31,7 @@ class TrabalhoPDO {
     function inserirTrabalho() {
 
         if (isset($_FILES['arquivo'])) {
-            $extensao = strtolower(substr($_FILES['arquivo']['nome'], -4));
+            $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
             $novo_nome = md5(time()) . $extensao;
             $diretorio = "upload/";
 
@@ -95,7 +95,7 @@ class TrabalhoPDO {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from trabalho ;');
+        $stmt = $pdo->prepare('select * from trabalho ORDER BY id_trabalho desc;');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;

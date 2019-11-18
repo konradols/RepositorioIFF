@@ -70,12 +70,12 @@ class UsuarioPDO {
         }
     }
 
-    public function selectUsuarioId_usuario($id_usuario) {
+    public function selectUsuarioId($id) {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from usuario where id_usuario = :id_usuario;');
-        $stmt->bindValue(':id_usuario', $id_usuario);
+        $stmt = $pdo->prepare('select * from usuario where id = :id order by id desc;');
+        $stmt->bindValue(':id', $id);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;
@@ -173,6 +173,20 @@ class UsuarioPDO {
         $con = new conexao();
         $pdo = $con->getConexao();
         $stmt = $pdo->prepare('select * from usuario where administrador = "true";');
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
+    
+    public function selectNomeId($id) {
+
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('select nome from usuario where id = :id;');
+        $stmt->bindValue(':id', $id);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;

@@ -71,7 +71,7 @@ include_once '../Base/navBar.php';
                                     </div>
                                     <div>
                                         <!--<a style="margin-bottom: -50px;" class="waves-effect waves-light btn">Cadastrar</a>-->
-                                        <a href="../Tela/telaUpload.php" class="grey btn">Voltar</a>
+                                        <a href="../Tela/login.php" class="grey btn">Voltar</a>
                                         <input type="submit" class="btn corpadrao" value="Cadastrar">
                                     </div>
                                     <br><br>
