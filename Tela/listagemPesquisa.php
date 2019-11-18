@@ -47,7 +47,7 @@ include_once '../Base/nav.php';
         <div class="container">
 
             <div class="row">
-                <div class="col l12 card">
+                <div class="col  s12 m12 l12 card">
                     <ul class="collapsible">
                         <?php
                         $trabalhoListar = new trabalhoPDO();
@@ -59,30 +59,37 @@ include_once '../Base/nav.php';
 //                            $metodo = $_POST['select'];
 //                            $sql = $trabalhoListar->$metodo($pesquisa);
 //                        } else {
-                        switch ($_GET['msg']) {
-                            case "Trabalho":
-                                $sql = $trabalhoListar->selectTrabalho();
-                                break;
-                            case "TrabalhoCategoria":
-                                $sql = $trabalhoListar->selectTrabalhoCategoria($_GET['c']);
-                                break;
-                            case "TrabalhoNome":
-                                $sql = $trabalhoListar->selectTrabalhoNome($_GET['c']);
-                                break;
-                            case "TrabalhoData_submissao":
-                                $sql = $trabalhoListar->selectTrabalhoData_submissao($_GET['c']);
-                                break;
-                            case "UsuarioNome":
-                                $sql = $usuarioListar->selectUsuarioNome($_GET['c']);
-                                break;
-                            case "Curso":
-                                $sql = $cursoListar->selectCursoNome($_GET['c']);
-                                break;
-                            case "Turma":
-                                $sql = $turmaListar->selectTurmaNome($_GET['c']);
-                                break;
+                        if ($_GET['c'] != null) {
+                            switch ($_GET['msg']) {
+                                case "Trabalho":
+                                    $sql = $trabalhoListar->selectTrabalho();
+                                    break;
+                                case "TrabalhoCategoria":
+                                    $sql = $trabalhoListar->selectTrabalhoCategoria($_GET['c']);
+                                    break;
+                                case "TrabalhoNome":
+                                    $sql = $trabalhoListar->selectTrabalhoNome($_GET['c']);
+                                    break;
+                                case "TrabalhoData_submissao":
+                                    $sql = $trabalhoListar->selectTrabalhoData_submissao($_GET['c']);
+                                    break;
+                                case "UsuarioNome":
+                                    $sqlUsuario = $usuarioListar->selectUsuarioNome($_GET['c']);
+                                    $user = new usuario($sqlUsuario);
+                                    $idUsuario = $user->getId();
+                                    header("Location: ?=" . $idUsuario);
+                                    $sql = $trabalhoListar->selectTrabalhoId_usuario($idUsuario);
+                                    break;
+                                case "Curso":
+                                    $sql = $cursoListar->selectCursoNome($_GET['c']);
+                                    break;
+                                case "Turma":
+                                    $sql = $turmaListar->selectTurmaNome($_GET['c']);
+                                    break;
+                            }
+                        } else {
+                            $sql = $trabalhoListar->selectTrabalho();
                         }
-//                        $sql = $trabalhoListar->selectTrabalho();
 //                        }
                         if ($sql != false) {
                             while ($resultado = $sql->fetch()) {
@@ -115,8 +122,9 @@ include_once '../Base/nav.php';
                                 </li>
                                 <?php
                             }
-                        }else{
-                            header("Location: ./nada.php");
+                        } else {
+//                            header("Location: ./nada.php");
+                            header("msg=falha");
                         }
                         ?>
                     </ul>
