@@ -14,25 +14,25 @@ if (realpath("./index.php")) {
 
 switch ($_POST['select']) {
     case "Trabalho":
-        header("Location: ./listagemPesquisa.php?msg=Trabalho");
+        header("Location: ./listagemPesquisa.php?msg=Trabalho&c=" . $_POST['pesquisa']);
         break;
     case "TrabalhoCategoria":
-        header("Location: ./listagemPesquisa.php?msg=TrabalhoCategoria");
+        header("Location: ./listagemPesquisa.php?msg=TrabalhoCategoria&c=" . $_POST['pesquisa']);
         break;
     case "TrabalhoNome":
-        header("Location: ./listagemPesquisa.php?msg=TrabalhoNome");
+        header("Location: ./listagemPesquisa.php?msg=TrabalhoNome&c=" . $_POST['pesquisa']);
         break;
     case "TrabalhoData_submissao":
-        header("Location: ./listagemPesquisa.php?msg=TrabalhoData_submissao");
+        header("Location: ./listagemPesquisa.php?msg=TrabalhoData_submissao&c=" . $_POST['pesquisa']);
         break;
     case "UsuarioNome":
-        header("Location: ./listagemPesquisa.php?msg=UsuarioNome");
+        header("Location: ./listagemPesquisa.php?msg=UsuarioNome&c=" . $_POST['pesquisa']);
         break;
     case "TurmaNome":
-        header("Location: ./listagemPesquisa.php?msg=TurmaNome");
+        header("Location: ./listagemPesquisa.php?msg=TurmaNome&c=" . $_POST['pesquisa']);
         break;
     case "CursoNome":
-        header("Location: ./listagemPesquisa.php?msg=TurmaNome");
+        header("Location: ./listagemPesquisa.php?msg=TurmaNome&c=" . $_POST['pesquisa']);
         break;
 }
 ?>

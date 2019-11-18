@@ -122,6 +122,20 @@ class TurmaPDO{
         }
     }
     
+    public function selectTurmaNome($nome){
+            
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('select * from turma where nome = :nome;');
+        $stmt->bindValue(':nome', $nome);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
+    
  
     public function updateTurma(Turma $turma){        
         $con = new conexao();
