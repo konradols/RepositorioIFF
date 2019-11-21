@@ -63,6 +63,14 @@ if (!isset($_SESSION['usuario'])) {
                                         </select>
                                         <label for="categoria">Categoria</label>
                                     </div>
+                                    <div class="input-field col l6">
+                                        <input type="text" name="autores" required="true" placeholder="Autor1, Autor2, ...">
+                                        <label for="autores">Autores</label>
+                                    </div>
+                                    <div class="input-field col l6">
+                                        <input type="text" name="palavras_chave">
+                                        <label for="palavras_chave">Palavras-Chave</label>
+                                    </div>
                                     <div class="input-field col l12">
                                         <textarea id="textarea" class="materialize-textarea" name="resumo" required="true"></textarea>
                                         <label for="textarea">Resumo</label>

@@ -47,7 +47,7 @@ include_once '../Base/nav.php';
         <div class="container">
 
             <div class="row">
-                <div class="col  s12 m12 l12 card">
+                <div class="col s12 l12 card">
                     <ul class="collapsible">
                         <?php
                         $trabalhoListar = new trabalhoPDO();
@@ -101,23 +101,13 @@ include_once '../Base/nav.php';
                                 <li>
                                     <div class="collapsible-header"><i class="material-icons">library_books</i><?php echo $tr->getNome(); ?></div>
                                     <div class="collapsible-body">
-                                        <p class="left-align">Autor: <?php echo $u->getNome(); ?></p>
-                                        <p class="left-align">Categoria: <?php
-                                            switch ($tr->getCategoria()) {
-                                                case "tcc":
-                                                    echo "TCC";
-                                                    break;
-                                                case "relatorio":
-                                                    echo "Relatório";
-                                                    break;
-                                                case "producaocientifica":
-                                                    echo "Produção Científica";
-                                                    break;
-                                            }
-                                            ?></p>
-                                        <p class="left-align">Resumo: <?php echo $tr->getResumo(); ?></p>
-                                        <p class="left-align">Submetido em: <?php echo $tr->getData_submissao(); ?></p>
-                                        <a class="left-align" href="<?php echo "../Controle/" . $tr->getCaminho(); ?>" target="_blank">Arquivo</a>
+                                        <a href="#">Autores<?php
+//                                        $trabalhoListar->selectTrabalhoId_usuario($id_usuario);
+                                            ?></a>
+                                        <a style="margin-left: 100px;" href="#">Orientadores</a>
+                                        <a style="margin-left: 100px;" href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo PDF</a>
+                                        <!--<span style="margin-left: 200px;">Publicado em:</span>-->
+                                        <p class="right" style="margin-top: -3px; margin-right: 110px;">Submetido em: <?php echo $tr->getData_submissao(); ?></p>
                                     </div>
                                 </li>
                                 <?php

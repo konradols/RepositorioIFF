@@ -7,6 +7,8 @@ private $id_usuario;
 private $nome;
 private $resumo;
 private $categoria;
+private $autores;
+private $palavras_chave;
 private $data_submissao;
 private $caminho;
 private $id_curso;
@@ -71,6 +73,22 @@ public function __construct() {
 
      function setCategoria($categotia){
           $this->categoria = $categoria;
+     }
+     
+     function getAutores() {
+         return $this->autores;
+     }
+
+     function getPalavras_chave() {
+         return $this->palavras_chave;
+     }
+
+     function setAutores($autores) {
+         $this->autores = $autores;
+     }
+
+     function setPalavras_chave($palavras_chave) {
+         $this->palavras_chave = $palavras_chave;
      }
 
      public function getData_submissao(){

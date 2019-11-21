@@ -41,3 +41,7 @@ footer{
 .linkfoto:hover{
     opacity: 1;
 }
+
+.disabled[disabled="disabled"]{
+    pointer-events: none;
+}

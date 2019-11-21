@@ -23,7 +23,7 @@ include_once './Base/nav.php';
                 $logado = new usuario(unserialize($_SESSION['usuario']));
 //                header("Location: ./Controle/usuarioControle?function=selectUsuarioUsuario(" . $logado['usuario'] . ")");
                 ?>
-        <!--            <span style="margin-left: -600px;"><?php // echo $logado->getEmail();  ?></span>-->
+                            <!--            <span style="margin-left: -600px;"><?php // echo $logado->getEmail();       ?></span>-->
                 <?php
             }
             ?>
@@ -67,12 +67,27 @@ include_once './Base/nav.php';
                                 </div>
                             </td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            <td>
-                                <div class="col s3 m3 l2 offset-l5">
-                                    <a href="./Tela/telaUpload.php" style="color: green;"><i class="large material-icons">send</i></a>
-                                    <p><strong>&nbsp;&nbsp;Submeter &nbsp;&nbsp;Trabalhos</strong></p>
-                                </div>
-                            </td>
+                            <?php
+                            if (isset($_SESSION['usuario'])) {
+                                ?>
+                                <td>
+                                    <div class="col s3 m3 l2 offset-l5">
+                                        <a href="./Tela/telaUpload.php" style="color: green;"><i class="large material-icons">send</i></a>
+                                        <p><strong>&nbsp;&nbsp;Submeter &nbsp;&nbsp;Trabalhos</strong></p>
+                                    </div>
+                                </td>
+                                <?php
+                            } else {
+                                ?>
+                                <td>
+                                    <div class="col s3 m3 l2 offset-l5">
+                                        <i class="large material-icons disabled">send</i>
+                                        <p><strong>&nbsp;&nbsp;Submeter &nbsp;&nbsp;Trabalhos</strong></p>
+                                    </div>
+                                </td>
+                                <?php
+                            }
+                            ?>
                         </tr>
                     </table>
 

@@ -42,7 +42,7 @@ class TrabalhoPDO {
             $usuario = unserialize($_SESSION['usuario']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , curdate() , :caminho , :id_curso , default , default);');
+            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , :autores, :palavras_chave, curdate() , :caminho , :id_curso , default , default);');
 //            $stmt = $pdo->prepare('insert into trabalho values(default , 1 , irineu , irineu , irineu , irineu , irineu , 1 , default , default);');
 //            $stmt->bindValue(':id_usuario', $usuario->getId());
 //
@@ -63,6 +63,10 @@ class TrabalhoPDO {
             $stmt->bindValue(':resumo', $trabalho->getResumo());
 
             $stmt->bindValue(':categoria', $trabalho->getCategoria());
+            
+            $stmt->bindValue(':autores', $trabalho->getAutores());
+            
+            $stmt->bindValue(':palavras_chave', $trabalho->getPalavras_chave());
 
             $stmt->bindValue(':caminho', $trabalho->getCaminho());
 
