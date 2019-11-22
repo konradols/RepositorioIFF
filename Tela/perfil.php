@@ -23,7 +23,10 @@ include_once '../Base/nav.php';
                             <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();     ?></span>-->
                 <?php
             }
-            ?>
+            if (isset($_SESSION['usuarioPerfil'])) {
+                
+            }
+?>
 
             <div class="row">
                 <div class="col l12 z-depth-5">

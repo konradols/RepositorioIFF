@@ -49,7 +49,6 @@ if (realpath('./index.php')) {
                     <li><a class='dropdown-trigger' data-target='dropdown1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listagem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <ul id='dropdown1' class='dropdown-content'>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemUsuario.php">Usuários</a></li>
-                        <li><a href = "<?php echo $pontos; ?>Tela/listagemSolicitacoes.php">Solicitações</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemAluno.php">Alunos</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemOrientador.php">Orientadores</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemCoordenador.php">Coordenadores</a></li>
@@ -65,23 +64,6 @@ if (realpath('./index.php')) {
             <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
-                <!--Terminar esse-->
-
-                <!--                <li><a class="dropdown-trigger" data-target='dropdown-menu' href="#"></a>
-                                    Contatos <i class="material-icons right">arrow-drop-down</i>
-                                </li>-->
-
-                <!-- Dropdown Trigger -->
-
-                <!--                <li><a href="#" id="btn-dropdown-perfil" data-activates='dropdown-perfil'>
-                                        <span>Irineu</span>
-                                    </a>
-                                    <ul id='dropdown-perfil' class='dropdown-content'>
-                                        <li><a href="#!">Perfil</a></li>
-                                        <li><a href="#!">Configurações</a></li>
-                                        <li><a href="#!">Logout</a></li>
-                                    </ul>
-                                </li>-->
                 <li><a href="<?php echo $pontos; ?>Tela/pesquisa.php" style="color: white;"><i class="small material-icons">search</i></a></li>
                 <li><a href="<?php echo $pontos; ?>Tela/perfil.php" style="color: white;"><i class="small material-icons">person</i></a></li>
 
@@ -89,11 +71,11 @@ if (realpath('./index.php')) {
                 <?php
                 if (isset($_SESSION['usuario'])) {
                     ?>
-                    <li><a class='dropdown-trigger' data-target='dropdown1'>
-                            <i class="small material-icons">language</i></a></li>
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href = "#">Notificações</a></li>
-                        <li><a href = "#">Meus Dados</a></li>
+                    <li><a class='dropdown-trigger' data-target='dropdown2'>
+                            <i class="small material-icons">notifications</i></a></li>
+                            <ul id="dropdown2" class='dropdown-content'>
+                        <li><a href = "#">Solicitações de Cadastro</a></li>
+                        <li><a href = "#">Solicitações de Submissão</a></li>
                     </ul>
                     <?php
                 }
@@ -109,18 +91,9 @@ if (realpath('./index.php')) {
 <script>
     $('.dropdown-trigger').dropdown({
         hover: false,
-        coverTrigger: false
+        coverTrigger: false,
+        constrainWidth: false
     });
-</script>
-
-<script>
-//    $(document).ready(function () {
-//        $('#btn-dropdown-perfil'.dropdown();
-//    });
-
-//    const elemsDropdown = document.querySelectorAll(".dropdown-trigger");
-//    const instancesDropdown = M.Dropdown.init(elemsDropdown, {coverTrigger })
-
 </script>
 
 <script>
