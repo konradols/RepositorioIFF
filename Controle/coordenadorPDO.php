@@ -23,7 +23,7 @@ class CoordenadorPDO{
         $coordenador = new coordenador($_POST);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Coordenador values(default , :matricula , :telefone);' );
+            $stmt = $pdo->prepare('insert into coordenador values(default , :matricula , :telefone);' );
 
             $stmt->bindValue(':matricula', $coordenador->getMatricula());    
         

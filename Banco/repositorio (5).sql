@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Nov-2019 às 18:18
+-- Tempo de geração: 21-Nov-2019 às 17:43
 -- Versão do servidor: 10.3.16-MariaDB
 -- versão do PHP: 7.3.6
 
@@ -95,6 +95,8 @@ CREATE TABLE `trabalho` (
   `nome` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `resumo` varchar(4500) COLLATE utf8_unicode_ci NOT NULL,
   `categoria` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `autores` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `palavras_chave` varchar(100) CHARACTER SET utf8 NOT NULL,
   `data_submissao` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   `caminho` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `id_curso` int(11) NOT NULL,
@@ -106,19 +108,25 @@ CREATE TABLE `trabalho` (
 -- Extraindo dados da tabela `trabalho`
 --
 
-INSERT INTO `trabalho` (`id_trabalho`, `id_usuario`, `nome`, `resumo`, `categoria`, `data_submissao`, `caminho`, `id_curso`, `numero_acessos`, `numero_downloads`) VALUES
-(1, 1, 'irineu', 'irineu', 'irineu', '2019-10-28 16:11:18', 'irineu', 1, NULL, NULL),
-(2, 1, 'irineu', 'irineu', 'irineu', '2019-10-28', 'irineu', 1, NULL, NULL),
-(3, 1, 'irineu', 'irineu', 'irineu', '2019-10-28', 'irineu', 1, NULL, NULL),
-(4, 1, 'Teste', 'teste', 'tcc', '2019-10-28', 'upload/4b2480c9324a64a48a9a78d434dc2bc0.png', 1, NULL, NULL),
-(5, 1, 'irineu', 'irineu irineu irineu irineu irineu irineu.', 'tcc', '2019-11-03', 'upload/42b681d2253712cfd12078124ce89d96.png', 1, NULL, NULL),
-(6, 1, 'aaa', 'a', 'tcc', '2019-11-04', 'upload/cac0da38ed79fc14b9a652e8b83b9605jpeg', 1, NULL, NULL),
-(7, 1, 'Interface Intuitiva', 'resumo', 'tcc', '2019-11-05', 'upload/037c8f469f4b7f9d087329af907d3161.pdf', 1, NULL, NULL),
-(8, 1, 'RelatÃ³rio de EstÃ¡gio', 'bla bla bla', 'relatorio', '2019-11-06', 'upload/837a61efacb5b1acd0e80ea9808ba053.pdf', 1, NULL, NULL),
-(9, 1, 'Resultados da ImplantaÃ§Ã£o de AgrotÃ³xicos em plantaÃ§Ãµes do IFFar SVS', 'bla bla bla', 'producaocientifica', '2019-11-06', 'upload/1ce770ec7ad64213fc0da56fc01d94a8', 1, NULL, NULL),
-(10, 1, 'ddd', 'ddd', 'tcc', '2019-11-06', 'upload/72b8bfb66a92b9745c58a8c701bacb9b.png', 1, NULL, NULL),
-(11, 1, 'testecomsenha', 'blablabla', 'relatorio', '2019-11-06', 'upload/4fce696b13f4a4de584fe9fd53fcf797.jpg', 1, NULL, NULL),
-(12, 1, 'dsds', 'dsds', 'tcc', '2019-11-11', 'upload/7c5429761ff829b5cbf81f51f4af69ef.jpg', 1, NULL, NULL);
+INSERT INTO `trabalho` (`id_trabalho`, `id_usuario`, `nome`, `resumo`, `categoria`, `autores`, `palavras_chave`, `data_submissao`, `caminho`, `id_curso`, `numero_acessos`, `numero_downloads`) VALUES
+(1, 1, 'irineu', 'irineu', 'irineu', '', '', '2019-10-28 16:11:18', 'irineu', 1, NULL, NULL),
+(2, 1, 'irineu', 'irineu', 'irineu', '', '', '2019-10-28', 'irineu', 1, NULL, NULL),
+(3, 1, 'irineu', 'irineu', 'irineu', '', '', '2019-10-28', 'irineu', 1, NULL, NULL),
+(4, 1, 'Teste', 'teste', 'tcc', '', '', '2019-10-28', 'upload/4b2480c9324a64a48a9a78d434dc2bc0.png', 1, NULL, NULL),
+(5, 1, 'irineu', 'irineu irineu irineu irineu irineu irineu.', 'tcc', '', '', '2019-11-03', 'upload/42b681d2253712cfd12078124ce89d96.png', 1, NULL, NULL),
+(6, 1, 'aaa', 'a', 'tcc', '', '', '2019-11-04', 'upload/cac0da38ed79fc14b9a652e8b83b9605jpeg', 1, NULL, NULL),
+(7, 1, 'Interface Intuitiva', 'resumo', 'tcc', '', '', '2019-11-05', 'upload/037c8f469f4b7f9d087329af907d3161.pdf', 1, NULL, NULL),
+(8, 1, 'RelatÃ³rio de EstÃ¡gio', 'bla bla bla', 'relatorio', '', '', '2019-11-06', 'upload/837a61efacb5b1acd0e80ea9808ba053.pdf', 1, NULL, NULL),
+(9, 1, 'Resultados da ImplantaÃ§Ã£o de AgrotÃ³xicos em plantaÃ§Ãµes do IFFar SVS', 'bla bla bla', 'producaocientifica', '', '', '2019-11-06', 'upload/1ce770ec7ad64213fc0da56fc01d94a8', 1, NULL, NULL),
+(14, 1, 'Desenvolvimento do front-end do RepositÃ³rio Digital do IFFar SVS', 'Desenvolvimento do front-end do RepositÃ³rio Digital do IFFar SVS.', 'tcc', '', '', '2019-11-12', 'upload/cea61dbc313aeb162d163f48371e5d47.pdf', 1, NULL, NULL),
+(15, 1, 'Sistema para GestÃ£o Interna do RefeitÃ³rio do IFFar SVS', 'Sistema para GestÃ£o Interna do RefeitÃ³rio do IFFar SVS', 'tcc', '', '', '2019-11-12', 'upload/ad83c9d6bf46337f9c06c6316871adef.pdf', 1, NULL, NULL),
+(16, 1, 'AnÃ¡lise sobre o conhecimento discente de boas prÃ¡ticas de SeguranÃ§a da InformaÃ§Ã£o', 'AnÃ¡lise sobre o conhecimento discente de boas prÃ¡ticas de SeguranÃ§a da InformaÃ§Ã£o', 'tcc', '', '', '2019-11-12', 'upload/02d21259bacf27c4a2c7eef8ff1eaf9e.pdf', 1, NULL, NULL),
+(17, 1, 'RelatÃ³rio das reuniÃµes da empresa do 1Âº Semestre de 2019', 'RelatÃ³rio das reuniÃµes da empresa do 1Âº Semestre de 2019', 'relatorio', '', '', '2019-11-12', 'upload/c52d08acea39aa34a8a5319239493af4.pdf', 1, NULL, NULL),
+(20, 1, 'dsds', '', 'tcc', '', '', '2019-11-12', 'upload/02bfbdfd203a5569a0faee0194a60ae9', 1, NULL, NULL),
+(21, 1, 'fefe', 'fefefefefefe', 'tcc', '', '', '2019-11-18', 'upload/5707c573057cebea8331611ebd8ec1d7', 1, NULL, NULL),
+(22, 1, 'fefefe', 'fefefe', 'tcc', '', '', '2019-11-18', 'upload/22d01aca8398e398d080f9f7cd46eeaf', 1, NULL, NULL),
+(23, 1, 'fff', 'fff', 'tcc', '', '', '2019-11-18', 'upload/5a613554bda273e6facec0763543583e.pdf', 1, NULL, NULL),
+(24, 1, 'TesteComAutores&PalavrasChave', 'TesteComAutores&PalavrasChave', 'tcc', 'Konrado, Irineu, Fulano', 'teste - palavras-chave - irineu', '2019-11-21', 'upload/62e6751a9d079ec350ffbb3fd2246ab7.png', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -182,7 +190,8 @@ INSERT INTO `usuario` (`id`, `nome`, `email`, `usuario`, `categoria`, `senha`, `
 (16, 'Karen', 'karen@gmail.com', 'soareskaren', 'aluno', '202cb962ac59075b964b07152d234b70', NULL, 'false'),
 (17, 'dd', 'dd', 'dd', 'aluno', '1aabac6d068eef6a7bad3fdf50a05cc8', NULL, 'false'),
 (18, 'rere', 'rere', 'rere', 'aluno', 'bd134207f74532a8b094676c4a2ca9ed', NULL, 'false'),
-(19, 'rr', 'rr', 'rr', 'aluno', '514f1b439f404f86f77090fa9edc96ce', NULL, 'false');
+(19, 'rr', 'rr', 'rr', 'aluno', '514f1b439f404f86f77090fa9edc96ce', NULL, 'false'),
+(20, 'Konrado Lorenzon de Souza', 'konradols@hotmail.com', 'konradoAluno', 'aluno', '77ebb1be7e73b38beddd8408f69fe5c7', NULL, 'false');
 
 --
 -- Índices para tabelas despejadas
@@ -227,7 +236,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `trabalho`
 --
 ALTER TABLE `trabalho`
-  MODIFY `id_trabalho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_trabalho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `turma`
@@ -239,7 +248,7 @@ ALTER TABLE `turma`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restrições para despejos de tabelas

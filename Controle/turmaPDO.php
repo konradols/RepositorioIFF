@@ -23,7 +23,7 @@ class TurmaPDO{
         $turma = new turma($_POST);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Turma values(default , :id_curso , :nome , :ano_inicio , :ano_fim);' );
+            $stmt = $pdo->prepare('insert into turma values(default , :id_curso , :nome , :ano_inicio , :ano_fim);' );
 
             $stmt->bindValue(':id_curso', $turma->getId_curso());    
             

@@ -23,7 +23,7 @@ class AutoresPDO{
         $autores = new autores($_POST);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Autores values(default , :id_usuario , :id_trabalho);' );
+            $stmt = $pdo->prepare('insert into autores values(default , :id_usuario , :id_trabalho);' );
 
             $stmt->bindValue(':id_usuario', $autores->getId_usuario());    
         

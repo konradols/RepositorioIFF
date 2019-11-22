@@ -23,7 +23,7 @@ class CursoPDO{
         $curso = new curso($_POST);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Curso values(default , :nome, :matricula_coordenador);' );
+            $stmt = $pdo->prepare('insert into curso values(default , :nome, :matricula_coordenador);' );
 
             $stmt->bindValue(':nome', $curso->getNome());    
             $stmt->bindValue(':matricula_coordenador', $curso->getMatricula_coordenador());    

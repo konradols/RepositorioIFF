@@ -23,7 +23,7 @@ class AlunoPDO{
         $aluno = new aluno($_POST);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Aluno values(default , :id_turma , :matricula);' );
+            $stmt = $pdo->prepare('insert into aluno values(default , :id_turma , :matricula);' );
 
             $stmt->bindValue(':id_turma', $aluno->getId_turma());    
         
