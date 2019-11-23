@@ -8,6 +8,8 @@ private $nome;
 private $resumo;
 private $categoria;
 private $autores;
+private $orientadores;
+private $coorientadores;
 private $palavras_chave;
 private $data_submissao;
 private $caminho;
@@ -85,6 +87,22 @@ public function __construct() {
 
      function setAutores($autores) {
          $this->autores = $autores;
+     }
+     
+     function getOrientadores() {
+         return $this->orientadores;
+     }
+
+     function getCoorientadores() {
+         return $this->coorientadores;
+     }
+
+     function setOrientadores($orientadores) {
+         $this->orientadores = $orientadores;
+     }
+
+     function setCoorientadores($coorientadores) {
+         $this->coorientadores = $coorientadores;
      }
 
      function setPalavras_chave($palavras_chave) {

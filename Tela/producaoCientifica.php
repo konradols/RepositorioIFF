@@ -61,13 +61,41 @@ include_once '../Base/nav.php';
                                 <li>
                                     <div class="collapsible-header"><i class="material-icons">library_books</i><?php echo $tr->getNome(); ?></div>
                                     <div class="collapsible-body">
-                                        <a href="#">Autores<?php
-//                                        $trabalhoListar->selectTrabalhoId_usuario($id_usuario);
-                                            ?></a>
-                                        <a style="margin-left: 100px;" href="#">Orientadores</a>
-                                        <a style="margin-left: 100px;" href="../Controle/<?php echo md5($tr->getCaminho()); ?>" target="_blank">Arquivo PDF</a>
-                                        <!--<span style="margin-left: 200px;">Publicado em:</span>-->
-                                        <p class="right" style="margin-top: -3px; margin-right: 110px;">Submetido em: <?php echo $tr->getData_submissao(); ?></p>
+                                        <div class="col s6 m6 l2 push-l1 center">
+                                            <a id="modal-autores" class="modal-trigger" href="#modal1">Autores(as)</a>
+                                        </div>
+
+                                        <div id="modal1" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Autores(as)</h4>
+                                                <p><?php echo $tr->getAutores(); ?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Voltar</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s6 m6 l2 push-l1">
+                                            <a id="modal-orientadores" class="modal-trigger" href="#modal2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Orientadores(as)</a>
+                                        </div>
+                                        <div id="modal2" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Orientadores(as)</h4>
+                                                <p><?php echo $tr->getOrientadores(); ?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Voltar</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s6 m6 l2 push-l2">
+                                            <a href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo PDF</a>
+                                        </div>
+
+                                        <div class="col s6 m6 l3 push-l2">
+                                            <p style="margin-top: -2px;">Submetido em: <?php echo $tr->getData_submissao(); ?></p>
+                                        </div>
+                                        <br><br>
                                     </div>
                                 </li>
                                 <?php

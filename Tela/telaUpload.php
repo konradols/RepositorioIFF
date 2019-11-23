@@ -49,6 +49,14 @@ if (!isset($_SESSION['usuario'])) {
                                         <label for="autores">Autores</label>
                                     </div>
                                     <div class="input-field col l6">
+                                        <input type="text" name="orientadores" required="true" placeholder="Orientador1, Orientador2, [...]">
+                                        <label for="orientadores">Orientadores(as)</label>
+                                    </div>
+                                    <div class="input-field col l6">
+                                        <input type="text" name="coorientadores" required="true" placeholder="Coorientador1, Coorientador2, [...]">
+                                        <label for="coorientadores">Coorientadores(as)</label>
+                                    </div>
+                                    <div class="input-field col l6">
                                         <input type="text" name="palavras_chave" placeholder="palavra1. palavra2. palavra3. [...]">
                                         <label for="palavras_chave">Palavras-Chave</label>
                                     </div>
@@ -61,14 +69,14 @@ if (!isset($_SESSION['usuario'])) {
                                         <button class="btn corpadrao">
                                             <div>Upload</div>
                                         </button>
-                                        <input type="file" class="file-chos" name="arquivo" required="true">
+                                        <input type="file" class="file-chos" name="arquivo" required="true" accept="application/pdf">
                                         <div class="file-path-wrapper">
                                             <input class="file-path validate" type="text">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col l6 center" style="margin-left: 220px; margin-right: 300px;">
-                                            <input type="password" name="senha" id="senha">
+                                            <input type="password" name="senha" id="senha" required="true">
                                             <label for="senha">Senha</label>
                                         </div>
                                     </div>

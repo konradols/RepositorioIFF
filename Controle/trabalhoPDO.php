@@ -42,7 +42,7 @@ class TrabalhoPDO {
             $usuario = unserialize($_SESSION['usuario']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , :autores, :palavras_chave, curdate() , :caminho , :id_curso , default , default);');
+            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , :autores, :orientadores, :coorientadores, :palavras_chave, curdate() , :caminho , :id_curso , default , default);');
 //            $stmt = $pdo->prepare('insert into trabalho values(default , 1 , irineu , irineu , irineu , irineu , irineu , 1 , default , default);');
 //            $stmt->bindValue(':id_usuario', $usuario->getId());
 //
@@ -63,32 +63,31 @@ class TrabalhoPDO {
             $stmt->bindValue(':resumo', $trabalho->getResumo());
 
             $stmt->bindValue(':categoria', $trabalho->getCategoria());
-            
+
             $stmt->bindValue(':autores', $trabalho->getAutores());
-            
+
+            $stmt->bindValue(':orientadores', $trabalho->getOrientadores());
+
+            $stmt->bindValue(':coorientadores', $trabalho->getCoorientadores());
+
             $stmt->bindValue(':palavras_chave', $trabalho->getPalavras_chave());
 
             $stmt->bindValue(':caminho', $trabalho->getCaminho());
 
             $stmt->bindValue(':id_curso', "1");
 
-//            try{
-//                $stmt->execute();
-//                header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
-//            } catch (Exception $ex) {
-//                header("Location: ../Tela/telaUpload.php?msg=trabalhoErroInsert" . $ex);
-//            }
+            $logado = new usuario(unserialize($_SESSION['usuario']));
 
-            if ($stmt->execute()) {
-//                if ($trabalho->getNome() = null || $trabalho->getResumo() = null || $trabalho->getCategoria() = null || $trabalho->getCaminho() = null) {
-//                    header('location: ../Tela/telaUpload.php?msg=haCamposVazios');
-//                } else {
+            if (md5($_POST['senha']) == $logado->getSenha()) {
+                if ($stmt->execute()) {
                     header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
-//                }
-            } else {
+                } else {
 //                header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
 //                echo("Error ao adicionar novo registro: ");
-                print_r($stmt->errorInfo());
+                    print_r($stmt->errorInfo());
+                }
+            } else {
+                header('location: ../Tela/telaUpload.php?msg=senhaIncorreta');
             }
         }
     }
