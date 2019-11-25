@@ -74,7 +74,7 @@ include_once '../Base/nav.php';
                                 while ($resultado = $sql->fetch()) {
                                     $tr = new curso($resultado);
                                     echo "<tr>";
-                                    echo "<td>" . $tr->getId() . "</td>";
+                                    echo "<td>" . $tr->getIdCurso() . "</td>";
                                     echo "<td>" . $tr->getNome() . "</td>";
                                     echo "<td>" . $tr->getMatricula_coordenador() . "</td>";
 

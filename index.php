@@ -15,7 +15,7 @@ if (isset($_SESSION['usuario'])) {
 }
 ?>
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 <div class="">
 
     <div class="row center">

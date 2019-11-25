@@ -250,12 +250,12 @@ class TrabalhoPDO
         }
     }
 
-    public function selectTrabalhoId_curso($id_curso)
+    public function selectTrabalhoIdTurma($id_curso)
     {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from trabalho where id_curso = :id_curso;');
+        $stmt = $pdo->prepare('select * from trabalho where id_turma = :id_curso;');
         $stmt->bindValue(':id_curso', $id_curso);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {

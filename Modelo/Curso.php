@@ -2,7 +2,7 @@
 
 class curso{
 
-private $id;
+private $id_curso;
 private $nome;
 private $matricula_coordenador;
 
@@ -26,12 +26,12 @@ public function __construct() {
         }
     }
 
-     public function getId(){
-         return $this->id;
+     public function getIdCurso(){
+         return $this->id_curso;
      }
 
-     function setId($id){
-          $this->id = $id;
+     function setIdCurso($id_curso){
+          $this->id_curso = $id_curso;
      }
 
      public function getNome(){

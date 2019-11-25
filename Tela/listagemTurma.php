@@ -78,7 +78,7 @@ include_once '../Base/nav.php';
                                 while ($resultado = $sql->fetch()) {
                                     $tr = new turma($resultado);
                                     echo "<tr>";
-                                    echo "<td>" . $tr->getId() . "</td>";
+                                    echo "<td>" . $tr->getIdTurma() . "</td>";
                                     echo "<td>" . $tr->getId_curso() . "</td>";
                                     echo "<td>" . $tr->getNome() . "</td>";
                                     echo "<td>" . $tr->getAno_inicio() . "</td>";
