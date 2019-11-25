@@ -94,6 +94,8 @@ include_once '../Base/nav.php';
                                 </li>
                                 <?php
                             }
+                        }else{
+                            echo "<h5>Nenhum Resultado</h5>";
                         }
                         ?>
                     </ul>

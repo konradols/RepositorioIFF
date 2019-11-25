@@ -52,7 +52,7 @@ include_once '../Base/nav.php';
 //                            $metodo = $_POST['select'];
 //                            $sql = $trabalhoListar->$metodo($pesquisa);
 //                        } else {
-                        $sql = $trabalhoListar->selectTrabalho();
+                        $sql = $trabalhoListar->selectTrabalhoCategoria("tcc");
 //                        }
                         if ($sql != false) {
                             while ($resultado = $sql->fetch()) {
@@ -94,6 +94,8 @@ include_once '../Base/nav.php';
                                 </li>
                                 <?php
                             }
+                        }else{
+                            echo "<h5>Nenhum Resultado</h5>";
                         }
                         ?>
                     </ul>

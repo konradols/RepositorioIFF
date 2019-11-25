@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Nov-2019 às 12:51
+-- Tempo de geração: 25-Nov-2019 às 15:28
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -89,8 +89,18 @@ CREATE TABLE `trabalho` (
   `caminho` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `id_curso` int(11) NOT NULL,
   `numero_acessos` int(11) DEFAULT NULL,
-  `numero_downloads` int(11) DEFAULT NULL
+  `numero_downloads` int(11) DEFAULT NULL,
+  `publicado` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `trabalho`
+--
+
+INSERT INTO `trabalho` (`id_trabalho`, `id_usuario`, `nome`, `resumo`, `categoria`, `autores`, `orientadores`, `coorientadores`, `palavras_chave`, `data_submissao`, `caminho`, `id_curso`, `numero_acessos`, `numero_downloads`, `publicado`) VALUES
+(2, 1, 'asdvasdfv', 'asdfvasdfvasdvfASDFADSFG', 'tcc', 'asdvasdvfa', 'sdfvasdvas', 'dfvasdfvadfv', 'adfvsdfvsa', '2019-11-25', './upload/aa8ababcd7d7b84c7f0e52dbe5c4b2f5.pdf', 1, NULL, NULL, 0),
+(3, 1, 'asfasdga', 'qerwerfawefawefgwesfFEEWDFVSRTGSAWERGWRTHEARG', 'tcc', 'asdasdfasd, asdfsafas, SAEDFASF, ASDFSDFG', 'ASDAEGQERW, AERGWESGRW, WERFGWR, WSRTGRWEG', 'sawergwergwq ,qfqerfwer,f werfgwergf, qwergfqw', 'qergwergwreg, qwerfqer,f qerfqe, rfqwerfqwerf', '2019-11-25', './upload/511461e39ba6c61b8759e921559a3a7d.pdf', 1, NULL, NULL, 0),
+(4, 4, 'Repositorio digital teste pappis', 'ahsuahsauhsaushuahsuahsuhausuahushuashausuhaushahushauhsauhsuahsauhsahausah', 'tcc', 'Enrique, Daniel, Daniel, Konrado', 'Gustavo, Eliana', 'Cassanta', 'beckend, frondend, tudo', '2019-11-25', './upload/323bfaeaaeb8043adab12cb38cde4cbd.pdf', 1, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +139,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `usuario`, `categoria`, `senha`, `foto`, `administrador`, `ativo`) VALUES
-(1, 'Daniel Zanini de Castro', 'zanini.castro@hotmail.com', 'dcastro', 'coordenador', '202cb962ac59075b964b07152d234b70', NULL, 'true', 0);
+(1, 'Daniel Zanini de Castro', 'zanini.castro@hotmail.com', 'dcastro', 'coordenador', '202cb962ac59075b964b07152d234b70', NULL, 'true', 1),
+(2, 'Coala', 'coala@gmail.com', 'coala', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/697d55fb79cf453c02db8af610d41a88.webp', 'false', 1),
+(3, 'asdfasdf', 'asdfasdfasdf', 'a', 'orienteador', 'c4ca4238a0b923820dcc509a6f75849b', 'Img/Perfil/697d55fb79cf453c02db8af610d41a88.webp', 'false', 1),
+(4, 'Enrique', 'epappis99@gmail.com', 'epappis', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/9d377b10ce778c4938b3c7e2c63a229a.webp', 'false', 1),
+(5, 'Konrado Lorenzon de Souza', 'konradols@hotmail.com', 'konradols', 'aluno', 'f37db7e5ad8bf12a024030aed1cdfa51', 'Img/Perfil/97f20b4511295fa0059f3d9e58917bda.webp', 'false', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -187,7 +201,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `trabalho`
 --
 ALTER TABLE `trabalho`
-  MODIFY `id_trabalho` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_trabalho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `turma`
@@ -199,7 +213,7 @@ ALTER TABLE `turma`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para despejos de tabelas
