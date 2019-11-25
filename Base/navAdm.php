@@ -46,7 +46,7 @@ if (realpath('./index.php')) {
                 ?>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li>Olá <?php echo $logado->getNome(); ?></li>
-                    <li><a class='dropdown-trigger' data-target='dropdown1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listagem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a class='dropdown-trigger' data-target='dropdown1'>Administração</a></li>
                     <ul id='dropdown1' class='dropdown-content'>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemUsuario.php">Usuários</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemTrabalho.php">Trabalhos</a></li>
