@@ -42,6 +42,7 @@ class UsuarioPDO {
             $stmt->bindValue(':foto', $usuario->getFoto());
 
             if ($stmt->execute()) {
+
                 switch ($usuario->getCategoria()){
                     case "coordenador":
                         $coordenadorPDO = new CoordenadorPDO();
@@ -57,10 +58,13 @@ class UsuarioPDO {
 
                 $_SESSION['toast'][] = "Usuário inserido!";
                 header('location: ../Tela/login.php?msg=usuarioInserido');
+
             } else {
+                $_SESSION['toast'][] = 'Erro ao cadastrar usuário';
                 header('location: ../index.php?msg=usuarioErroInsert');
             }
         } else {
+            $_SESSION['toast'][] = 'As senhas não coincidem';
             header('location: ../Tela/registroUsuario.php?msg=senhaerrada');
         }
     }
