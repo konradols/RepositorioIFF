@@ -22,13 +22,12 @@
 
             <h5 class="center">Cadastrar curso</h5>
             <form action="../Controle/cursoControle.php?function=inserirCurso" method="post">
-                <div class="input-field col s10 offset-l1">
+                <div class="input-field col l10 s12 m10 offset-l1 offset-m1">
                     <input id="nome" type="text" class="validate" name="nome">
                     <label for="nome">Nome do Curso</label>
                 </div>
                 <div class="row center">
                     <input type="submit" class="btn green darken-3" value="Cadastrar">
-
                 </div>
             </form>
         </div>
@@ -50,14 +49,42 @@
                                 ?>
                                 <tr>
                                     <td class="center"><?php echo $curso->getNome(); ?></td>
-                                    <td class="center"><a href="./listagemTurma.php?id_curso=<?php echo $curso->getIdCurso()?>" class="btn">Ver turmas</a></td>
-                                    <td class="center"><a href="./registroTurma.php?id_curso=<?php echo $curso->getIdCurso()?>" class="btn green darken-3">Adicionar Turma</a></td>
+                                    <td class="center"><a
+                                                href="./listagemTurma.php?id_curso=<?php echo $curso->getIdCurso() ?>"
+                                                class="btn">Ver turmas</a></td>
+                                    <td class="center"><a
+                                                href="./registroTurma.php?id_curso=<?php echo $curso->getIdCurso() ?>"
+                                                class="btn green darken-3">Adicionar Turma</a></td>
                                 </tr>
                                 <?php
                             }
                         ?>
                         </thead>
                     </table>
+                    <ul class="collapsible hide-on-large-only">
+                        <?php
+                            foreach ($cursos as $linha) {
+                                $curso = new curso($linha);
+                                ?>
+                                <li>
+                                    <div class="collapsible-header"><b><?php echo $curso->getNome() ?></b></div>
+                                    <div class="collapsible-body">
+                                        <p class="left-align">
+                                            <b>Nome: </b><?php echo $curso->getNome() ?>
+                                        </p>
+                                        <p class="center">
+                                            <a href="./listagemTurma.php?id_curso=<?php echo $curso->getIdCurso() ?>"
+                                               class="btn">Ver turmas</a>
+                                        </p>
+                                        <p class="center">
+                                            <a href="./registroTurma.php?id_curso=<?php echo $curso->getIdCurso() ?>"
+                                               class="btn green darken-3">Adicionar Turma</a>
+                                        </p>
+                                    </div>
+                                </li>
+                            <?php } ?>
+
+                    </ul>
                     <?php
                 } else {
                     echo "<h5 class='center'>Nenhum curso encontrado</h5>";
@@ -70,5 +97,8 @@
 <?php
     include_once '../Base/footer.php';
 ?>
+<script>
+    $('.collapsible').collapsible();
+</script>
 </body>
 </html>
