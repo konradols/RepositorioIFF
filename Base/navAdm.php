@@ -53,6 +53,7 @@ if (realpath('./index.php')) {
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemCurso.php">Cursos</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemTurma.php">Turmas</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/cadastrosPendentes.php">Cadastros Pendentes</a></li>
+                        <li><a href = "<?php echo $pontos; ?>Tela/trabalhosPendentes.php">Trabalhos Pendentes</a></li>
                     </ul>
                 </ul>
                 <?php
