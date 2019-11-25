@@ -18,7 +18,13 @@ include_once '../Base/nav.php';
             <?php
             include_once '../Modelo/Usuario.php';
             if (isset($_SESSION['usuario'])) {
-                $logado = new usuario(unserialize($_SESSION['usuario']));
+                if(isset($_GET['id_usuario'])){
+                    $usuarioPDO = new UsuarioPDO();
+                    $logado = $usuarioPDO->selectUsuarioId($_GET['id_usuario']);
+                    $logado = new usuario($logado->fetch());
+                }else {
+                    $logado = new usuario(unserialize($_SESSION['usuario']));
+                }
                 ?>
                             <!--<span style="margin-left: -600px;"><?php // echo $logado->getEmail();     ?></span>-->
                 <?php
