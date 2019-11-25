@@ -10,6 +10,7 @@ protected $categoria;
 protected $senha;
 protected $foto;
 protected $administrador;
+protected $ativo;
 
 
 public function __construct() {
@@ -38,6 +39,17 @@ public function __construct() {
      function setId($id){
           $this->id = $id;
      }
+
+    public function getAtivo()
+    {
+        return $this->ativo;
+    }
+
+    public function setAtivo($ativo)
+    {
+        $this->ativo = $ativo;
+    }
+
 
      public function getNome(){
          return $this->nome;

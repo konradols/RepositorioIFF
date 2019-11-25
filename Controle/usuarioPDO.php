@@ -27,7 +27,7 @@ class UsuarioPDO {
             $senhamd5 = md5($_POST['senha1']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into usuario values(default , :nome , :email , :usuario, :categoria , :senha , :foto, default);');
+            $stmt = $pdo->prepare('insert into usuario values(default , :nome , :email , :usuario, :categoria , :senha , :foto, default , 0);');
 
             $stmt->bindValue(':nome', $usuario->getNome());
 
@@ -42,11 +42,21 @@ class UsuarioPDO {
             $stmt->bindValue(':foto', $usuario->getFoto());
 
             if ($stmt->execute()) {
-                $this->logout();
-                header('location: ../index.php?msg=usuarioInserido');
-//                $linha = $stmt->fetch(PDO::FETCH_ASSOC);
-//                $us = new usuario($linha);
-//                $_SESSION['usuario'] = serialize($us);
+                switch ($usuario->getCategoria()){
+                    case "coordenador":
+                        $coordenadorPDO = new CoordenadorPDO();
+                        $coordenador = new coordenador($usuario);
+                        $coordenador->setIdUsuario($pdo->lastInsertId());
+                        $coordenadorPDO->inserir($coordenador);
+                        break;
+                    case "aluno":
+                        break;
+                    case "orientador":
+                        break;
+                }
+
+                $_SESSION['toast'][] = "Usuário inserido!";
+                header('location: ../Tela/login.php?msg=usuarioInserido');
             } else {
                 header('location: ../index.php?msg=usuarioErroInsert');
             }

@@ -38,7 +38,20 @@ class CoordenadorPDO{
     /*inserir*/
                 
     
+function inserir(coordenador $coordenador){
+    $con = new conexao();
+    $pdo = $con->getConexao();
+    $stmt = $pdo->prepare('insert into coordenador values(:id_usuario , :matricula , :telefone);' );
 
+    $stmt->bindValue(':matricula', $coordenador->getMatricula());
+    $stmt->bindValue(':id_usuario', $coordenador->getIdUsuario());
+    $stmt->bindValue(':telefone', $coordenador->getTelefone());
+    if($stmt->execute()){
+        return true;
+    }else{
+        return false;
+    }
+}
             
 
     public function selectCoordenador(){
