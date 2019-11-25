@@ -309,4 +309,27 @@ class UsuarioPDO {
 
     /* editar */
     /* chave */
+
+    function selectUsuariosPendentes() {
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare("select * from usuario where ativo = 0");
+        $stmt->execute();
+        return $stmt;
+    }
+
+    function ativar() {
+        $id_usuario = $_GET['id_usuario'];
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare("update usuario set ativo = 1 where id_usuario = :id_usuario");
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        if($stmt->execute()) {
+            $_SESSION['toast'][]='Usuário ativado';
+            header("Location: ../Tela/cadastrosPendentes.php");
+        } else {
+            $_SESSION['toast'][]='Erro ao ativar usuário';
+            header("Location: ../Tela/cadastrosPendentes.php");
+        }
+    }
 }

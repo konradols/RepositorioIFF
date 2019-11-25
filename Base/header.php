@@ -17,4 +17,5 @@ if (realpath("./index.php")) {
 <script type="text/javascript" src="<?php echo $pontos; ?>/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="<?php echo $pontos; ?>/js/materialize.js"></script>
 <script type="text/javascript" src="<?php echo $pontos; ?>/js/dropdown.js"></script>
+<script type="text/javascript" src="<?php echo $pontos; ?>/js/mascaras.js"></script>
 <title>Repositório Digital IFFar SVS</title>
