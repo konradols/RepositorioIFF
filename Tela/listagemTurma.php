@@ -1,113 +1,72 @@
 <!DOCTYPE html>
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-include_once '../Base/header.php';
-include_once '../Base/nav.php';
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    include_once '../Base/header.php';
+    include_once '../Base/nav.php';
+    include_once '../Controle/turmaPDO.php';
+    include_once '../Controle/cursoPDO.php';
+    include_once '../Modelo/Curso.php';
+    include_once '../Modelo/Turma.php';
+    $turmaPDO = new TurmaPDO();
+    $cursoPDO = new CursoPDO();
+    $stmtCurso = $cursoPDO->selectCursoId_curso($_GET['id_curso']);
+    $curso = new curso($stmtCurso->fetch());
+    $stmtTurma = $turmaPDO->selectTurmaId_curso($_GET['id_curso']);
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <style type="text/css">
-            table{border: none;}
-            table tr td{border: none;}
-        </style>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="row">
+    <div class="card z-depth-3 col s12 m12 l10 offset-l1">
+        <div class="row">
+            <h5 class="center">Turmas do curso <?php echo $curso->getNome() ?></h5>
+        </div>
         <div class="row">
             <?php
-            include_once '../Modelo/Usuario.php';
-            if (isset($_SESSION['usuario'])) {
-                $logado = new usuario(unserialize($_SESSION['usuario']));
-            }
+                if ($stmtTurma) {
+                    $turmas = $stmtTurma->fetchAll();?>
+                    <table class="col s10 offset-s1 hide-on-small-only hide-on-med-only">
+                        <thead>
+                        <tr>
+                            <th class="center">Nome</th>
+                            <th class="center">Ano inicial</th>
+                            <th class="center">Ano Término</th>
+                            <th class="center">Deletar</th>
+                        </tr>
+                        <?php
+                            foreach ($turmas as $linha) {
+                                $turma = new turma($linha);
+                                ?>
+                                <tr>
+                                    <td class="center"><?php echo $turma->getNome(); ?></td>
+                                    <td class="center"><?php echo $turma->getAno_inicio(); ?></td>
+                                    <td class="center"><?php echo $turma->getAno_fim(); ?></td>
+                                    <td class="center"><a
+                                                href="../Controle/turmaControle.php?function=deletar&id_turma=<?php echo $turma->getId(); ?>&id_curso=<?php echo $_GET['id_curso'] ?>" class="btn red darken-3">Deletar</a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                        ?>
+                        </thead>
+                    </table>
+                    <?php
+                } else {
+                    echo "<h5 class='center'>Nenhuma turma encontrado</h5>";
+                }
             ?>
-            
-            <div class="row">
-            <div class="col s3 m3 l10" style="margin-left: 300px; margin-right: 300px;">
-                <div class="col l8 card">
-                    <h5 class="center">Pesquisa de Turmas</h5>
-                    <div class="col l12">
-                        <table>
-                            <tr>
-                                <td>
-                                    <label for="categoria">Filtrar por</label>
-                                    <div class="input-field col s12 center" style="margin-top: -4px;">
-                                        <select name="categoria">
-                                            <option value="id">Id da Turma</option>
-                                            <option value="id_curso">Id do Curso</option>
-                                            <option value="nome">Nome</option>
-                                            <option value="ano_inicio">Ano Início</option>
-                                            <option value="ano_fim">Ano Fim</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <input type="text" name="pesquisa" placeholder="Pesquise">
-                                </td>
-                                <td>
-                                    <input type="submit" id="btn-pesquisar" class="btn corpadrao inline" value="Pesquisar">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <div id="tabela" class="loader">
-
-                        <table class="striped">
-                            <tr>
-                                <td>Id da Turma</td>
-                                <td>Id do Curso</td>
-                                <td>Nome</td>
-                                <td>Ano Início</td>
-                                <td>Ano Fim</td>
-                            </tr>
-                            <?php
-                            include_once '../Controle/turmaPDO.php';
-                            include_once '../Modelo/turma.php';
-                            $turmaListar = new turmaPDO();
-                            if (isset($_POST['pesquisar'])) {
-                                $pesquisa = $_POST['pesquisar'];
-                                $metodo = $_POST['select'];
-                                $sql = $turmaListar->$metodo($pesquisa);
-                            } else {
-                                $sql = $turmaListar->selectTurma();
-                            }
-                            if ($sql != false) {
-
-                                while ($resultado = $sql->fetch()) {
-                                    $tr = new turma($resultado);
-                                    echo "<tr>";
-                                    echo "<td>" . $tr->getId() . "</td>";
-                                    echo "<td>" . $tr->getId_curso() . "</td>";
-                                    echo "<td>" . $tr->getNome() . "</td>";
-                                    echo "<td>" . $tr->getAno_inicio() . "</td>";
-                                    echo "<td>" . $tr->getAno_fim() . "</td>";
-
-//                        -----------------------------------------------------------
-
-//                                           echo "<td>";
-//                                           ?><!--<a class="btn corpadrao" href="./verMais.php?id=<?php // echo $tr->getId_turma(); ?>">Ver mais</a>--><?php
-//                                    echo "</td>";
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td><h6>Nenhum resultado econtrado</h6></td></tr>";
-                            }
-                            ?>
-                        </table>
-                    </div>
-
-                    <br/><br/><br/><br/>
-                    
-                </div>
-            </div>
         </div>
-            
+        <div class="row center">
+            <a href="./listagemCurso.php" class="btn">Voltar</a>
         </div>
-
-        <?php
-        include_once '../Base/footer.php';
-        ?>
-    </body>
+    </div>
+</div>
+<?php
+    include_once '../Base/footer.php';
+?>
+</body>
 </html>

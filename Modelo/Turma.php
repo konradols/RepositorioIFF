@@ -2,7 +2,7 @@
 
 class turma{
 
-private $id;
+private $id_turma;
 private $id_curso;
 private $nome;
 private $ano_inicio;
@@ -29,11 +29,11 @@ public function __construct() {
     }
 
     function getId() {
-        return $this->id;
+        return $this->id_turma;
     }
 
     function setId($id) {
-        $this->id = $id;
+        $this->id_turma = $id;
     }
         
      public function getId_curso(){
