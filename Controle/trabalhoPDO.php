@@ -31,8 +31,10 @@ class TrabalhoPDO {
     function inserirTrabalho() {
 
         if (isset($_FILES['arquivo'])) {
-            $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
-            $novo_nome = md5(time()) . $extensao;
+            $ext = explode('.', $_FILES['arquivo']['name']);
+            $extensao = "." . $ext[(count($ext) - 1)];
+            $extensao = strtolower($extensao);
+            $novo_nome = hash_file('md5', $_FILES['arquivo']['tmp_name']).$extensao;
             $diretorio = "./upload/";
 
             move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
@@ -42,7 +44,7 @@ class TrabalhoPDO {
             $usuario = new usuario(unserialize($_SESSION['usuario']));
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , :autores, :orientadores, :coorientadores, :palavras_chave, curdate() , :caminho , :id_curso , default , default);');
+            $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , :autores, :orientadores, :coorientadores, :palavras_chave, curdate() , :caminho , :id_curso , default , default , 0);');
 
             $stmt->bindValue(':id_usuario', $usuario->getIdUsuario());
 
@@ -97,6 +99,19 @@ class TrabalhoPDO {
             return false;
         }
     }
+
+    function pesquisaTrabalhos($post){
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare("select * from trabalho where categoria like :categoria and publicado = 1 ".($post['campo']!=''?"and ".$post['campo']." like :valor":"") );
+        $stmt->bindValue(":categoria" , $post['categoria']);
+        if($post['campo']!="") {
+            $stmt->bindValue(":valor", "%".$post['valor']."%");
+        }
+        $stmt->execute();
+        return $stmt;
+    }
+
 
     public function selectTrabalhoId_trabalho($id_trabalho) {
 
