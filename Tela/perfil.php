@@ -36,6 +36,9 @@ include_once '../Base/nav.php';
                                 <img class="z-depth-1" src="../<?php echo $logado->getFoto(); ?>" alt="">
                             </div>
                         </div>
+                        <div class="row col offset-s2">
+                            <a href="alteraFotoPerfil.php?id_usuario=<?php echo $logado->getIdUsuario(); ?>" class="btn "><i class="material-icons left">edit</i>Alterar Foto</a>
+                        </div>
                     </div>
 
                     <div class="col l8">
