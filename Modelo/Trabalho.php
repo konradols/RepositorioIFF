@@ -16,6 +16,7 @@ private $caminho;
 private $id_curso;
 private $numero_acessos;
 private $numero_downloads;
+private $publicado;
 
 
 public function __construct() {
@@ -148,5 +149,15 @@ public function __construct() {
      function setNumero_downloads($numero_downloads){
           $this->numero_downloads = $numero_downloads;
      }
+
+    public function getPublicado()
+    {
+        return $this->publicado;
+    }
+
+    public function setPublicado($publicado)
+    {
+        $this->publicado = $publicado;
+    }
 
 }
