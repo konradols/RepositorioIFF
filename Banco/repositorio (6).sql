@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Nov-2019 às 12:51
+-- Tempo de geração: 25-Nov-2019 às 18:02
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -87,9 +87,10 @@ CREATE TABLE `trabalho` (
   `palavras_chave` varchar(100) CHARACTER SET utf8 NOT NULL,
   `data_submissao` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   `caminho` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
-  `id_curso` int(11) NOT NULL,
+  `id_turma` int(11) NOT NULL,
   `numero_acessos` int(11) DEFAULT NULL,
-  `numero_downloads` int(11) DEFAULT NULL
+  `numero_downloads` int(11) DEFAULT NULL,
+  `publicado` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -129,7 +130,15 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `usuario`, `categoria`, `senha`, `foto`, `administrador`, `ativo`) VALUES
-(1, 'Daniel Zanini de Castro', 'zanini.castro@hotmail.com', 'dcastro', 'coordenador', '202cb962ac59075b964b07152d234b70', NULL, 'true', 0);
+(1, 'Daniel Zanini de Castro', 'zanini.castro@hotmail.com', 'dcastro', 'coordenador', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/697d55fb79cf453c02db8af610d41a88.webp', '1', 1),
+(2, 'Coala', 'coala@gmail.com', 'coala', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/697d55fb79cf453c02db8af610d41a88.webp', 'false', 1),
+(3, 'asdfasdf', 'asdfasdfasdf', 'a', 'orienteador', 'c4ca4238a0b923820dcc509a6f75849b', 'Img/Perfil/697d55fb79cf453c02db8af610d41a88.webp', 'false', 1),
+(4, 'Enrique', 'epappis99@gmail.com', 'epappis', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/a1b0f04cadc45017bd9e10f4e1a5dc58.webp', '1', 1),
+(5, 'Konrado Lorenzon de Souza', 'konradols@hotmail.com', 'konradols', 'aluno', 'f37db7e5ad8bf12a024030aed1cdfa51', 'Img/Perfil/a1b0f04cadc45017bd9e10f4e1a5dc58.webp', 'false', 1),
+(6, 'Rafael Souza', 'rafael.souza@gmail.com', 'rafael', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/795cc879d79a7f4b70b8ab50c5420663.webp', '0', 1),
+(7, 'Eduardo Lopes', 'eduardo.lopes@gmail.com', 'eduardo', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/396ac02fd2ffd8fedcc267cc968fb0d7.webp', 'false', 1),
+(8, 'Andressa Acosta', 'andressa.acosta@gmail.com', 'andressa', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/3b14757f453564c4e4f5cbc43d31ca44.webp', 'false', 1),
+(9, 'Clarice Oliveira', 'clarice.oliveira@@gmail.com', 'clarice', 'aluno', '202cb962ac59075b964b07152d234b70', 'Img/Perfil/1181d10df07e08471f5db85806d5a1f8.webp', 'false', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -184,10 +193,16 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de tabela `curso`
+--
+ALTER TABLE `curso`
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `trabalho`
 --
 ALTER TABLE `trabalho`
-  MODIFY `id_trabalho` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_trabalho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `turma`
@@ -199,7 +214,7 @@ ALTER TABLE `turma`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restrições para despejos de tabelas
@@ -228,7 +243,8 @@ ALTER TABLE `orientador`
 --
 ALTER TABLE `trabalho`
   ADD CONSTRAINT `id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
-  ADD CONSTRAINT `trabalho_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+  ADD CONSTRAINT `trabalho_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `trabalho_ibfk_2` FOREIGN KEY (`id_turma`) REFERENCES `turma` (`id_turma`);
 
 --
 -- Limitadores para a tabela `turma`

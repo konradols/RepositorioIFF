@@ -23,17 +23,14 @@ class CursoPDO{
         $curso = new curso($_POST);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into curso values(default , :nome, :matricula_coordenador);' );
-
-            $stmt->bindValue(':nome', $curso->getNome());    
-            $stmt->bindValue(':matricula_coordenador', $curso->getMatricula_coordenador());    
-        
+            $stmt = $pdo->prepare('insert into curso values(default , :nome, 1);' );
+            $stmt->bindValue(':nome', $curso->getNome());
             if($stmt->execute()){
                 $_SESSION['toast'][] = 'Curso inserido';
-                header('location: ../index.php?msg=cursoInserido');
+                header('location: ../Tela/listagemCurso.php');
             }else{
                 $_SESSION['toast'][] = 'Erro ao cadastrar o curso';
-                header('location: ../index.php?msg=cursoErroInsert');
+                header('location: ../Tela/listagemCurso.php');
             }
     }
     /*inserir*/
@@ -46,7 +43,7 @@ class CursoPDO{
             
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from curso ;');
+        $stmt = $pdo->prepare('select * from curso;');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;

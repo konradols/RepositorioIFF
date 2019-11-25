@@ -50,6 +50,7 @@
                 <?php } ?>
             </div>
 
+
             <div class="col l8">
                 <div class="card">
                     <div class="card-content black-text">
@@ -71,6 +72,7 @@
                                 }
                             ?></p>
                         <p>E-mail: <?php echo $logado->getEmail(); ?></p>
+
                     </div>
                     <!--                            <div class="card-action">
                                                     <a href="#">Editar</a>
@@ -131,6 +133,11 @@
                                                         Submetido
                                                         em: <?php echo $tr->getData_submissao(); ?></p>
                                                 </div>
+                                                <div class="row">
+                                                    <a class="btn red exluir" href="../Controle/trabalhoControle.php?function=excluir&id_trabalho=<?php echo $tr->getId_trabalho() ?>">
+                                                        Excluir trabalho
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </li>
@@ -157,10 +164,19 @@
 
     // Or with jQuery
 
+
     $(document).ready(function () {
         $('.collapsible').collapsible();
     });
-</script>
+
+            $(document).ready(function () {
+                $('.collapsible').collapsible();
+            });
+            $(".exluir").click(function () {
+                return confirm("Tem certeza de que deseja excluir?!?");
+            });
+        </script>
+
 
 <?php
     include_once '../Base/footer.php';
