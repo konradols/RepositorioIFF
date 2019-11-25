@@ -33,9 +33,11 @@ class TurmaPDO{
         
             $stmt->bindValue(':ano_fim', $turma->getAno_fim());    
         
-            if($stmt->execute()){ 
+            if($stmt->execute()){
+                $_SESSION['toast'][] = 'Turma inserida';
                 header('location: ../index.php?msg=turmaInserido');
             }else{
+                $_SESSION['toast'][] = 'Erro cadastrar turma';
                 header('location: ../index.php?msg=turmaErroInsert');
             }
     }

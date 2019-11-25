@@ -43,14 +43,17 @@ class UsuarioPDO {
 
             if ($stmt->execute()) {
                 $this->logout();
+                $_SESSION['toast'][] = 'Usuário cadastrado com sucesso!';
                 header('location: ../index.php?msg=usuarioInserido');
 //                $linha = $stmt->fetch(PDO::FETCH_ASSOC);
 //                $us = new usuario($linha);
 //                $_SESSION['usuario'] = serialize($us);
             } else {
+                $_SESSION['toast'][] = 'Erro ao cadastrar usuário';
                 header('location: ../index.php?msg=usuarioErroInsert');
             }
         } else {
+            $_SESSION['toast'][] = 'As senhas não coincidem';
             header('location: ../Tela/registroUsuario.php?msg=senhaerrada');
         }
     }
