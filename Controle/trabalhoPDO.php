@@ -25,16 +25,18 @@ if (realpath('./index.php')) {
     }
 }
 
-class TrabalhoPDO {
+class TrabalhoPDO
+{
     /* inserir */
 
-    function inserirTrabalho() {
+    function inserirTrabalho()
+    {
 
         if (isset($_FILES['arquivo'])) {
             $ext = explode('.', $_FILES['arquivo']['name']);
             $extensao = "." . $ext[(count($ext) - 1)];
             $extensao = strtolower($extensao);
-            $novo_nome = hash_file('md5', $_FILES['arquivo']['tmp_name']).$extensao;
+            $novo_nome = hash_file('md5', $_FILES['arquivo']['tmp_name']) . $extensao;
             $diretorio = "./upload/";
 
             move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
@@ -74,9 +76,7 @@ class TrabalhoPDO {
                     header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
                 } else {
                     $_SESSION['toast'][] = 'Erro ao adicionar trabalho';
-                header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
-//                echo("Error ao adicionar novo registro: ");
-                    print_r($stmt->errorInfo());
+                    header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
                 }
             } else {
                 $_SESSION['toast'][] = 'Sua senha está incorreta';
@@ -87,7 +87,8 @@ class TrabalhoPDO {
 
     /* inserir */
 
-    public function selectTrabalho() {
+    public function selectTrabalho()
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -100,20 +101,22 @@ class TrabalhoPDO {
         }
     }
 
-    function pesquisaTrabalhos($post){
+    function pesquisaTrabalhos($post)
+    {
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare("select * from trabalho where categoria like :categoria and publicado = 1 ".($post['campo']!=''?"and ".$post['campo']." like :valor":"") );
-        $stmt->bindValue(":categoria" , $post['categoria']);
-        if($post['campo']!="") {
-            $stmt->bindValue(":valor", "%".$post['valor']."%");
+        $stmt = $pdo->prepare("select * from trabalho where categoria like :categoria and publicado = 1 " . ($post['campo'] != '' ? "and " . $post['campo'] . " like :valor" : ""));
+        $stmt->bindValue(":categoria", $post['categoria']);
+        if ($post['campo'] != "") {
+            $stmt->bindValue(":valor", "%" . $post['valor'] . "%");
         }
         $stmt->execute();
         return $stmt;
     }
 
 
-    public function selectTrabalhoId_trabalho($id_trabalho) {
+    public function selectTrabalhoId_trabalho($id_trabalho)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -127,7 +130,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoId_usuario($id_usuario) {
+    public function selectTrabalhoId_usuario($id_usuario)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -141,11 +145,12 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoNome($nome) {
+    public function selectTrabalhoNome($nome)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $nome = "%".$nome."%";
+        $nome = "%" . $nome . "%";
         $stmt = $pdo->prepare('select * from trabalho where nome like :nome;');
         $stmt->bindValue(':nome', $nome);
         $stmt->execute();
@@ -156,7 +161,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoNomePorId_Usuario($id_usuario) {
+    public function selectTrabalhoNomePorId_Usuario($id_usuario)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -170,7 +176,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoResumo($resumo) {
+    public function selectTrabalhoResumo($resumo)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -184,11 +191,12 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoCategoria($categoria) {
+    public function selectTrabalhoCategoria($categoria)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from trabalho where categoria = :categoria;');
+        $stmt = $pdo->prepare('select * from trabalho where categoria = :categoria and publicado = 1;');
         $stmt->bindValue(':categoria', $categoria);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
@@ -198,7 +206,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoData_submissao($data_submissao) {
+    public function selectTrabalhoData_submissao($data_submissao)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -212,7 +221,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoCaminho($caminho) {
+    public function selectTrabalhoCaminho($caminho)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -226,7 +236,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoId_curso($id_curso) {
+    public function selectTrabalhoId_curso($id_curso)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -240,7 +251,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoNumero_acessos($numero_acessos) {
+    public function selectTrabalhoNumero_acessos($numero_acessos)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -254,7 +266,8 @@ class TrabalhoPDO {
         }
     }
 
-    public function selectTrabalhoNumero_downloads($numero_downloads) {
+    public function selectTrabalhoNumero_downloads($numero_downloads)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -272,7 +285,8 @@ class TrabalhoPDO {
 //
 //    }
 
-    public function updateTrabalho(Trabalho $trabalho) {
+    public function updateTrabalho(Trabalho $trabalho)
+    {
         $con = new conexao();
         $pdo = $con->getConexao();
         $stmt = $pdo->prepare('update trabalho set id_usuario = :id_usuario , nome = :nome , resumo = :resumo , categoria = :categoria , data_submissao = :data_submissao , caminho = :caminho , id_curso = :id_curso , numero_acessos = :numero_acessos , numero_downloads = :numero_downloads where id_trabalho = :id_trabalho;');
@@ -299,7 +313,8 @@ class TrabalhoPDO {
         return $stmt->rowCount();
     }
 
-    public function deleteTrabalho($definir) {
+    public function deleteTrabalho($definir)
+    {
         $con = new conexao();
         $pdo = $con->getConexao();
         $stmt = $pdo->prepare('delete from trabalho where id_trabalho = :definir ;');
@@ -308,14 +323,16 @@ class TrabalhoPDO {
         return $stmt->rowCount();
     }
 
-    public function deletar() {
-        $this->deleteTrabalho($_GET['id']);
-        header('location: ../Tela/listarTrabalho.php');
+    function excluir()
+    {
+        $this->deleteTrabalho($_GET['id_trabalho']);
+        header('location: ../Tela/perfil.php');
     }
 
     /* editar */
 
-    function editar() {
+    function editar()
+    {
         $trabalho = new Trabalho($_POST);
         if ($this->updateTrabalho($trabalho) > 0) {
             header('location: ../index.php?msg=trabalhoAlterado');

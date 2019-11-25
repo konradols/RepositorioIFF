@@ -25,7 +25,7 @@ if (isset($_SESSION['usuario'])) {
     include_once $pontos . 'Modelo/usuario.php';
     $usuario = new usuario();
     $usuario = unserialize($_SESSION['usuario']);
-    if ($usuario->getAdministrador() == 'true') {
+    if ($usuario->getAdministrador() ==1) {
         include_once $pontos . 'Base/navAdm.php';
     } else {
         include_once $pontos . 'Base/navPadrao.php';

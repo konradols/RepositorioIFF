@@ -68,9 +68,7 @@ include_once '../Base/nav.php';
                                     ?></p>
                                 <p>E-mail: <?php echo $logado->getEmail(); ?></p>
                             </div>
-                            <!--                            <div class="card-action">
-                                                            <a href="#">Editar</a>
-                                                        </div>-->
+
                         </div>
                     </div>
 
@@ -124,6 +122,11 @@ include_once '../Base/nav.php';
                                                             em: <?php echo $tr->getData_submissao(); ?></p>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <a class="btn red exluir" href="../Controle/trabalhoControle.php?function=excluir&id_trabalho=<?php echo $tr->getId_trabalho() ?>">
+                                                        Excluir trabalho
+                                                    </a>
+                                                </div>
                                             </div>
                                         </li>
                                         <?php
@@ -152,6 +155,9 @@ include_once '../Base/nav.php';
 
             $(document).ready(function () {
                 $('.collapsible').collapsible();
+            });
+            $(".exluir").click(function () {
+                return confirm("Tem certeza de que deseja excluir?!?");
             });
         </script>
 
