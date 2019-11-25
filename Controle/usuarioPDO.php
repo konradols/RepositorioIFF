@@ -355,4 +355,34 @@ class UsuarioPDO {
             header("Location: ../Tela/cadastrosPendentes.php");
         }
     }
+
+    function addAdm() {
+        $id_usuario = $_GET['id_usuario'];
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare("update usuario set administrador = true where id_usuario = :id_usuario");
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        if($stmt->execute()) {
+            $_SESSION['toast'][]='Administrador adicionado';
+            header("Location: ../Tela/listagemUsuario.php");
+        } else {
+            $_SESSION['toast'][]='Erro ao adicionar administrador';
+            header("Location: ../Tela/listagemUsuario.php");
+        }
+    }
+
+    function removeAdm(){
+        $id_usuario = $_GET['id_usuario'];
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare("update usuario set administrador = false where id_usuario = :id_usuario");
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        if($stmt->execute()) {
+            $_SESSION['toast'][]='Administrador removido';
+            header("Location: ../Tela/listagemUsuario.php");
+        } else {
+            $_SESSION['toast'][]='Erro ao remover administrador';
+            header("Location: ../Tela/listagemUsuario.php");
+        }
+    }
 }
