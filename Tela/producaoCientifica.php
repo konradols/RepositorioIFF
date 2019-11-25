@@ -59,7 +59,7 @@ include_once '../Base/nav.php';
                                 $tr = new trabalho($resultado);
                                 ?>
                                 <li>
-                                    <div class="collapsible-header"><i class="material-icons">library_books</i><?php echo $tr->getNome(); ?></div>
+                                    <div class="collapsible-header"><i class="material-icons">group</i><?php echo $tr->getNome(); ?></div>
                                     <div class="collapsible-body">
                                         <div class="col s6 m6 l2 push-l1 center">
                                             <a id="modal-autores" class="modal-trigger" href="#modal1">Autores(as)</a>
