@@ -101,8 +101,22 @@ class TrabalhoPDO
         }
     }
 
-    function pesquisaTrabalhos($post)
-    {
+
+    public function selectTrabalhoPendente() {
+
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('select * from trabalho where publicado = 0 ORDER BY id_trabalho desc;');
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
+
+    function pesquisaTrabalhos($post){
+
         $con = new conexao();
         $pdo = $con->getConexao();
         $stmt = $pdo->prepare("select * from trabalho where categoria like :categoria and publicado = 1 " . ($post['campo'] != '' ? "and " . $post['campo'] . " like :valor" : ""));
@@ -343,4 +357,19 @@ class TrabalhoPDO
 
     /* editar */
     /* chave */
+
+        function aceitar() {
+            $id_trabalho = $_GET['id_trabalho'];
+            $con = new conexao();
+            $pdo = $con->getConexao();
+            $stmt = $pdo->prepare('update trabalho set publicado = 1 where id_trabalho = :id_trabalho');
+            $stmt->bindValue(':id_trabalho', $id_trabalho);
+            if($stmt->execute()) {
+                $_SESSION['toast'][] = 'Trabalho aceito';
+                header("Location: ../Tela/trabalhosPendentes.php");
+            } else{
+                $_SESSION['toast'][] = 'Erro ao aceitar trabalho';
+                header("Location: ../Tela/trabalhosPendentes.php");
+            }
+        }
 }
