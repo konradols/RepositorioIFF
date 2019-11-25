@@ -80,13 +80,16 @@ class TrabalhoPDO {
 
             if (md5($_POST['senha']) == $logado->getSenha()) {
                 if ($stmt->execute()) {
+                    $_SESSION['toast'][] = 'Trabalho inserido com sucesso!';
                     header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
                 } else {
-//                header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
+                    $_SESSION['toast'][] = 'Erro ao adicionar trabalho';
+                header('location: ../Tela/telaUpload.php?msg=trabalhoErroInsert');
 //                echo("Error ao adicionar novo registro: ");
                     print_r($stmt->errorInfo());
                 }
             } else {
+                $_SESSION['toast'][] = 'Sua senha está incorreta';
                 header('location: ../Tela/telaUpload.php?msg=senhaIncorreta');
             }
         }

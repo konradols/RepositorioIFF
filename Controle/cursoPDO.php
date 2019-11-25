@@ -28,9 +28,11 @@ class CursoPDO{
             $stmt->bindValue(':nome', $curso->getNome());    
             $stmt->bindValue(':matricula_coordenador', $curso->getMatricula_coordenador());    
         
-            if($stmt->execute()){ 
+            if($stmt->execute()){
+                $_SESSION['toast'][] = 'Curso inserido';
                 header('location: ../index.php?msg=cursoInserido');
             }else{
+                $_SESSION['toast'][] = 'Erro ao cadastrar o curso';
                 header('location: ../index.php?msg=cursoErroInsert');
             }
     }
