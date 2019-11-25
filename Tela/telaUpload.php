@@ -16,27 +16,26 @@ if (!isset($_SESSION['usuario'])) {
     </head>
     <body>
 
-        <div class="container">
+        <div class="">
             <?php
             include_once '../Modelo/Usuario.php';
             $logado = new usuario(unserialize($_SESSION['usuario']));
             ?>
             <div class="row">
-                <div class="col l12">
+                <div class="">
                     <!--<span><?php // echo var_dump($_SESSION['logado']);   ?></span>-->
-                    <div class="card center z-depth-4" style="margin-top: 30px;">
+                    <div class="card center z-depth-4 col s12 l8 m10 offset-l2 offset-m1">
                         <div class="card-content">
                             <span class="card-title">Envio de Arquivos</span>
-                            <br>
                             <!--action="../Controle/trabalhoControle.php?function=inserirTrabalho"-->
                             <!--action="../Controle/teste.php"-->
                             <form method="POST" action="../Controle/trabalhoControle.php?function=inserirTrabalho" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="input-field col l6">
-                                        <input type="text" name="nome" required="true">
+                                    <div class="input-field col l6 s12">
+                                        <textarea name="nome" required="true" class="materialize-textarea"></textarea>
                                         <label for="nome">Nome do Trabalho</label>
                                     </div>
-                                    <div class="input-field col l6">
+                                    <div class="input-field col l6 s12">
                                         <select name = "categoria" required="true">
                                             <option value="tcc">TCC</option>
                                             <option value="relatorio">Relatório</option>
@@ -44,28 +43,31 @@ if (!isset($_SESSION['usuario'])) {
                                         </select>
                                         <label for="categoria">Categoria</label>
                                     </div>
-                                    <div class="input-field col l6">
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col l6 s12">
                                         <input type="text" name="autores" required="true" placeholder="Autor1, Autor2, [...]">
                                         <label for="autores">Autores</label>
                                     </div>
-                                    <div class="input-field col l6">
+                                    <div class="input-field col l6 s12">
                                         <input type="text" name="orientadores" required="true" placeholder="Orientador1, Orientador2, [...]">
                                         <label for="orientadores">Orientadores(as)</label>
                                     </div>
-                                    <div class="input-field col l6">
+                                    <div class="input-field col l6 s12">
                                         <input type="text" name="coorientadores" required="true" placeholder="Coorientador1, Coorientador2, [...]">
                                         <label for="coorientadores">Coorientadores(as)</label>
                                     </div>
-                                    <div class="input-field col l6">
+                                    <div class="input-field col l6 s12">
                                         <input type="text" name="palavras_chave" placeholder="palavra1. palavra2. palavra3. [...]">
                                         <label for="palavras_chave">Palavras-Chave</label>
                                     </div>
-                                    <div class="input-field col l12">
+                                    <div class="input-field col l12 s12">
                                         <textarea id="textarea" class="materialize-textarea" name="resumo" required="true"></textarea>
                                         <label for="textarea">Resumo</label>
                                     </div>
-                                    <h5>Selecione o arquivo a ser submetido</h5>
-                                    <div class="file-field input-field">
+
+                                    <div class="file-field input-field col s12 l12">
+                                        <h5>Selecione o arquivo a ser submetido</h5>
                                         <button class="btn corpadrao">
                                             <div>Upload</div>
                                         </button>
@@ -74,8 +76,8 @@ if (!isset($_SESSION['usuario'])) {
                                             <input class="file-path validate" type="text">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col l6 center" style="margin-left: 220px; margin-right: 300px;">
+                                    <div class="row center">
+                                        <div class="col l6 offset-l3 col s12" >
                                             <input type="password" name="senha" id="senha" required="true">
                                             <label for="senha">Senha</label>
                                         </div>
@@ -100,6 +102,7 @@ if (!isset($_SESSION['usuario'])) {
             $(document).ready(function () {
                 $('select').formSelect();
             });
+
         </script>
 
         <?php

@@ -42,20 +42,6 @@ class UsuarioPDO {
             $stmt->bindValue(':foto', $usuario->getFoto());
 
             if ($stmt->execute()) {
-
-                switch ($usuario->getCategoria()){
-                    case "coordenador":
-                        $coordenadorPDO = new CoordenadorPDO();
-                        $coordenador = new coordenador($usuario);
-                        $coordenador->setIdUsuario($pdo->lastInsertId());
-                        $coordenadorPDO->inserir($coordenador);
-                        break;
-                    case "aluno":
-                        break;
-                    case "orientador":
-                        break;
-                }
-
                 $_SESSION['toast'][] = "Usuário inserido!";
                 header('location: ../Tela/login.php?msg=usuarioInserido');
 
@@ -88,7 +74,7 @@ class UsuarioPDO {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from usuario where id = :id order by id desc;');
+        $stmt = $pdo->prepare('select * from usuario where id_usuario = :id ;');
         $stmt->bindValue(':id', $id);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {

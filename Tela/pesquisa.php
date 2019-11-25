@@ -2,6 +2,12 @@
 <?php
 include_once '../Base/header.php';
 include_once '../Base/nav.php';
+include_once '../Controle/conexao.php';
+include_once '../Controle/trabalhoPDO.php';
+include_once '../Controle/cursoPDO.php';
+include_once '../Controle/turmaPDO.php';
+include_once '../Modelo/Usuario.php';
+include_once '../Modelo/Trabalho.php';
 ?>
 <html>
     <head>
@@ -15,7 +21,7 @@ include_once '../Base/nav.php';
                 <div class="col l8 offset-l2 card">
                     <h5 class="center">Pesquisa de Trabalhos</h5>
                     <div class="col l12" style="margin-left: 15px;">
-                        <form name="pesquisaTrabalhos" action="./listagem.php" method="POST">
+                        <form name="pesquisaTrabalhos" action="./pesquisa.php" method="POST">
                             <table>
                                 <tr>
                                     <td>
@@ -76,6 +82,124 @@ include_once '../Base/nav.php';
                 </div>
             </div>
         </div>
+<?php  if(isset($_POST['pesquisa'])){ ?>
+        <div class="container">
+
+            <div class="row">
+                <div class="col s12 l12 card">
+                    <ul class="collapsible">
+                        <?php
+                        switch ($_POST['select']) {
+                            case "Trabalho":
+                                $_GET['msg']="Trabalho";
+                                break;
+                            case "TrabalhoCategoria":
+                                $_GET['msg']="TrabalhoCategoria";
+                                break;
+                            case "TrabalhoNome":
+                                $_GET['msg']="TrabalhoNome";
+                                break;
+                            case "TrabalhoData_submissao":
+                                $_GET['msg']="TrabalhoData_submissao";
+                                break;
+                            case "UsuarioNome":
+                                $_GET['msg']="UsuarioNome";
+                                break;
+                            case "CursoNome":
+                            case "TurmaNome":
+                                $_GET['msg']="TurmaNome";
+                                break;
+                            default:
+                                $_GET['msg'] = "todos";
+                                break;
+                        }
+                        $_GET['c'] = $_POST['pesquisa'];
+                        if( $_GET['msg'] == "todos"){
+                            $_GET=null;
+                        }
+                        $trabalhoListar = new trabalhoPDO();
+                        $usuarioListar = new usuarioPDO();
+                        $cursoListar = new cursoPDO();
+                        $turmaListar = new turmaPDO();
+                        if ($_GET['c'] != null) {
+                            switch ($_GET['msg']) {
+                                case "Trabalho":
+                                    $sql = $trabalhoListar->selectTrabalho();
+                                    break;
+                                case "TrabalhoCategoria":
+                                    $sql = $trabalhoListar->selectTrabalhoCategoria($_GET['c']);
+                                    break;
+                                case "TrabalhoNome":
+                                    $sql = $trabalhoListar->selectTrabalhoNome($_GET['c']);
+                                    break;
+                                case "TrabalhoData_submissao":
+                                    $sql = $trabalhoListar->selectTrabalhoData_submissao($_GET['c']);
+                                    break;
+                                case "UsuarioNome":
+                                    $sqlUsuario = $usuarioListar->selectUsuarioNome($_GET['c']);
+                                    $user = new usuario($sqlUsuario);
+                                    $idUsuario = $user->getIdUsuario();
+                                    header("Location: ?=" . $idUsuario);
+                                    $sql = $trabalhoListar->selectTrabalhoId_usuario($idUsuario);
+                                    break;
+                                case "Curso":
+                                    $sql = $cursoListar->selectCursoNome($_GET['c']);
+                                    break;
+                                case "Turma":
+                                    $sql = $turmaListar->selectTurmaNome($_GET['c']);
+                                    break;
+                            }
+                        } else {
+                            $sql = $trabalhoListar->selectTrabalho();
+                        }
+                        //                        }
+                        if ($sql != false) {
+                            while ($resultado = $sql->fetch()) {
+                                $tr = new trabalho($resultado);
+                                $sqlUsuario = $usuarioListar->selectUsuarioId($tr->getId_usuario());
+//                                echo var_dump($sqlUsuario);
+                                $u = new usuario($sqlUsuario);
+                                ?>
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">library_books</i><?php echo $tr->getNome(); ?></div>
+                                    <div class="collapsible-body">
+                                        <a href="#">Autores<?php
+                                            //                                        $trabalhoListar->selectTrabalhoId_usuario($id_usuario);
+                                            ?></a>
+                                        <a style="margin-left: 100px;" href="#">Orientadores</a>
+                                        <a style="margin-left: 100px;" href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo PDF</a>
+                                        <!--<span style="margin-left: 200px;">Publicado em:</span>-->
+                                        <p class="right" style="margin-top: -3px; margin-right: 110px;">Submetido em: <?php echo $tr->getData_submissao(); ?></p>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                        } else {
+                            echo "<h5>Nenhum resultado!</h5>";
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <?php
+}
+        ?>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.collapsible');
+                var instances = M.Collapsible.init(elems, options);
+            });
+
+            // Or with jQuery
+
+            $(document).ready(function () {
+                $('.collapsible').collapsible();
+            });
+        </script>
+
 
         <script>
 //            document.addEventListener('DOMContentLoaded', function () {

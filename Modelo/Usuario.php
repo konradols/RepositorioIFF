@@ -2,7 +2,7 @@
 
 class usuario{
 
-protected $id;
+protected $id_usuario;
 protected $nome;
 protected $email;
 protected $usuario;
@@ -32,13 +32,15 @@ public function __construct() {
         }
     }
 
-     public function getId(){
-         return $this->id;
-     }
+    public function getIdUsuario()
+    {
+        return $this->id_usuario;
+    }
 
-     function setId($id){
-          $this->id = $id;
-     }
+    public function setIdUsuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
+    }
 
     public function getAtivo()
     {

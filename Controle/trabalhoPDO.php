@@ -33,30 +33,18 @@ class TrabalhoPDO {
         if (isset($_FILES['arquivo'])) {
             $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
             $novo_nome = md5(time()) . $extensao;
-            $diretorio = "upload/";
+            $diretorio = "./upload/";
 
             move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
 
             $trabalho = new trabalho($_POST);
             $trabalho->setCaminho($diretorio . $novo_nome);
-            $usuario = unserialize($_SESSION['usuario']);
+            $usuario = new usuario(unserialize($_SESSION['usuario']));
             $con = new conexao();
             $pdo = $con->getConexao();
             $stmt = $pdo->prepare('insert into trabalho values(default , :id_usuario, :nome , :resumo , :categoria , :autores, :orientadores, :coorientadores, :palavras_chave, curdate() , :caminho , :id_curso , default , default);');
-//            $stmt = $pdo->prepare('insert into trabalho values(default , 1 , irineu , irineu , irineu , irineu , irineu , 1 , default , default);');
-//            $stmt->bindValue(':id_usuario', $usuario->getId());
-//
-//            $stmt->bindValue(':nome', "irineu");
-//
-//            $stmt->bindValue(':resumo', "irineu");
-//
-//            $stmt->bindValue(':categoria', "irineu");
-//
-//            $stmt->bindValue(':caminho', "irineu");
-//
-//            $stmt->bindValue(':id_curso', "1");
 
-            $stmt->bindValue(':id_usuario', $usuario->getId());
+            $stmt->bindValue(':id_usuario', $usuario->getIdUsuario());
 
             $stmt->bindValue(':nome', $trabalho->getNome());
 
