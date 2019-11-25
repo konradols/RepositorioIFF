@@ -9,7 +9,7 @@ include_once '../Base/navBar.php';
         <title>Protótipo Home Page</title>
     </head>
     <body>
-
+<main>
         <div class="container">
             <div class="row">
                 <div class="col l12">
@@ -88,7 +88,7 @@ include_once '../Base/navBar.php';
                 $('select').formSelect();
             });
         </script>
-
+</main>
         <?php
         include_once '../Base/footer.php';
         ?>

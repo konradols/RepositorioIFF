@@ -20,6 +20,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<main>
 <div class="row">
     <div class="card z-depth-3 col s12 m12 l10 offset-l1">
         <div class="row">
@@ -70,5 +71,6 @@
 <?php
     include_once '../Base/footer.php';
 ?>
+</main>
 </body>
 </html>

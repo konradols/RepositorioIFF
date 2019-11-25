@@ -12,7 +12,7 @@
     <title>Protótipo Home Page</title>
 </head>
 <body>
-
+<main>
 <div class="container">
 
     <?php
@@ -177,7 +177,7 @@
             });
         </script>
 
-
+</main>
 <?php
     include_once '../Base/footer.php';
 ?>

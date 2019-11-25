@@ -31,7 +31,7 @@ include_once '../Base/nav.php';
     <title>Protótipo Home Page</title>
 </head>
 <body>
-
+<main>
 <?php
 if (isset($_SESSION['usuario'])) {
     $logado = new usuario(unserialize($_SESSION['usuario']));
@@ -157,7 +157,7 @@ if (isset($_SESSION['usuario'])) {
         $('.collapsible').collapsible();
     });
 </script>
-
+</main>
 <?php
 include_once '../Base/footer.php';
 ?>

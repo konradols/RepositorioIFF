@@ -7,18 +7,19 @@ include_once './Base/header.php';
 include_once './Base/nav.php';
 ?>
 <html>
-<body>
+<body style="background-image: url('./Img/back.jpg'); background-position: center;  background-size: cover; background-repeat: no-repeat ;">
+<main>
 <?php
 include_once './Modelo/Usuario.php';
 if (isset($_SESSION['usuario'])) {
     $logado = new usuario(unserialize($_SESSION['usuario']));
 }
 ?>
-
-<br><br><br><br><br>
+    <br><br><br><br><br><br><br>
 <div class="">
 
-    <div class="row center">
+    <div class="row center" style="background-image: linear-gradient(to right , transparent, white ,white ,white ,white ,white , transparent);">
+        <br>
         <div class="col s12 m12 l8 offset-l2">
             <div class="row">
                 <div class="col s6 l3">
@@ -63,7 +64,7 @@ if (isset($_SESSION['usuario'])) {
         </div>
     </div>
 </div>
-
+</main>
 <?php
 include_once './Base/footer.php';
 ?>

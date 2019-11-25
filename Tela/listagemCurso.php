@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<main>
 <div class="row">
     <div class="card z-depth-3 col s12 m12 l10 offset-l1">
         <div class="row">
@@ -23,7 +24,7 @@
             <form action="../Controle/cursoControle.php?function=inserirCurso" method="post">
                 <div class="input-field col s10 offset-l1">
                     <input id="nome" type="text" class="validate" name="nome">
-                    <label for="nome">Nome da turma</label>
+                    <label for="nome">Nome do Curso</label>
                 </div>
                 <div class="row center">
                     <input type="submit" class="btn green darken-3" value="Cadastrar">
@@ -65,6 +66,7 @@
         </div>
     </div>
 </div>
+</main>
 <?php
     include_once '../Base/footer.php';
 ?>

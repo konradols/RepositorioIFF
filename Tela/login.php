@@ -12,7 +12,7 @@ if (isset($_SESSION['usuario'])) {
 <html>
     <?php include_once '../Base/header.php'; ?>
     <body>
-
+<main>
         <div class="">
             <div class="row" >
                 <div class="col l4 m8 s12 offset-l4 offset-m2">
@@ -52,7 +52,7 @@ if (isset($_SESSION['usuario'])) {
                 </div>
             </div>
         </div>
-
+</main>
         <?php
         include_once '../Base/footer.php';
         ?>

@@ -33,6 +33,7 @@ include_once '../Base/nav.php';
         <title>Protótipo Home Page</title>
     </head>
     <body>
+    <main>
 
         <?php
         if (isset($_SESSION['usuario'])) {
@@ -116,7 +117,7 @@ include_once '../Base/nav.php';
                 $('.collapsible').collapsible();
             });
         </script>
-
+    </main>
         <?php
         include_once '../Base/footer.php';
         ?>

@@ -9,7 +9,7 @@ include_once '../Base/nav.php';
         <title>Protótipo Home Page</title>
     </head>
     <body>
-
+<main>
         <div class="container">
 
             <div class="row">
@@ -60,7 +60,7 @@ include_once '../Base/nav.php';
                 $('.collapsible').collapsible();
             });
         </script>
-
+</main>
         <?php
         include_once '../Base/footer.php';
         ?>

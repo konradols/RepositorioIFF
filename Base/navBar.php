@@ -12,7 +12,7 @@ if (realpath("./index.php")) {
 <div class="navbar-fixed">
     <nav class="nav-extended corpadrao">
         <div class="nav-wrapper">
-            <a href="<?php echo $pontos; ?>index.php" class="brand-logo left">Repositório Digital IFFar SVS</a>
+            <a href="<?php echo $pontos; ?>index.php" class="brand-logo left">RD IFFar</a>
 
             <ul id="nav-mobile" class="right">
 

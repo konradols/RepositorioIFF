@@ -15,7 +15,7 @@ if (!isset($_SESSION['usuario'])) {
         ?>
     </head>
     <body>
-
+<main>
         <div class="container">
             <?php
             include_once '../Modelo/Usuario.php';
@@ -78,7 +78,7 @@ if (!isset($_SESSION['usuario'])) {
                 $('select').formSelect();
             });
         </script>
-
+</main>
         <?php
         include_once '../Base/footer.php';
         ?>

@@ -15,7 +15,7 @@ include_once '../Modelo/Trabalho.php';
     <title>Protótipo Home Page</title>
 </head>
 <body>
-
+<main>
 <div class="row">
     <form action="pesquisa.php" method="post">
         <div class="col s12 m10 l8 offset-l2 offset-m1 card">
@@ -148,7 +148,7 @@ if (isset($_POST['valor'])) {
         $('select').formSelect();
     });
 </script>
-
+</main>
 <?php
 include_once '../Base/footer.php';
 ?>

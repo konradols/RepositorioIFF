@@ -78,7 +78,7 @@ if (realpath('./index.php')) {
 <ul id="slide-out" class="sidenav">
     <li><div class="user-view">
             <div class="background">
-                <img src="<?php echo $pontos; ?>Img/bg1.jpg">
+                <img src="<?php echo $pontos; ?>Img/banner.png">
             </div>
             <a href="#user"><div class="fotoPerfil left-align" style="background-image: url('<?php echo $pontos . $logado->getFoto(); ?>');background-size: cover;
                         background-position: center;
@@ -86,7 +86,7 @@ if (realpath('./index.php')) {
                         max-height: 20vh; max-width: 20vh;">
                 </div>
             </a>
-            <a href="#name"><span class="white-text name"><?php echo $logado->getNome(); ?></span></a>
+            <a href="#name"><span class="black-text name"><?php echo $logado->getNome(); ?></span></a>
             <a href="#email"><span class="white-text email"><?php echo $logado->getEmail(); ?></span></a>
         </div></li>
     <ul class="collapsible">

@@ -13,6 +13,7 @@
 ?>
 <html>
 <body>
+<main>
 <?php
     include_once '../Modelo/Usuario.php';
     if (isset($_SESSION['usuario'])) {
@@ -88,6 +89,7 @@
 <script>
     $('.collapsible').collapsible();
 </script>
+</main>
 <?php
     include_once '../Base/footer.php';
 ?>

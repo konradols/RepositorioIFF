@@ -15,6 +15,7 @@ include_once '../Base/nav.php';
         </style>
     </head>
     <body>
+    <main>
         <div class="row">
             <?php
             include_once '../Modelo/Usuario.php';
@@ -80,7 +81,7 @@ include_once '../Base/nav.php';
         </div>
             
         </div>
-
+    </main>
         <?php
         include_once '../Base/footer.php';
         ?>

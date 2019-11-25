@@ -14,8 +14,7 @@ if (!isset($_SESSION['usuario'])) {
     include_once '../Base/nav.php';
     ?>
 </head>
-<body>
-
+<main>
 <div class="">
     <?php
     include_once '../Modelo/Usuario.php';
@@ -25,7 +24,7 @@ if (!isset($_SESSION['usuario'])) {
     ?>
     <div class="row">
         <div class="">
-            <!--<span><?php // echo var_dump($_SESSION['logado']);   ?></span>-->
+
             <div class="card center z-depth-4 col s12 l8 m10 offset-l2 offset-m1">
                 <div class="card-content">
                     <span class="card-title">Envio de Arquivos</span>
@@ -74,6 +73,7 @@ if (!isset($_SESSION['usuario'])) {
                             </div>
                             <div class="input-field col l6 s12">
                                 <select id="curso" name="curso" required>
+                                    <option value='' disabled selected>Selecione o curso</option>
                                     <?php
                                     $cursoPDO = new CursoPDO();
                                     $cursos = $cursoPDO->selectCurso();
@@ -129,10 +129,12 @@ if (!isset($_SESSION['usuario'])) {
         $('select').formSelect();
     });
     $("#curso").change(function () {
-        $("#id_turma").load("../Controle/turmaControle.php?function=getSelectId&id_curso="+$(this).val());
+        $("#id_turma").load("../Controle/turmaControle.php?function=getSelectId&id_curso="+$(this).val(), function () {
+            $('select').formSelect();
+        });
     });
 </script>
-
+</main>
 <?php
 include_once '../Base/footer.php';
 ?>
