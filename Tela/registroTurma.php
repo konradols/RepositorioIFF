@@ -26,15 +26,15 @@
             <form action="../Controle/turmaControle.php?function=inserirTurma" method="post">
                 <input type="text" hidden name="id_curso" value="<?php echo $curso->getIdCurso() ?>">
                 <div class="row">
-                    <div class="input-field col s10 offset-l1">
+                    <div class="input-field col l10 m10 s10 offset-l1 offset-m1 offset-s1">
                         <input id="nome" type="text" class="validate" required name="nome">
                         <label for="nome">Nome da turma</label>
                     </div>
-                    <div class="input-field col s5 offset-s1">
+                    <div class="input-field col l5 m5 s10 offset-l1 offset-m5 offset-s1">
                         <input id="ano_inicio" type="number" class="validate" required name="ano_inicio">
                         <label for="ano_inicio">Ano de inicio</label>
                     </div>
-                    <div class="input-field col s5">
+                    <div class="input-field col s5 m5 s10 offset-s1">
                         <input id="ano_fim" type="number" class="validate" required name="ano_fim">
                         <label for="ano_fim">Ano de término</label>
                     </div>
