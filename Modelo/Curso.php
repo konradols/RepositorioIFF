@@ -30,8 +30,10 @@ public function __construct() {
          return $this->id_curso;
      }
 
-     function setIdCurso($id_curso){
-          $this->id_curso = $id_curso;
+
+     function setIdCurso($id){
+          $this->id_curso = $id;
+
      }
 
      public function getNome(){

@@ -35,10 +35,10 @@ class TurmaPDO{
         
             if($stmt->execute()){
                 $_SESSION['toast'][] = 'Turma inserida';
-                header('location: ../index.php?msg=turmaInserido');
+                header('location: ../Tela/listagemCurso.php');
             }else{
                 $_SESSION['toast'][] = 'Erro cadastrar turma';
-                header('location: ../index.php?msg=turmaErroInsert');
+                header('location: ../Tela/listagemCurso.php');
             }
     }
     /*inserir*/
@@ -178,8 +178,10 @@ function getSelectId(){
     }
     
     public function deletar(){
-        $this->deleteTurma($_GET['id']);
-        header('location: ../Tela/listarTurma.php');
+        $id_curso = $_GET['id_curso'];
+        $this->deleteTurma($_GET['id_turma']);
+        $_SESSION['toast'][] = 'Turma deletada';
+        header('location: ../Tela/listagemTurma.php?id_curso='.$id_curso);
     }
 
 
