@@ -130,7 +130,8 @@ class TrabalhoPDO {
 
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from trabalho where nome = :nome;');
+        $nome = "%".$nome."%";
+        $stmt = $pdo->prepare('select * from trabalho where nome like :nome;');
         $stmt->bindValue(':nome', $nome);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {

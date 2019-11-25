@@ -66,20 +66,6 @@ if (realpath('./index.php')) {
                 <li><a href="<?php echo $pontos; ?>Tela/perfil.php" style="color: white;"><i class="small material-icons">person</i></a></li>
 
 
-                <?php
-                if (isset($_SESSION['usuario'])) {
-                    ?>
-                    <li><a class='dropdown-trigger' data-target='dropdown2'>
-                            <i class="small material-icons">notifications</i></a></li>
-                            <ul id="dropdown2" class='dropdown-content'>
-                        <li><a href = "#">Solicitações de Cadastro</a></li>
-                        <li><a href = "#">Solicitações de Submissão</a></li>
-                    </ul>
-                    <?php
-                }
-                ?>
-
-
                 <li><a href="<?php echo $pontos; ?>Controle/usuarioControle.php?function=logout">Sair</a></li>
             </ul>
         </div>
