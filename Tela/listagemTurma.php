@@ -27,6 +27,7 @@
         </div>
         <div class="row">
             <?php
+
                 if ($stmtTurma) {
                     $turmas = $stmtTurma->fetchAll();?>
                     <table class="col s10 offset-s1 hide-on-small-only hide-on-med-only">
@@ -35,7 +36,7 @@
                             <th class="center">Nome</th>
                             <th class="center">Ano inicial</th>
                             <th class="center">Ano Término</th>
-                            <th class="center">Deletar</th>
+                            <th class="center">Deletar</th
                         </tr>
                         <?php
                             foreach ($turmas as $linha) {
@@ -50,6 +51,7 @@
                                     </td>
                                 </tr>
                                 <?php
+
                             }
                         ?>
                         </thead>

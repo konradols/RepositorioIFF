@@ -19,6 +19,7 @@
 <div class="row">
     <div class="card z-depth-3 col s12 m12 l10 offset-l1">
         <div class="row">
+
             <h5 class="center">Cadastrar curso</h5>
             <form action="../Controle/cursoControle.php?function=inserirCurso" method="post">
                 <div class="input-field col s10 offset-l1">
@@ -27,6 +28,7 @@
                 </div>
                 <div class="row center">
                     <input type="submit" class="btn green darken-3" value="Cadastrar">
+
                 </div>
             </form>
         </div>

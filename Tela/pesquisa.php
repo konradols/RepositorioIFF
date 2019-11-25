@@ -52,6 +52,7 @@ include_once '../Modelo/Trabalho.php';
 
             <div class="row center">
                 <button type="submit" class="btn">Pesquisar</button>
+                <a class="btn" href="guiaTurma.php">Guia por Turmas</a>
             </div>
         </div>
     </form>

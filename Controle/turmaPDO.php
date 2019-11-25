@@ -44,7 +44,21 @@ class TurmaPDO{
     /*inserir*/
                 
     
-
+function getSelectId(){
+    $con = new conexao();
+    $pdo = $con->getConexao();
+    $stmt = $pdo->prepare('select * from turma where id_curso = :id_curso;');
+    $stmt->bindValue(":id_curso" , $_GET['id_curso']);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        while($linha = $stmt->fetch()){
+            $turma = new turma($linha);
+            echo "<option value='".$turma->getIdTurma()."'>".$turma->getNome()."</option>";
+        }
+    } else {
+        echo "<option value=''>Nenhuma Turma</option>";
+    }
+}
             
 
     public function selectTurma(){

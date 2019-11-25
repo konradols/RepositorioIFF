@@ -28,13 +28,15 @@ public function __construct() {
         }
     }
 
-    function getId() {
+
+    function getIdTurma() {
         return $this->id_turma;
     }
 
-    function setId($id) {
-        $this->id_turma = $id;
-    }
+    function setIdTurma($id_turma) {
+        $this->id_turma = $id_turma;
+
+
         
      public function getId_curso(){
          return $this->id_curso;
