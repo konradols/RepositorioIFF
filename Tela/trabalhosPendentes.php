@@ -8,8 +8,6 @@
     include_once '../Controle/trabalhoPDO.php';
     include_once '../Modelo/Trabalho.php';
     $trabalhoPDP = new TrabalhoPDO();
-    $stmtTrabalhos = $trabalhoPDP->selectTrabalho();
-    $trabalhos = $stmtTrabalhos->fetchAll();
     $trabalhoListar = new trabalhoPDO();
     $sql = $trabalhoListar->selectTrabalhoPendente();
 ?>
@@ -23,7 +21,7 @@
             </div>
             <div class="row">
                 <?php
-                    if ($sql != false) {
+                    if ($sql) {
                 ?>
                 <div class="col l12">
                     <ul class="collapsible">

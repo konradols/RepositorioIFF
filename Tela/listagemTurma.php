@@ -47,7 +47,7 @@
                                     <td class="center"><?php echo $turma->getAno_inicio(); ?></td>
                                     <td class="center"><?php echo $turma->getAno_fim(); ?></td>
                                     <td class="center"><a
-                                                href="../Controle/turmaControle.php?function=deletar&id_turma=<?php echo $turma->getId(); ?>&id_curso=<?php echo $_GET['id_curso'] ?>" class="btn red darken-3">Deletar</a>
+                                                href="../Controle/turmaControle.php?function=deletar&id_turma=<?php echo $turma->getIdTurma(); ?>&id_curso=<?php echo $_GET['id_curso'] ?>" class="btn red darken-3">Deletar</a>
                                     </td>
                                 </tr>
                                 <?php

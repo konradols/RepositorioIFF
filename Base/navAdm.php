@@ -54,7 +54,6 @@ if (realpath('./index.php')) {
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemUsuario.php">Usuários</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemTrabalho.php">Trabalhos</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/listagemCurso.php">Cursos</a></li>
-                        <li><a href = "<?php echo $pontos; ?>Tela/listagemTurma.php">Turmas</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/cadastrosPendentes.php">Cadastros Pendentes</a></li>
                         <li><a href = "<?php echo $pontos; ?>Tela/trabalhosPendentes.php">Trabalhos Pendentes</a></li>
                     </ul>
@@ -113,7 +112,6 @@ if (realpath('./index.php')) {
                     <li><a href = "<?php echo $pontos; ?>Tela/listagemUsuario.php">Usuários</a></li>
                     <li><a href = "<?php echo $pontos; ?>Tela/listagemTrabalho.php">Trabalhos</a></li>
                     <li><a href = "<?php echo $pontos; ?>Tela/listagemCurso.php">Cursos</a></li>
-                    <li><a href = "<?php echo $pontos; ?>Tela/listagemTurma.php">Turmas</a></li>
                     <li><a href = "<?php echo $pontos; ?>Tela/cadastrosPendentes.php">Cadastros Pendentes</a></li>
                     <li><a href = "<?php echo $pontos; ?>Tela/trabalhosPendentes.php">Trabalhos Pendentes</a></li>
                 </ul>
