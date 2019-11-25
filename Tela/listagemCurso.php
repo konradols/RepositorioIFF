@@ -9,7 +9,6 @@
     include_once '../Modelo/Curso.php';
     $cursoPDO = new CursoPDO();
     $stmtCurso = $cursoPDO->selectCurso();
-    $cursos = $stmtCurso->fetchAll();
 ?>
 <html>
 <head>
@@ -32,7 +31,9 @@
         </div>
         <div class="row">
             <?php
-                if ($cursos) { ?>
+                if ($stmtCurso) {
+                    $cursos = $stmtCurso->fetchAll();
+                    ?>
                     <table class="col s10 offset-s1 hide-on-small-only hide-on-med-only">
                         <thead>
                         <tr>
