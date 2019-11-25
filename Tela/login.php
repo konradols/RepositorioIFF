@@ -13,10 +13,10 @@ if (isset($_SESSION['usuario'])) {
     <?php include_once '../Base/header.php'; ?>
     <body>
 
-        <div class="container">
-            <div class="row">
-                <div class="col l12">
-                    <div class="card center z-depth-4" style="margin-left: 200px; margin-right: 200px; margin-top: 50px;">
+        <div class="">
+            <div class="row" >
+                <div class="col l4 m8 s12 offset-l4 offset-m2">
+                    <div class="card center z-depth-4" >
                         <div class="card-content">
                             <span class="card-title">Login</span>
                             <br>

@@ -1,10 +1,10 @@
 <?php 
-
+include_once __DIR__."/./Usuario.php";
 class coordenador extends usuario{
-
+private $id_usuario;
 private $matricula;
 private $telefone;
-private $foto;
+
 
 
 public function __construct() {
@@ -26,6 +26,16 @@ public function __construct() {
         }
     }
 
+    public function getIdUsuario()
+    {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
+    }
+
      public function getMatricula(){
          return $this->matricula;
      }
@@ -40,14 +50,6 @@ public function __construct() {
 
      function setTelefone($telefone){
           $this->telefone = $telefone;
-     }
-     
-     function getFoto() {
-         return $this->foto;
-     }
-
-     function setFoto($foto) {
-         $this->foto = $foto;
      }
 
 }
