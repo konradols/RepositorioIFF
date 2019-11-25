@@ -85,6 +85,53 @@ class UsuarioPDO {
 
     /* inserir */
 
+    function updateFotoPerfil() {
+        $id_usuario = $_GET['id_usuario'];
+        $nome_imagem = hash_file('md5', $_FILES['arquivo']['tmp_name']);
+        $ext = explode('.', $_FILES['arquivo']['name']);
+        $extensao = "." . $ext[(count($ext) - 1)];
+        $extensao = strtolower($extensao);
+        file_put_contents('./logodotipodafoto', $extensao);
+        switch ($extensao) {
+            case '.jfif':
+            case '.jpeg':
+            case '.jpg':
+                imagewebp(imagecreatefromjpeg($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                break;
+            case '.svg':
+                move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.svg');
+                break;
+            case '.png':
+                $img = imagecreatefrompng($_FILES['arquivo']['tmp_name']);
+                imagepalettetotruecolor($img);
+                imagewebp($img, __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                break;
+            case '.webp':
+                imagewebp(imagecreatefromwebp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                break;
+            case '.bmp':
+                imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                break;
+        }
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('update usuario set foto = :foto where id_usuario = :id_usuario');
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        $stmt->bindValue(":foto", 'Img/Perfil/' . $nome_imagem . ($extensao == '.svg' ? ".svg" : ".webp"));
+        if($stmt->execute()) {
+            $usuario = new usuario(unserialize($_SESSION['usuario']));
+            unlink("../".$usuario->getFoto());
+            $usuario->setFoto('Img/Perfil/' . $nome_imagem . ($extensao == '.svg' ? ".svg" : ".webp"));
+            $_SESSION['usuario'] = serialize($usuario);
+            $_SESSION['toast'][] = 'Foto atualizada';
+            header("Location: ../Tela/perfil.php");
+        } else {
+            $_SESSION['toast'][] = 'Erro ao atualizar a foto';
+            header("Location: ../Tela/perfil.php");
+        }
+    }
+
     public function selectUsuario() {
 
         $con = new conexao();
