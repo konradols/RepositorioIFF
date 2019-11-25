@@ -27,25 +27,18 @@ include_once '../Base/nav.php';
                 
             }
 ?>
-
+            <br>
             <div class="row">
                 <div class="col l12 z-depth-5">
                     <div class="col l4">
                         <div class="card">
                             <div class="card-image">
-                                <img class="z-depth-1" src="../Img/trabalhoDigital.jpg" alt="">
+                                <img class="z-depth-1" src="../<?php echo $logado->getFoto(); ?>" alt="">
                             </div>
                         </div>
                     </div>
-                    <!--                    <a href="../Update/alterarFotoPerfil.php">
-                                            <div  class="fotoPerfil" style='background-image: url("../Img/trabalhoDigital.jpg");
-                                                  background-size: cover;
-                                                  background-position: center;
-                                                  background-repeat: no-repeat;'>
-                                                <div class="linkfoto white-text">Alterar Foto</div>            
-                                            </div>
-                                        </a>-->
-                    <div class="col l7">
+
+                    <div class="col l8">
                         <div class="card">
                             <div class="card-content black-text">
                                 <span class="card-title">Usuário</span>
@@ -55,12 +48,13 @@ include_once '../Base/nav.php';
                                         case 'aluno':
                                             echo "Aluno";
                                             break;
-                                        case 'orientador':
+                                        case 'orienteador':
                                             echo "Orientador";
                                             break;
                                         case 'coordenador':
                                             echo "Coordenador";
                                             break;
+                                        default: echo "erro";
                                     }
                                     ?></p>
                                 <p>E-mail: <?php echo $logado->getEmail(); ?></p>
@@ -70,26 +64,7 @@ include_once '../Base/nav.php';
                                                         </div>-->
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col l12">
-                            <div class="card">
-                                <div class="card-content black-text">
-                                    <span class="card-title">Última divulgação</span>
-                                    <p>Front-end do Repositório Digital do IFFar SVS</p>
-                                    <?php
-//                                        include_once '../Controle/trabalhoPDO.php';
-//                                        $trPDO = new TrabalhoPDO();
-//                                    $nomeDoTrabalho = $trPDO->selectTrabalhoNomePorId_Usuario($logado->getId());
-//                                    echo $nomeDoTrabalho . "";
-//                                    
-                                    ?>
-                                </div>
-                                <div class="card-action">
-                                    <a href="#">Acessar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div class="row">
                         <div class="col l12 card">
@@ -102,7 +77,7 @@ include_once '../Base/nav.php';
 //                            $metodo = $_POST['select'];
 //                            $sql = $trabalhoListar->$metodo($pesquisa);
 //                        } else {
-                                $sql = $trabalhoListar->selectTrabalhoId_usuario($logado->getId());
+                                $sql = $trabalhoListar->selectTrabalhoId_usuario($logado->getIdUsuario());
 //                        }
                                 if ($sql != false) {
                                     while ($resultado = $sql->fetch()) {
@@ -111,49 +86,46 @@ include_once '../Base/nav.php';
                                         <li>
                                             <div class="collapsible-header"><i class="material-icons">library_books</i><?php echo $tr->getNome(); ?></div>
                                             <div class="collapsible-body">
-                                                <a href="#">Autores<?php
-//                                        $trabalhoListar->selectTrabalhoId_usuario($id_usuario);
-                                        ?></a>
-                                                <a style="margin-left: 100px;" href="#">Orientadores</a>
-                                                <a style="margin-left: 100px;" href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo PDF</a>
-                                                <span style="margin-left: 200px;">Publicado em:</span>
-                                                <span style="margin-left: 633px;">Submetido em: <?php echo $tr->getData_submissao(); ?></span>
+                                                <div class="row">
+                                                    <div class="col l3 s12">
+                                                        <p>Autores:</p>
+                                                        <?php
+                                                        $autores  = explode(",",$tr->getAutores());
+                                                        foreach ($autores as $atutor){
+                                                            echo "<p>".$atutor."</p>";
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                    <div class="col l3 s12">
+                                                        <p>Orientadores:</p>
+                                                        <?php
+                                                        $orientadores  = explode(",",$tr->getOrientadores());
+                                                        foreach ($orientadores as $orientador){
+                                                            echo "<p>".$orientador."</p>";
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                    <div class="col s12 l3">
+                                                        <a style="margin-left: 100px;"
+                                                           href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo
+                                                            PDF</a>
+                                                    </div>
+                                                    <div class="col s12 l3">
+                                                        <p class="right" style="margin-top: -3px; margin-right: 110px;">Submetido
+                                                            em: <?php echo $tr->getData_submissao(); ?></p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </li>
                                         <?php
                                     }
+                                }else{
+                                    echo "<h5>Nada Encontrado nas submições</h5>";
                                 }
                                 ?>
-                                <li>
-                                    <div class="collapsible-header"><i class="material-icons">library_books</i>Usabilidade nos repositórios digitais de monografias das instituições públicas de ensino superior brasileiras</div>
-                                    <div class="collapsible-body">
-                                        <a href="#">Autores</a>
-                                        <a style="margin-left: 100px;" href="#">Orientadores</a>
-                                        <a style="margin-left: 100px;" href="../Jovana Lopes.pdf" target="_blank">Arquivo PDF</a>
-                                        <span style="margin-left: 200px;">Publicado em:</span>
-                                        <span style="margin-left: 633px;">Submetido em:</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header"><i class="material-icons">library_books</i>Arquitetura da informação para biblioteca digital personalizável</div>
-                                    <div class="collapsible-body">
-                                        <a href="#">Autores</a>
-                                        <a style="margin-left: 100px;" href="#">Orientadores</a>
-                                        <a style="margin-left: 100px; "href="../Liriane Soares.pdf" target="_blank">Arquivo PDF</a>
-                                        <span style="margin-left: 200px;">Publicado em:</span>
-                                        <span style="margin-left: 633px;">Submetido em:</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header"><i class="material-icons">library_books</i>Organização da informação em repositórios digitais: implicações do auto-arquivamento na representação da informação</div>
-                                    <div class="collapsible-body">
-                                        <a href="#">Autores</a>
-                                        <a style="margin-left: 100px;" href="#">Orientadores</a>
-                                        <a style="margin-left: 100px;" href="../Graziela Martins.pdf" target="_blank">Arquivo PDF</a>
-                                        <span style="margin-left: 200px;">Publicado em:</span>
-                                        <span style="margin-left: 633px;">Submetido em:</span>
-                                    </div>
-                                </li>
+
+
+
                             </ul>
                         </div>
                     </div>

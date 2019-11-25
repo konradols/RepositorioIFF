@@ -40,6 +40,34 @@ class UsuarioPDO {
             $stmt->bindValue(':senha', $senhamd5);
 
             $stmt->bindValue(':foto', $usuario->getFoto());
+            $nome_imagem = hash_file('md5', $_FILES['arquivo']['tmp_name']);
+            $ext = explode('.', $_FILES['arquivo']['name']);
+            $extensao = "." . $ext[(count($ext) - 1)];
+            $extensao = strtolower($extensao);
+            file_put_contents('./logodotipodafoto', $extensao);
+            switch ($extensao) {
+                case '.jfif':
+                case '.jpeg':
+                case '.jpg':
+                    imagewebp(imagecreatefromjpeg($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                    break;
+                case '.svg':
+                    move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.svg');
+                    break;
+                case '.png':
+                    $img = imagecreatefrompng($_FILES['arquivo']['tmp_name']);
+                    imagepalettetotruecolor($img);
+                    imagewebp($img, __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                    break;
+                case '.webp':
+                    imagewebp(imagecreatefromwebp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                    break;
+                case '.bmp':
+                    imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                    imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
+                    break;
+            }
+            $stmt->bindValue(':foto', 'Img/Perfil/' . $nome_imagem . ($extensao == '.svg' ? ".svg" : ".webp"));
 
             if ($stmt->execute()) {
                 $_SESSION['toast'][] = "Usuário inserido!";
@@ -267,7 +295,7 @@ class UsuarioPDO {
         $con = new conexao();
         $pdo = $con->getConexao();
         $senha = md5($_POST['senha']);
-        $stmt = $pdo->prepare("SELECT * FROM usuario WHERE usuario LIKE :usuario AND senha LIKE :senha");
+        $stmt = $pdo->prepare("SELECT * FROM usuario WHERE usuario LIKE :usuario AND senha LIKE :senha and ativo = 1");
         $stmt->bindValue(":usuario", $_POST['usuario']);
         $stmt->bindValue(":senha", $senha);
         $stmt->execute();
@@ -282,11 +310,6 @@ class UsuarioPDO {
         }
     }
 
-    public function login2() {
-        if ($_POST['usuario'] = "konradols" && $_POST['senha'] = "konrado2019") {
-            header("Location: ../index.php");
-        }
-    }
 
     function logout() {
         session_destroy();
