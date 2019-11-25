@@ -27,23 +27,23 @@ include_once '../Modelo/Trabalho.php';
                 <div class="input-field col s12 l4">
                     <select name="categoria">
                         <option value="%%">Todos</option>
-                        <option value="%tcc%">TCC</option>
-                        <option value="%relatorio%">Relatórios</option>
-                        <option value="%producaocientifica%">Produções científicas</option>
+                        <option value="%tcc%" <?php echo isset($_POST['categoria'])?$_POST['categoria']=="%tcc%"?"selected":"":""; ?>>TCC</option>
+                        <option value="%relatorio%" <?php echo isset($_POST['categoria'])?$_POST['categoria']=="%relatorio%"?"selected":"":""; ?>>Relatórios</option>
+                        <option value="%producaocientifica%" <?php echo isset($_POST['categoria'])?$_POST['categoria']=="%producaocientifica%"?"selected":"":""; ?>>Produções científicas</option>
                     </select>
                 </div>
                 <div class="input-field col s12 l4">
                     <select name="campo">
                         <option value="">Qualquer</option>
-                        <option value="nome">Nome Trabalho</option>
-                        <option value="autores">Autor</option>
-                        <option value="orientadores">Orientador</option>
-                        <option value="resumo">Resumo</option>
-                        <option value="palavras_chave">Palavra Chave</option>
+                        <option value="nome" <?php echo isset($_POST['campo'])?$_POST['campo']=="nome"?"selected":"":""; ?>>Nome Trabalho</option>
+                        <option value="autores" <?php echo isset($_POST['campo'])?$_POST['campo']=="autores"?"selected":"":""; ?>>Autor</option>
+                        <option value="orientadores" <?php echo isset($_POST['campo'])?$_POST['campo']=="orientadores"?"selected":"":""; ?>>Orientador</option>
+                        <option value="resumo" <?php echo isset($_POST['campo'])?$_POST['campo']=="resumo"?"selected":"":""; ?>>Resumo</option>
+                        <option value="palavras_chave" <?php echo isset($_POST['campo'])?$_POST['campo']=="palavras_chave"?"selected":"":""; ?>>Palavra Chave</option>
                     </select>
                 </div>
                 <div class="input-field col s12 l4">
-                    <input type="text" name="valor" id="valor">
+                    <input type="text" name="valor" id="valor" value="<?php echo isset($_POST['valor'])?$_POST['valor']:""; ?>">
                     <label for="valor">Pesquisa</label>
                 </div>
 

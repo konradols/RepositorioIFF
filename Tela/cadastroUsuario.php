@@ -33,7 +33,7 @@ include_once '../Base/navBar.php';
                                                                             <label for="turma">Turma</label>
                                                                         </div>-->
                                     <div class="input-field col l6">
-                                        <input type="text" name="email" required="true">
+                                        <input type="email" name="email" required="true">
                                         <label for="email">E-mail</label>
                                     </div>
                                     <div class="input-field col l6">

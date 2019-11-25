@@ -41,6 +41,7 @@ if (isset($_SESSION['usuario'])) {
 <div class="container">
 
     <div class="row">
+        <h5>Guia de cursos</h5>
         <div class="col l12 card">
             <ul class="collapsible">
                 <?php
@@ -67,7 +68,7 @@ if (isset($_SESSION['usuario'])) {
                                                 <div class="collapsible-body">
                                                     <ul class="collapsible">
                                                         <?php $stmtTrabalho = $trabalhoPDO->selectTrabalhoIdTurma($turma->getIdTurma());
-                                                        if ($stmtTurma) {
+                                                        if ($stmtTrabalho) {
                                                             while ($resultadoTrabalho = $stmtTrabalho->fetch()) {
                                                                 $tr = new trabalho($resultadoTrabalho);
                                                                 ?>
@@ -114,6 +115,8 @@ if (isset($_SESSION['usuario'])) {
 
                                                                 <?php
                                                             }
+                                                        }else{
+                                                            echo "<h5>Nenhum trabalho</h5>";
                                                         }
                                                         ?>
                                                     </ul>

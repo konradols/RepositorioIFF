@@ -9,18 +9,21 @@ if (realpath('./index.php')) {
     include_once './Controle/usuarioPDO.php';
     include_once './Modelo/Trabalho.php';
     include_once './Modelo/Usuario.php';
+    include_once './Modelo/Email.php';
 } else {
     if (realpath('../index.php')) {
         include_once '../Controle/conexao.php';
         include_once '../Controle/usuarioPDO.php';
         include_once '../Modelo/Trabalho.php';
         include_once '../Modelo/Usuario.php';
+        include_once '../Modelo/Email.php';
     } else {
         if (realpath('../../index.php')) {
             include_once '../../Controle/conexao.php';
             include_once '../../Controle/usuarioPDO.php';
             include_once '../../Modelo/Trabalho.php';
             include_once '../../Modelo/Usuario.php';
+            include_once '../../Modelo/Email.php';
         }
     }
 }
@@ -72,6 +75,16 @@ class TrabalhoPDO
 
             if (md5($_POST['senha']) == $logado->getSenha()) {
                 if ($stmt->execute()) {
+                    $email = new Email();
+                    $stmt = $pdo->prepare("select * from usuario where administrador = 1");
+                    $stmt->execute();
+                    while($linha = $stmt->fetch()){
+                        $usuario = new usuario($linha);
+                        $email->addDestinatario($usuario->getEmail());
+                        $email->setAssunto("Nova submissao");
+                        $email->setMensagemHTML("Nova submição no repositório, por favor avalie par que seja feita a publicação.");
+                        $email->enviar();
+                    }
                     $_SESSION['toast'][] = 'Trabalho inserido com sucesso!';
                     header('location: ../Tela/telaUpload.php?msg=trabalhoInserido');
                 } else {
@@ -366,6 +379,15 @@ class TrabalhoPDO
             $stmt->bindValue(':id_trabalho', $id_trabalho);
             if($stmt->execute()) {
                 $_SESSION['toast'][] = 'Trabalho aceito';
+                $stmt = $pdo->prepare("select * from usuario where id_usuario in (select id_usuario from trabalho where id_trabalho = :id_trabalho)");
+                $stmt->bindValue(':id_trabalho', $id_trabalho);
+                $stmt->execute();
+                $usuario = new usuario($stmt->fetch());
+                $email = new Email();
+                $email->addDestinatario($usuario->getEmail());
+                $email->setAssunto("Trabalho aceito");
+                $email->setMensagemHTML("Nova submição no repositório, por favor avalie par que seja feita a publicação.");
+                $email->enviar();
                 header("Location: ../Tela/trabalhosPendentes.php");
             } else{
                 $_SESSION['toast'][] = 'Erro ao aceitar trabalho';

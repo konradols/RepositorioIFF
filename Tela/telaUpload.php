@@ -90,7 +90,9 @@ if (!isset($_SESSION['usuario'])) {
                                 <label for="curso">Selecionar curso</label>
                             </div>
                             <div class="input-field col l6 s12">
-                                <select name="id_turma" id="id_turma"></select>
+                                <select name="id_turma" id="id_turma">
+                                    <option value='' disabled selected>Nenhum curso selecionado</option>
+                                </select>
                                 <label for="id_turma">Selecione a Turma</label>
                             </div>
                             <div class="file-field input-field col s12 l12">

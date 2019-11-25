@@ -3,14 +3,17 @@
 if (realpath('./index.php')) {
     include_once './Controle/conexao.php';
     include_once './Modelo/Usuario.php';
+    include_once './Modelo/Email.php';
 } else {
     if (realpath('../index.php')) {
         include_once '../Controle/conexao.php';
         include_once '../Modelo/Usuario.php';
+        include_once '../Modelo/Email.php';
     } else {
         if (realpath('../../index.php')) {
             include_once '../../Controle/conexao.php';
             include_once '../../Modelo/Usuario.php';
+            include_once '../../Modelo/Email.php';
         }
     }
 }
@@ -70,6 +73,11 @@ class UsuarioPDO {
             $stmt->bindValue(':foto', 'Img/Perfil/' . $nome_imagem . ($extensao == '.svg' ? ".svg" : ".webp"));
 
             if ($stmt->execute()) {
+                $email = new Email();
+                $email->addDestinatario($usuario->getEmail());
+                $email->setAssunto("Solicitacao de usuário");
+                $email->setMensagemHTML("O usuário ".$usuario->getNome(). " solicitou o acesso e está aguardando aprovação.");
+                $email->enviar();
                 $_SESSION['toast'][] = "Usuário inserido!";
                 header('location: ../Tela/login.php?msg=usuarioInserido');
 

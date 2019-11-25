@@ -53,7 +53,7 @@ if (isset($_SESSION['usuario'])) {
                         } else {
                             ?>
                             <!--<i class="large material-icons disabled">send</i>-->
-                            <a style="color: grey;"><i class="large material-icons">send</i></a>
+                            <a style="color: grey;" class="tooltipped" data-position="bottom" data-tooltip="Você precisa estar logado para acessar esta opção!"><i class="large material-icons">send</i></a>
                             <?php
                         }
                         ?>
@@ -64,6 +64,9 @@ if (isset($_SESSION['usuario'])) {
         </div>
     </div>
 </div>
+    <script>
+        $('.tooltipped').tooltip();
+    </script>
 </main>
 <?php
 include_once './Base/footer.php';
