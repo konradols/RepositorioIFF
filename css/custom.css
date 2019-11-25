@@ -19,3 +19,29 @@ footer{
     width: 250px;
     height: 250px;
 }
+
+.fotoPerfil{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+}
+.linkfoto{
+    background: linear-gradient(transparent, transparent, black);
+    background-size: 50px;
+    opacity: 0;
+    height: 150px;
+    border-radius: 50%;
+    padding-top: 65%;
+    transition: ease-in 0.2s;
+}
+
+.linkfoto:hover{
+    opacity: 1;
+}
+
+.disabled[disabled="disabled"]{
+    pointer-events: none;
+}

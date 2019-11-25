@@ -1,4 +1,5 @@
 <?php
+
 $pontos = "";
 if (realpath("./index.php")) {
     $pontos = './';
@@ -7,25 +8,28 @@ if (realpath("./index.php")) {
         $pontos = '../';
     }
 }
-?>
 
-<div class="navbar-fixed">
-    <nav class="nav-extended corpadrao">
-        <div class="nav-wrapper">
-            <a href="<?php echo $pontos; ?>index.php" class="brand-logo center">Repositório Digital IFFar SVS</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <!-- Dropdown Trigger -->
-                <li><a href="<?php echo $pontos; ?>pesquisa.php">Pesquisa</a></li>
-                <li><a href="#">Sair</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
+if (realpath('./index.php')) {
+    include_once './Controle/conexao.php';
+    include_once './Controle/usuarioControle.php';
+    include_once './Modelo/Usuario.php';
+} else {
+    if (realpath('../index.php')) {
+        include_once '../Controle/conexao.php';
+        include_once '../Modelo/Usuario.php';
+        include_once '../Controle/usuarioControle.php';
+    }
+}
 
-<script>
-
-    $('.dropdown-trigger').dropdown({
-        hover: false
-    });
-
-</script>
+if (isset($_SESSION['usuario'])) {
+    include_once $pontos . 'Modelo/usuario.php';
+    $usuario = new usuario();
+    $usuario = unserialize($_SESSION['usuario']);
+    if ($usuario->getAdministrador() == 'true') {
+        include_once $pontos . 'Base/navAdm.php';
+    } else {
+        include_once $pontos . 'Base/navPadrao.php';
+    }
+} else {
+    include_once $pontos . 'Base/navBar.php';
+}
