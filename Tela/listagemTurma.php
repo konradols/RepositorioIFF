@@ -27,7 +27,6 @@
         </div>
         <div class="row">
             <?php
-
                 if ($stmtTurma) {
                     $turmas = $stmtTurma->fetchAll();?>
                     <table class="col s10 offset-s1 hide-on-small-only hide-on-med-only">
@@ -56,6 +55,32 @@
                         ?>
                         </thead>
                     </table>
+                    <ul class="collapsible hide-on-large-only">
+                        <?php
+                            foreach ($turmas as $linha) {
+                                $turma = new turma($linha);
+                                ?>
+                                <li>
+                                    <div class="collapsible-header"><b><?php echo $turma->getNome() ?></b></div>
+                                    <div class="collapsible-body">
+                                        <p class="left-align">
+                                            <b>Nome: </b><?php echo $turma->getNome() ?>
+                                        </p>
+                                        <p class="left-align">
+                                            <b>Ano inicial: </b><?php echo $turma->getAno_inicio() ?>
+                                        </p>
+                                        <p class="left-align">
+                                            <b>Ano Término: </b><?php echo $turma->getAno_fim() ?>
+                                        </p>
+                                        <p class="center">
+                                            <a
+                                                    href="../Controle/turmaControle.php?function=deletar&id_turma=<?php echo $turma->getIdTurma(); ?>&id_curso=<?php echo $_GET['id_curso'] ?>" class="btn red darken-3">Deletar</a>
+                                        </p>
+                                    </div>
+                                </li>
+                            <?php } ?>
+
+                    </ul>
                     <?php
                 } else {
                     echo "<h5 class='center'>Nenhuma turma encontrado</h5>";
@@ -67,6 +92,9 @@
         </div>
     </div>
 </div>
+<script>
+    $('.collapsible').collapsible();
+</script>
 <?php
     include_once '../Base/footer.php';
 ?>
