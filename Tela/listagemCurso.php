@@ -23,7 +23,7 @@
             <h5 class="center">Cadastrar curso</h5>
             <form action="../Controle/cursoControle.php?function=inserirCurso" method="post">
                 <div class="input-field col l10 s12 m10 offset-l1 offset-m1">
-                    <input id="nome" type="text" class="validate" name="nome">
+                    <input id="nome" type="text" class="validate" required name="nome">
                     <label for="nome">Nome do Curso</label>
                 </div>
                 <div class="row center">
@@ -55,6 +55,9 @@
                                     <td class="center"><a
                                                 href="./registroTurma.php?id_curso=<?php echo $curso->getIdCurso() ?>"
                                                 class="btn green darken-3">Adicionar Turma</a></td>
+                                    <td class="center"><a
+                                                    href="../Controle/cursoControlephp?function=excluir&id_curso=<?php echo $curso->getIdCurso() ?>"
+                                                class="btn green darken-3">Excluir Curso</a></td>
                                 </tr>
                                 <?php
                             }

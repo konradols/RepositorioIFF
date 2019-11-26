@@ -78,11 +78,12 @@ class TrabalhoPDO
                     $email = new Email();
                     $stmt = $pdo->prepare("select * from usuario where administrador = 1");
                     $stmt->execute();
-                    while($linha = $stmt->fetch()){
+                    while ($linha = $stmt->fetch()) {
                         $usuario = new usuario($linha);
                         $email->addDestinatario($usuario->getEmail());
                         $email->setAssunto("Nova submissao");
-                        $email->setMensagemHTML("Nova submição no repositório, por favor avalie par que seja feita a publicação.");
+                        $email->setTituloModeP("Nova submissao");
+                        $email->setMensagemModeP("Nova submição no repositório, por favor avalie par que seja feita a publicação.");
                         $email->enviar();
                     }
                     $_SESSION['toast'][] = 'Trabalho inserido com sucesso!';
@@ -115,7 +116,8 @@ class TrabalhoPDO
     }
 
 
-    public function selectTrabalhoPendente() {
+    public function selectTrabalhoPendente()
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -128,7 +130,8 @@ class TrabalhoPDO
         }
     }
 
-    function pesquisaTrabalhos($post){
+    function pesquisaTrabalhos($post)
+    {
 
         $con = new conexao();
         $pdo = $con->getConexao();
@@ -371,27 +374,59 @@ class TrabalhoPDO
     /* editar */
     /* chave */
 
-        function aceitar() {
-            $id_trabalho = $_GET['id_trabalho'];
-            $con = new conexao();
-            $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('update trabalho set publicado = 1 where id_trabalho = :id_trabalho');
+    function aceitar()
+    {
+        $id_trabalho = $_GET['id_trabalho'];
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('update trabalho set publicado = 1 where id_trabalho = :id_trabalho');
+        $stmt->bindValue(':id_trabalho', $id_trabalho);
+        if ($stmt->execute()) {
+            $_SESSION['toast'][] = 'Trabalho aceito';
+            $stmt = $pdo->prepare("select * from usuario where id_usuario in (select id_usuario from trabalho where id_trabalho = :id_trabalho)");
             $stmt->bindValue(':id_trabalho', $id_trabalho);
-            if($stmt->execute()) {
-                $_SESSION['toast'][] = 'Trabalho aceito';
-                $stmt = $pdo->prepare("select * from usuario where id_usuario in (select id_usuario from trabalho where id_trabalho = :id_trabalho)");
-                $stmt->bindValue(':id_trabalho', $id_trabalho);
-                $stmt->execute();
-                $usuario = new usuario($stmt->fetch());
-                $email = new Email();
-                $email->addDestinatario($usuario->getEmail());
-                $email->setAssunto("Trabalho aceito");
-                $email->setMensagemHTML("Nova submição no repositório, por favor avalie par que seja feita a publicação.");
-                $email->enviar();
-                header("Location: ../Tela/trabalhosPendentes.php");
-            } else{
-                $_SESSION['toast'][] = 'Erro ao aceitar trabalho';
-                header("Location: ../Tela/trabalhosPendentes.php");
-            }
+            $stmt->execute();
+            $usuario = new usuario($stmt->fetch());
+            $email = new Email();
+            $email->addDestinatario($usuario->getEmail());
+            $email->setAssunto("Trabalho aceito");
+            $email->setTituloModeP("Trabalho aceito");
+            $email->setMensagemModeP("Nova submição no repositório, por favor avalie par que seja feita a publicação.");
+            $email->enviar();
+            header("Location: ../Tela/trabalhosPendentes.php");
+        } else {
+            $_SESSION['toast'][] = 'Erro ao aceitar trabalho';
+            header("Location: ../Tela/trabalhosPendentes.php");
         }
+    }
+
+    function rejeitar()
+    {
+        $id_trabalho = $_GET['id_trabalho'];
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('select * from trabalho where id_trabalho = :id_trabalho');
+        $stmt->bindValue(':id_trabalho', $id_trabalho);
+        $trabalho = new trabalho($stmt->fetch());
+        unlink($trabalho->getCaminho());
+        $stmt = $pdo->prepare("select * from usuario where id_usuario in (select id_usuario from trabalho where id_trabalho = :id_trabalho)");
+        $stmt->bindValue(':id_trabalho', $id_trabalho);
+        $stmt->execute();
+        $usuario = new usuario($stmt->fetch());
+        $stmt = $pdo->prepare('delete from trabalho where id_trabalho = :id_trabalho');
+        $stmt->bindValue(':id_trabalho', $id_trabalho);
+        if ($stmt->execute()) {
+            $_SESSION['toast'][] = 'Trabalho Rejeitado';
+            $email = new Email();
+            $email->addDestinatario($usuario->getEmail());
+            $email->setAssunto("Trabalho Rejeitado");
+            $email->setTituloModeP("Trabalho Rejeitado");
+            $email->setMensagemModeP("Seu trabalho foi rejeitado, faça uma nova submição ou entre em contato para entender o porque.");
+            $email->enviar();
+            header("Location: ../Tela/trabalhosPendentes.php");
+        } else {
+            $_SESSION['toast'][] = 'Erro ao rejeitar trabalho';
+            header("Location: ../Tela/trabalhosPendentes.php");
+        }
+    }
 }

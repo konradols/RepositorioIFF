@@ -47,38 +47,21 @@ class UsuarioPDO {
             $ext = explode('.', $_FILES['arquivo']['name']);
             $extensao = "." . $ext[(count($ext) - 1)];
             $extensao = strtolower($extensao);
+            $nome_imagem = $nome_imagem.$extensao;
             file_put_contents('./logodotipodafoto', $extensao);
-            switch ($extensao) {
-                case '.jfif':
-                case '.jpeg':
-                case '.jpg':
-                    imagewebp(imagecreatefromjpeg($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                    break;
-                case '.svg':
-                    move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.svg');
-                    break;
-                case '.png':
-                    $img = imagecreatefrompng($_FILES['arquivo']['tmp_name']);
-                    imagepalettetotruecolor($img);
-                    imagewebp($img, __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                    break;
-                case '.webp':
-                    imagewebp(imagecreatefromwebp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                    break;
-                case '.bmp':
-                    imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                    imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                    break;
-            }
-            $stmt->bindValue(':foto', 'Img/Perfil/' . $nome_imagem . ($extensao == '.svg' ? ".svg" : ".webp"));
+            move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__ . '/../Img/Perfil/' . $nome_imagem);
+            $stmt->bindValue(':foto', 'Img/Perfil/' . $nome_imagem);
 
             if ($stmt->execute()) {
                 $email = new Email();
                 $email->addDestinatario($usuario->getEmail());
                 $email->setAssunto("Solicitacao de usuário");
-                $email->setMensagemHTML("O usuário ".$usuario->getNome(). " solicitou o acesso e está aguardando aprovação.");
+                $email->setTituloModeP("Novo usuário!");
+                $email->setMensagemModeP("O usuário ".$usuario->getNome(). " solicitou o acesso e está aguardando aprovação.");
                 $email->enviar();
                 $_SESSION['toast'][] = "Usuário inserido!";
+                $_SESSION['toast'][] = "Agaurde a aprovação de algum administrador para poder Entrar";
+                $_SESSION['toast'][] = "Enviaremos notificação via E-mail";
                 header('location: ../Tela/login.php?msg=usuarioInserido');
 
             } else {
@@ -93,6 +76,15 @@ class UsuarioPDO {
 
     /* inserir */
 
+    function validasenha(){
+
+        if($this->verificaSenha(md5($_POST['senha']))){
+            echo "true";
+        }else{
+            echo "false";
+        }
+    }
+
     function updateFotoPerfil() {
         $id_usuario = $_GET['id_usuario'];
         $nome_imagem = hash_file('md5', $_FILES['arquivo']['tmp_name']);
@@ -100,37 +92,18 @@ class UsuarioPDO {
         $extensao = "." . $ext[(count($ext) - 1)];
         $extensao = strtolower($extensao);
         file_put_contents('./logodotipodafoto', $extensao);
-        switch ($extensao) {
-            case '.jfif':
-            case '.jpeg':
-            case '.jpg':
-                imagewebp(imagecreatefromjpeg($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                break;
-            case '.svg':
-                move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.svg');
-                break;
-            case '.png':
-                $img = imagecreatefrompng($_FILES['arquivo']['tmp_name']);
-                imagepalettetotruecolor($img);
-                imagewebp($img, __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                break;
-            case '.webp':
-                imagewebp(imagecreatefromwebp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                break;
-            case '.bmp':
-                imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                imagewebp(imagecreatefromwbmp($_FILES['arquivo']['tmp_name']), __DIR__ . '/../Img/Perfil/' . $nome_imagem . '.webp', 45);
-                break;
-        }
+        $nome_imagem = $nome_imagem.$extensao;
+        file_put_contents('./logodotipodafoto', $extensao);
+        move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__ . '/../Img/Perfil/' . $nome_imagem);
         $con = new conexao();
         $pdo = $con->getConexao();
         $stmt = $pdo->prepare('update usuario set foto = :foto where id_usuario = :id_usuario');
         $stmt->bindValue(":id_usuario", $id_usuario);
-        $stmt->bindValue(":foto", 'Img/Perfil/' . $nome_imagem . ($extensao == '.svg' ? ".svg" : ".webp"));
+        $stmt->bindValue(":foto", 'Img/Perfil/' . $nome_imagem);
         if($stmt->execute()) {
             $usuario = new usuario(unserialize($_SESSION['usuario']));
             unlink("../".$usuario->getFoto());
-            $usuario->setFoto('Img/Perfil/' . $nome_imagem . ($extensao == '.svg' ? ".svg" : ".webp"));
+            $usuario->setFoto('Img/Perfil/' . $nome_imagem);
             $_SESSION['usuario'] = serialize($usuario);
             $_SESSION['toast'][] = 'Foto atualizada';
             header("Location: ../Tela/perfil.php");
@@ -398,11 +371,19 @@ class UsuarioPDO {
 
     function ativar() {
         $id_usuario = $_GET['id_usuario'];
+        $usuario = $this->selectUsuarioId($id_usuario);
+        $usuario = new usuario($usuario->fetch());
         $con = new conexao();
         $pdo = $con->getConexao();
         $stmt = $pdo->prepare("update usuario set ativo = 1 where id_usuario = :id_usuario");
         $stmt->bindValue(":id_usuario", $id_usuario);
         if($stmt->execute()) {
+            $email = new Email();
+            $email->setAssunto("Usuario Aceito");
+            $email->setTituloModeP("Seu usuário foi aceito!");
+            $email->setMensagemModeP("Seja bem vindo ao repositório digital do iffar!");
+            $email->addDestinatario($usuario->getEmail());
+            $email->enviar();
             $_SESSION['toast'][]='Usuário ativado';
             header("Location: ../Tela/cadastrosPendentes.php");
         } else {
@@ -410,6 +391,29 @@ class UsuarioPDO {
             header("Location: ../Tela/cadastrosPendentes.php");
         }
     }
+
+function rejeitar(){
+    $id_usuario = $_GET['id_usuario'];
+    $usuario = $this->selectUsuarioId($id_usuario);
+    $usuario = new usuario($usuario->fetch());
+    $con = new conexao();
+    $pdo = $con->getConexao();
+    $stmt = $pdo->prepare("delete from usuario where id_usuario = :id_usuario");
+    $stmt->bindValue(":id_usuario", $id_usuario);
+    if($stmt->execute()) {
+        $email = new Email();
+        $email->setAssunto("Usuario Rejeitado");
+        $email->setTituloModeP("Usuário Rejeitado");
+        $email->setMensagemModeP("Seu usuário foi rejeitado, se acha que isto foi um erro por favor entre em contato.");
+        $email->addDestinatario($usuario->getEmail());
+        $email->enviar();
+        $_SESSION['toast'][]='Usuário Deletado';
+        header("Location: ../Tela/cadastrosPendentes.php");
+    } else {
+        $_SESSION['toast'][]='Erro ao deletar usuário';
+        header("Location: ../Tela/cadastrosPendentes.php");
+    }
+}
 
     function addAdm() {
         $id_usuario = $_GET['id_usuario'];

@@ -187,7 +187,7 @@ class Email {
 
     public function enviar(bool $registraBanco =false, bool $modeloPadrao = true) {
         if ($modeloPadrao) {
-            $this->emailObject->Body = $this->corpoHTML . $this->titulo . $this->corpoHTML2 . $this->mensagem . $this->corpoHTML3;
+            $this->emailObject->Body = $this->corpoHTML . htmlspecialchars($this->titulo) . $this->corpoHTML2 . htmlspecialchars($this->mensagem) . $this->corpoHTML3;
         }
         if ($this->liberar) {
             return $this->emailObject->send();

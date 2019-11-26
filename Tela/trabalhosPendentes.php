@@ -69,6 +69,10 @@
                                             <a href="../Controle/trabalhoControle.php?function=aceitar&id_trabalho=<?php echo $tr->getId_trabalho() ?>"
                                                class="btn green darken-3">Aceitar Publicação</a>
                                         </div>
+                                        <div class="row center">
+                                            <a href="../Controle/trabalhoControle.php?function=rejeitar&id_trabalho=<?php echo $tr->getId_trabalho() ?>"
+                                               class="btn red darken-3">Rejeitar Publicação</a>
+                                        </div>
                                     </div>
                                 </li>
                                 <?php

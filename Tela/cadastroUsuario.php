@@ -17,27 +17,19 @@ include_once '../Base/navBar.php';
                         <div class="card-content">
                             <span class="card-title">Cadastro</span>
                             <br>
-                            <form name="cadastroUsuario" method="post" action="../Controle/usuarioControle.php?function=inserirUsuario" enctype="multipart/form-data">
+                            <form name="cadastroUsuario" id="formId" method="post" action="../Controle/usuarioControle.php?function=inserirUsuario" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="input-field col l6">
-                                        <input type="text" name="nome" required="true">
+                                        <input type="text" name="nome" required="true" id="nome">
                                         <label for="nome">Nome</label>
                                     </div>
-                                    <!--
-                                                                        <div class="input-field col l6">
-                                                                            <input type="text" name="matricula" required="true">
-                                                                            <label for="matricula">Nº da Matrícula</label>
-                                                                        </div>
-                                                                        <div class="input-field col l6">
-                                                                            <input type="text" name="turma" required="true">
-                                                                            <label for="turma">Turma</label>
-                                                                        </div>-->
+
                                     <div class="input-field col l6">
-                                        <input type="email" name="email" required="true">
+                                        <input type="email" name="email" id="email" required="true">
                                         <label for="email">E-mail</label>
                                     </div>
                                     <div class="input-field col l6">
-                                        <input type="text" name="usuario" required="true">
+                                        <input type="text" name="usuario" id="usuario" required="true">
                                         <label for="usuario">Usuario</label>
                                     </div>
                                     <!--                                    <div class="input-field col l6">
@@ -53,12 +45,12 @@ include_once '../Base/navBar.php';
                                             </select>
                                     </div>
                                     <div class="input-field col l6">
-                                        <input type="password" name="senha1" required="true">
-                                        <label for="senha">Senha</label>
+                                        <input type="password" name="senha1" id="senha1" required="true">
+                                        <label for="senha1">Senha</label>
                                     </div>
                                     <div class="input-field col l6">
-                                        <input type="password" name="senha2" required="true">
-                                        <label for="senhaconf">Confirme sua senha</label>
+                                        <input type="password" name="senha2" id="senha2" required="true">
+                                        <label for="senha2f">Confirme sua senha</label>
                                     </div>
                                     <div class="file-field input-field col l12">
                                         <button class="btn corpadrao">
@@ -66,11 +58,10 @@ include_once '../Base/navBar.php';
                                         </button>
                                         <input type="file" class="file-chos" name="arquivo">
                                         <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" placeholder="Foto">
+                                            <input class="file-path validate" required type="text" placeholder="Foto">
                                         </div>
                                     </div>
                                     <div>
-                                        <!--<a style="margin-bottom: -50px;" class="waves-effect waves-light btn">Cadastrar</a>-->
                                         <a href="../Tela/login.php" class="grey btn">Voltar</a>
                                         <input type="submit" class="btn corpadrao" value="Cadastrar">
                                     </div>
@@ -87,6 +78,11 @@ include_once '../Base/navBar.php';
             $(document).ready(function () {
                 $('select').formSelect();
             });
+            $("#formId").submit(function () {
+                if($(".file-path").val()==""){
+                    M.toast({html: "Insira sua foto!"});
+                }
+            })
         </script>
 </main>
         <?php

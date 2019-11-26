@@ -36,7 +36,18 @@ class CursoPDO{
     /*inserir*/
                 
     
-
+function excluir(){
+    $con = new conexao();
+    $pdo = $con->getConexao();
+    $stmt = $pdo->prepare('delete from curso where id_curso = :id_curso;');
+    $stmt->bindValue(":id_curso" , $_GET['id_curso']);
+    if($stmt->execute()){
+        $_SESSION['toast'][] = 'Curso deletado';
+    }else{
+        $_SESSION['toast'][] = 'Existem outras coisas inseridas que dependem deste curso!';
+    }
+    header("location: ../Tela/listagemCurso.php");
+}
             
 
     public function selectCurso(){

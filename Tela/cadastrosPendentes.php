@@ -35,6 +35,7 @@
                                 <th>Nome</th>
                                 <th>Email</th>
                                 <th>Ativar</th>
+                                <th>Rejeitar</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -50,6 +51,9 @@
                                         <td>
                                             <a href="../Controle/usuarioControle.php?function=ativar&id_usuario=<?php echo $usuario->getIdUsuario(); ?>"
                                                class="btn waves-effect green">Ativar</a></td>
+                                        <td>
+                                            <a href="../Controle/usuarioControle.php?function=rejeitar&id_usuario=<?php echo $usuario->getIdUsuario(); ?>"
+                                               class="btn waves-effect red">Rejeitar</a></td>
                                     </tr>
                                     <?php
                                 } ?>
