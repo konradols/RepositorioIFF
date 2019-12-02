@@ -69,7 +69,7 @@ class TrabalhoPDO
 
             $stmt->bindValue(':caminho', $trabalho->getCaminho());
 
-            $stmt->bindValue(':id_curso', "1");
+            $stmt->bindValue(':id_curso', $trabalho->getId_turma());
 
             $logado = new usuario(unserialize($_SESSION['usuario']));
 
@@ -332,7 +332,7 @@ class TrabalhoPDO
 
         $stmt->bindValue(':caminho', $trabalho->getCaminho());
 
-        $stmt->bindValue(':id_curso', $trabalho->getId_curso());
+        $stmt->bindValue(':id_curso', $trabalho->getId_turma());
 
         $stmt->bindValue(':numero_acessos', $trabalho->getNumero_acessos());
 

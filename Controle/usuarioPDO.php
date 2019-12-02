@@ -60,7 +60,7 @@ class UsuarioPDO {
                 $email->setMensagemModeP("O usuário ".$usuario->getNome(). " solicitou o acesso e está aguardando aprovação.");
                 $email->enviar();
                 $_SESSION['toast'][] = "Usuário inserido!";
-                $_SESSION['toast'][] = "Agaurde a aprovação de algum administrador para poder Entrar";
+                $_SESSION['toast'][] = "Aguarde a aprovação de algum administrador para poder Entrar";
                 $_SESSION['toast'][] = "Enviaremos notificação via E-mail";
                 header('location: ../Tela/login.php?msg=usuarioInserido');
 

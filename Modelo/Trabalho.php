@@ -13,7 +13,7 @@ private $coorientadores;
 private $palavras_chave;
 private $data_submissao;
 private $caminho;
-private $id_curso;
+private $id_turma;
 private $numero_acessos;
 private $numero_downloads;
 private $publicado;
@@ -126,12 +126,12 @@ public function __construct() {
           $this->caminho = $caminho;
      }
 
-     public function getId_curso(){
-         return $this->id_curso;
+     public function getId_turma(){
+         return $this->id_turma;
      }
 
-     function setId_curso($id_curso){
-          $this->id_curso = $id_curso;
+     function setId_turma($id_turma){
+          $this->id_turma = $id_turma;
      }
 
      public function getNumero_acessos(){

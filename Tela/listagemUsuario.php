@@ -34,7 +34,7 @@
                             <tr>
                                 <th class="center">Foto</th>
                                 <th class="center">Nome</th>
-                                <th class="center">Email</th>
+                                <th class="center">E-mail</th>
                                 <th class="center">Categoria</th>
                                 <th class="center">Administrador</th>
                                 <th class="center">Perfil</th>

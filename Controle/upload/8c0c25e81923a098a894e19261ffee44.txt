@@ -1,0 +1,24 @@
+#!/bin/sh
+
+	aux=true
+	for i in $(ls Doc)
+	do
+		if [ -f "Backup/$i" ]
+			then
+			if [ "Doc/$i" -nt "Backup/$i" ]
+			then
+				cp "Doc/$i" "Backup"
+				echo "\033[00;34mAtualização do backup do arquivo $i realizado com sucesso"
+				aux=false
+			fi
+		else
+			cp "Doc/$i" "Backup/"
+			echo "\033[00;32mBackup do arquivo $i realizado com sucesso na pasta Backup"
+			aux=false
+			fi
+	done
+	if[ "$aux" = true ]
+	then
+		echo "\0033[00;33mNenhum novo arquivo adicionado ao backup."
+	fi
+

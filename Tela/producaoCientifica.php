@@ -80,12 +80,12 @@ include_once '../Base/nav.php';
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="col s12 l3">
+                                            <div class="col s12 l2">
                                                 <a style="margin-left: 100px;"
                                                    href="../Controle/<?php echo $tr->getCaminho(); ?>" target="_blank">Arquivo
                                                     PDF</a>
                                             </div>
-                                            <div class="col s12 l3">
+                                            <div class="col s12 l4">
                                                 <p class="right" style="margin-top: -3px; margin-right: 110px;">Submetido
                                                     em: <?php echo $tr->getData_submissao(); ?></p>
                                             </div>

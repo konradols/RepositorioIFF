@@ -133,11 +133,18 @@
                                                         Submetido
                                                         em: <?php echo $tr->getData_submissao(); ?></p>
                                                 </div>
-                                                <div class="row">
-                                                    <a class="btn red exluir" href="../Controle/trabalhoControle.php?function=excluir&id_trabalho=<?php echo $tr->getId_trabalho() ?>">
-                                                        Excluir trabalho
-                                                    </a>
-                                                </div>
+                                                <?php
+                                                if(!isset($_GET['id_usuario'])) {
+                                                    ?>
+                                                    <div class="row">
+                                                        <a class="btn red exluir"
+                                                           href="../Controle/trabalhoControle.php?function=excluir&id_trabalho=<?php echo $tr->getId_trabalho() ?>">
+                                                            Excluir trabalho
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                     </li>
